@@ -1,0 +1,15 @@
+name: Build commit artifact
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Building:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Create the docs
+        run: doxygen Doxyfile

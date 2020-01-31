@@ -21,7 +21,7 @@ jobs:
           mkdir build
           cd build
           cmake ..
-          make && sudo make install
+          make -j 4 && sudo make install
       - name: Install TGUI.
         run: |
           git clone https://github.com/texus/TGUI -b 0.8 /tmp/tgui
@@ -29,7 +29,7 @@ jobs:
           mkdir build
           cd build
           cmake ..
-          make && sudo make install
+          make -j 4 && sudo make install
       - name: Build Makefile with CMake
         run: mkdir -p build && cd build && cmake ..
       - name: Build with Makefile
