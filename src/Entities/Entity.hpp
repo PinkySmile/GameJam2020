@@ -9,7 +9,8 @@
 namespace DungeonIntern
 {
 	class Entity {
-
+	public:
+		virtual ~Entity() = default;
 	};
 }
 

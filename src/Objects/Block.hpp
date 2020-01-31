@@ -19,11 +19,13 @@ namespace DungeonIntern
 
 	public:
 		Block(unsigned maxHealth, Orientation orientation);
+		virtual ~Block() = default;
 
 		virtual void onWalk(class Character &) = 0;
 		virtual void use(class Player &) = 0;
 		virtual void loot(class Enemy &) = 0;
 		virtual void repair(class Player &) = 0;
+		virtual void render() = 0;
 	};
 }
 
