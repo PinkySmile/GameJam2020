@@ -1,0 +1,25 @@
+name: Update the documentation
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Building:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install Doxygen
+        run: sudo apt-get install --yes doxygen
+      - name: Update the docs
+        run: doxygen Doxyfile
+      - name: Deploy
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: gh-pages
+          build_dir: docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

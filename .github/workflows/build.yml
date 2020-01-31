@@ -1,0 +1,51 @@
+name: Build commit artifact
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Building:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            COMPILER: g++
+            LINKER: g++
+            artifact: DungeonIntern-Linux
+          - os: windows-latest
+            COMPILER: g++
+            LINKER: g++
+            artifact: DungeonIntern-Windows
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install the SFML's dependencies
+        run: sudo apt-get install --yes libfreetype6-dev libxrandr-dev libudev-dev libogg-dev libflac-dev libvorbis-dev libopenal-dev freeglut3-dev
+      - name: Install the SFML.
+        run: |
+          git clone https://github.com/SFML/SFML -b 2.5.x /tmp/sfml
+          cd /tmp/sfml
+          mkdir build
+          cd build
+          cmake ..
+          make -j 4 && sudo make install
+      - name: Install TGUI.
+        run: |
+          git clone https://github.com/texus/TGUI -b 0.8 /tmp/tgui
+          cd /tmp/tgui
+          mkdir build
+          cd build
+          cmake ..
+          make -j 4 && sudo make install
+      - name: Build Makefile with CMake
+        run: mkdir -p build && cd build && cmake ..
+      - name: Build with Makefile
+        run: make -C build DungeonIntern
+      - name: Archive production artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ./${{ matrix.config.artifact }}
+          path: build/${{ matrix.config.artifact }}
