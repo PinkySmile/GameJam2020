@@ -8,16 +8,13 @@
 
 #include "../Character.hpp"
 #include "../../../Objects/Block.hpp"
+#include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
 	class Enemy : public Character {
-	private:
-		std::vector<std::unique_ptr<Block>> &blocks;
-		std::vector<std::unique_ptr<Entity>> &entities;
-
 	public:
-		Enemy(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, std::vector<std::unique_ptr<Block>> &blocks, std::vector<std::unique_ptr<Entity>> &entities);
+		Enemy(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &map);
 		virtual void update() override;
 	};
 }
