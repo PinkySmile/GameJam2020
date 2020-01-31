@@ -6,9 +6,18 @@
 #define DUNGEONINTERN_MAP_HPP
 
 
+#include <memory>
+#include <vector>
+#include "Objects/Block.hpp"
+#include "Entities/Entity.hpp"
+
 namespace DungeonIntern
 {
 	class Map {
+	private:
+		std::vector<std::unique_ptr<Entity>> _entities;
+		std::vector<std::unique_ptr<Block>> _objects;
+
 	public:
 		Map(class Game &);
 

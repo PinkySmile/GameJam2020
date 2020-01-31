@@ -19,9 +19,15 @@ namespace DungeonIntern
 	template<typename type>
 	struct Position
 	{
-		type x = 0;
-		type y = 0;
-		Orientation r = SOUTH;
+		type x;
+		type y;
+		Orientation r;
+
+		Position(type x = 0, type y = 0, Orientation r = SOUTH) :
+			x(x),
+			y(y),
+			r(r)
+		{}
 	};
 }
 
