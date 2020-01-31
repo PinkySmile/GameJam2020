@@ -1,4 +1,4 @@
-name: Build commit artifact
+name: Update the documentation
 
 on:
   push:
@@ -11,5 +11,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Create the docs
+      - name: Install Doxygen
+        run: sudo apt-get update &&
+          sudo apt-get install --yes doxygen
+      - name: Update the docs
         run: doxygen Doxyfile
