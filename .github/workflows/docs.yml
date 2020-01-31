@@ -15,3 +15,11 @@ jobs:
         run: sudo apt-get install --yes doxygen
       - name: Update the docs
         run: doxygen Doxyfile
+      - name: Deploy
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: documentation
+          build_dir: docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
