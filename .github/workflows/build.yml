@@ -12,8 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install the SFML.
-        run: sudo apt-get update &&
-          sudo apt-get install --yes libsfml-dev
+        run: |
+          git clone https://github.com/SFML/SFML/tree/2.5.x /tmp/sfml
+          cd /tmp/sfml
+          make && sudo make install
       - name: Build Makefile with CMake
         run: mkdir -p build && cd build && cmake ..
       - name: Build with Makefile
