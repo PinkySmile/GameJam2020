@@ -9,4 +9,16 @@ namespace DungeonIntern
 	Map::Map(DungeonIntern::Game &)
 	{
 	}
+
+	void Map::update()
+	{}
+
+	void Map::render()
+	{}
+
+	void Map::reset()
+	{}
+
+	void Map::loadMap()
+	{}
 }

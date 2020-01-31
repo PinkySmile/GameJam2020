@@ -18,8 +18,16 @@ add_executable(
 	src/Logger.hpp
 	src/Map.cpp
 	src/Map.hpp
+	src/Utils.cpp
+	src/Utils.hpp
+	src/Loader.cpp
+	src/Loader.hpp
+	src/Objects/Block.cpp
+	src/Objects/Block.hpp
 	src/Resources.cpp
 	src/Resources.hpp
+	src/Exceptions.cpp
+	src/Exceptions.hpp
 	src/Input/Input.cpp
 	src/Input/Input.hpp
 	src/Input/SFMLJoypad.cpp
@@ -31,7 +39,11 @@ add_executable(
 	src/Menus/Menu.hpp
 	src/Menus/MenuMgr.cpp
 	src/Menus/MenuMgr.hpp
-)
+	src/Menus/MainMenu.cpp
+	src/Menus/MainMenu.hpp
+	src/Menus/InGameMenu.cpp
+	src/Menus/InGameMenu.hpp
+	src/Position.hpp)
 
 target_link_libraries(
 	DungeonIntern

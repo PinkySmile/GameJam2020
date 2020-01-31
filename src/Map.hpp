@@ -11,6 +11,11 @@ namespace DungeonIntern
 	class Map {
 	public:
 		Map(class Game &);
+
+		void loadMap();
+		void update();
+		void render();
+		void reset();
 	};
 }
 
