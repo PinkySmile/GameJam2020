@@ -6,5 +6,8 @@
 
 namespace DungeonIntern
 {
-
+	Entity::Entity(float x, float y, Orientation r) :
+		_pos(x, y, r)
+	{
+	}
 }

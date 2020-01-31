@@ -11,7 +11,8 @@
 namespace DungeonIntern
 {
 	class Enemy : public Character {
-
+	public:
+		virtual void update() override;
 	};
 }
 
