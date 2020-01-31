@@ -21,14 +21,8 @@ namespace DungeonIntern
 			RIGHT,
 			DOWN,
 			LEFT,
-			SPRINT,
-			ATTACK,
-			INTERACT,
-			INVENTORY,
-			PAUSE,
-			DIALOG,
-			USE_CARD,
-			SWAP_CARD,
+			ACTION,
+			CANCEL,
 			NB_OF_ACTION
 		};
 

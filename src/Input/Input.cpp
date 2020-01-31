@@ -17,22 +17,10 @@ namespace DungeonIntern
 			return "Down";
 		case LEFT:
 			return "Left";
-		case SPRINT:
-			return "Sprint";
-		case ATTACK:
-			return "Attack";
-		case INTERACT:
-			return "Interact";
-		case INVENTORY:
-			return "Inventory";
-		case PAUSE:
-			return "Pause";
-		case DIALOG:
-			return "Continue Dialog";
-		case USE_CARD:
-			return "Use Card";
-		case SWAP_CARD:
-			return "Swap Card";
+		case ACTION:
+			return "Action";
+		case CANCEL:
+			return "Cancel";
 		default:
 			return "??";
 		}
