@@ -1,0 +1,25 @@
+name: Build commit artifact
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Building:
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install the SFML.
+        run: sudo apt-get update &&
+          sudo apt-get install --yes libsfml-dev
+      - name: Build Makefile with CMake
+        run: mkdir -p build && cd build && cmake ..
+      - name: Build with Makefile
+        run: make -C build DungeonIntern
+      - name: Archive production artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: DungeonIntern
+          path: build/DungeonIntern
