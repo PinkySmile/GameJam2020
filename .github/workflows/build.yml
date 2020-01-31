@@ -8,18 +8,18 @@ on:
 jobs:
   Building:
     runs-on: ${{ matrix.os }}
-      strategy:
-        matrix:
-          os: [ubuntu-latest, windows-latest]
-          include:
-            - os: ubuntu-latest
-              COMPILER: g++
-              LINKER: g++
-              artifact: DungeonIntern-Linux
-            - os: windows-latest
-              COMPILER: g++
-              LINKER: g++
-              artifact: DungeonIntern-Windows
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            COMPILER: g++
+            LINKER: g++
+            artifact: DungeonIntern-Linux
+          - os: windows-latest
+            COMPILER: g++
+            LINKER: g++
+            artifact: DungeonIntern-Windows
     steps:
       - uses: actions/checkout@v1
       - name: Install the SFML's dependencies
