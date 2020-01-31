@@ -11,9 +11,9 @@ namespace DungeonIntern
 	enum Orientation
 	{
 		NORTH,
+		EAST,
 		SOUTH,
-		WEST,
-		EAST
+		WEST
 	};
 
 	template<typename type>

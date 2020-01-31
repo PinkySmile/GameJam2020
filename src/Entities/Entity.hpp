@@ -7,17 +7,19 @@
 
 
 #include "../Position.hpp"
+#include "../Rendering/Entity.hpp"
 
 namespace DungeonIntern
 {
 	class Entity {
 	private:
+		Rendering::Entity &_entity;
 		float _speed = 0;
 		Position<float> _pos;
 		bool _destroyed = false;
 
 	public:
-		Entity(float x, float y, Orientation r = SOUTH);
+		Entity(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, Orientation r = SOUTH);
 		virtual ~Entity() = default;
 
 		template<typename type>

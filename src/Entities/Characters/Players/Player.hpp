@@ -8,18 +8,20 @@
 
 #include "../Character.hpp"
 #include "../../../Input/Input.hpp"
+#include "../../../Objects/Block.hpp"
 
 namespace DungeonIntern
 {
 	class Player : public Character {
 	private:
 		float _strengthMult;
-		Input &input;
+		Input &_input;
+		std::vector<std::unique_ptr<Block>> &_blocks;
 		std::vector<std::unique_ptr<Entity>> &_entities;
 		class Item *_itemCarried; //TODO: Code class Item
 
 	public:
-		Player(float x, float y, unsigned maxHealth, Input &input, std::vector<std::unique_ptr<Entity>> &entities);
+		Player(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Input &input, std::vector<std::unique_ptr<Block>> &blocks, std::vector<std::unique_ptr<Entity>> &entities);
 
 		virtual void update() override;
 		void interact(Entity &);

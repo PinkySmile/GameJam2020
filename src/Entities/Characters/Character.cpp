@@ -6,8 +6,8 @@
 
 namespace DungeonIntern
 {
-	Character::Character(float x, float y, unsigned maxHealth) :
-		Entity(x, y),
+	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth) :
+		Entity(screen, entityJsonPath, x, y),
 		_maxHealth(maxHealth),
 		_health(maxHealth)
 	{}

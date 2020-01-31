@@ -6,6 +6,7 @@
 #define DUNGEONINTERN_CHARACTER_HPP
 
 
+#include <string>
 #include "../Entity.hpp"
 
 namespace DungeonIntern
@@ -15,12 +16,15 @@ namespace DungeonIntern
 		const unsigned _maxHealth;
 		unsigned _health;
 		bool _dead;
+		unsigned _invFrames = 0;
+		std::string _sound;
 
 	public:
-		Character(float x, float y, unsigned maxHealth);
+		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth);
 
 		virtual void update() override;
 		bool isDead() const;
+		void takeDamage(unsigned damages);
 		virtual void onDeath() = 0;
 	};
 }
