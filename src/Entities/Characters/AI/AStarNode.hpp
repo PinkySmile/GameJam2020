@@ -17,13 +17,16 @@ namespace DungeonIntern::AI
 		std::shared_ptr<struct AStarNode> parent;
 		bool isWalkable;
 		int cost = 0;
-		int distanceToEnd;
+		int distanceToEnd = 0;
 
 		int getFCost()
 		{
 			return this->cost + this->distanceToEnd;
 		}
 
+		AStarNode()
+			: x(0), y(0), isWalkable(true)
+		{}
 		AStarNode(T x, T y)
 			: x(x), y(y), isWalkable(true)
 		{}

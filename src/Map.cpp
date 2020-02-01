@@ -17,6 +17,7 @@
 #include "Blocks/Objects/Chest.hpp"
 #include "Blocks/Objects/Trap2.hpp"
 #include "Entities/Items/Pickaxe.hpp"
+#include "Entities/Characters/AI/AiController.hpp"
 #include <functional>
 
 namespace DungeonIntern
@@ -132,6 +133,13 @@ namespace DungeonIntern
 						this->_size.y * 64 - 256
 				)
 		);
+		this->_entities.emplace_back(new AI::AIController({*this->_game.resources.screen, "assets/entities/dragon.json", *this},
+			5,
+			this->_size.x * 64 / 2,
+			this->_size.y * 64 - 128,
+		  64,
+		  64,
+		  100));
 	}
 
 	Size<size_t> Map::getSize() const

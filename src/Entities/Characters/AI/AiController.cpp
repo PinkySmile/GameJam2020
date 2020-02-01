@@ -14,14 +14,29 @@ namespace DungeonIntern::AI
 	{
 	}
 
-	std::vector<sf::Vector2u> &AIController::_findPath()
+	uNode AIController::_getBlockNodeFromPos(unsigned x, unsigned y)
+	{
+		uNode node(x, y);
+		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
+		Size<size_t> size = this->_map.getSize();
+
+		if (x >= size.x || y >= size.y) {
+			node.isWalkable = false;
+			return node;
+		}
+		node.isWalkable = blocks[x + y * size.x]->isWalkable();
+		return node;
+	}
+
+	std::vector<sf::Vector2u> AIController::_findPath()
 	{
 		uNode target(10, 15);
 
-		uNode current(this->_pos.x, this->_pos.y);
-		std::vector<uNode> openList = {current};
+		uNode first(this->_pos.x / 64, this->_pos.y / 64);
+		std::vector<uNode> openList = {first};
 		std::vector<uNode> closedList = {};
 
+		uNode current;
 		std::vector<uNode> neighbors;
 
 		while (!openList.empty() && std::find_if(openList.begin(), openList.end(), [&target](uNode &n) {return n.x == target.x && n.y == target.y;}) == openList.end()) {
@@ -30,10 +45,10 @@ namespace DungeonIntern::AI
 			closedList.push_back(current);
 
 			neighbors.clear();
-			neighbors.emplace_back(current.x -1, current.y);
-			neighbors.emplace_back(current.x, current.y -1);
-			neighbors.emplace_back(current.x + 1, current.y);
-			neighbors.emplace_back(current.x, current.y + 1);
+			neighbors.emplace_back(this->_getBlockNodeFromPos(current.x -1, current.y));
+			neighbors.emplace_back(this->_getBlockNodeFromPos(current.x, current.y -1));
+			neighbors.emplace_back(this->_getBlockNodeFromPos(current.x + 1, current.y));
+			neighbors.emplace_back(this->_getBlockNodeFromPos(current.x, current.y + 1));
 			for (auto &neighbor : neighbors) {
 				if (!neighbor.isWalkable)
 					continue;
@@ -51,7 +66,12 @@ namespace DungeonIntern::AI
 
 //		if (std::find(openList.begin(), openList.end(), [target](uNode &n) {return n.x == target.x && n.y == target.y;}) == openList.end())
 //			return {};
-		//return closedList;
+		std::vector<sf::Vector2u> ret;
+		while (current.x != first.x && current.y != first.y) {
+			ret.emplace_back(current.x, current.y);
+			current = *current.parent;
+		}
+		return ret;
 	}
 
 	void AIController::update()
