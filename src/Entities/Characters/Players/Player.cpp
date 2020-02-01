@@ -38,7 +38,6 @@ namespace DungeonIntern
 			}
 		}
 		if (movement.x || movement.y) {
-			std::cout << "Moving" << std::endl;
 			this->_speed = this->_maxSpeed;
 			this->move(this->_input.getDirectionAngle());
 		} else
