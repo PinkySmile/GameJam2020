@@ -28,6 +28,8 @@ jobs:
           cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DGITBUILD=true
       - name: Build with Makefile
         run: mingw32-make -C build DungeonIntern
+      - name: Copy shared libs
+        run: Copy-Item -Path 'C:\Program Files\Git\mingw64\bin\*.dll'
       - name: Archive production artifact
         uses: actions/upload-artifact@v1
         with:
