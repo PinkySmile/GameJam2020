@@ -13,9 +13,8 @@
 namespace DungeonIntern
 {
 	class DragonMan : public Player {
-
 	public:
-		DragonMan(EntityConfig cfg, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
+		DragonMan(Rendering::Screen &screen, Map &map, float x, float y, Input &input);
 		virtual ~DragonMan() override = default;
 	};
 }

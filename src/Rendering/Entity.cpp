@@ -38,7 +38,7 @@ namespace DungeonIntern::Rendering
 			for (auto &val : value["delays"])
 				this->delays.push_back(val);
 			for (int i = 0; i < DEAD; i++)
-				for (int j = 0; j < 8; j++) {
+				for (int j = 0; j < NB_DIRS; j++) {
 					this->animationStart.emplace_back(counter);
 					counter += this->animations[i];
 				}
@@ -115,7 +115,7 @@ namespace DungeonIntern::Rendering
 	void Entity::render(Rendering::Screen &screen)
 	{
 		unsigned char	dir = (this->_animation != DEAD) * this->_dir;
-		unsigned char	animation = this->_animation * 4 + dir;
+		unsigned char	animation = this->_animation * NB_DIRS + dir;
 		sf::Vector2u	pos = this->_configs.getPositionFromAnimationIndex(this->_configs.animationStart[animation] + this->_animationState);
 
 		this->_sprite.setTexture(this->_resources.textures.at(this->_configs.texture));
