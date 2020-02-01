@@ -15,12 +15,10 @@ jobs:
           Invoke-WebRequest -Uri https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip -OutFile sfml.zip
           Expand-Archive sfml.zip -DestinationPath . -Force
           Move-Item -Path SFML-2.5.1 -Destination build
-          Move-Item -Path build/include/ -Destination 'C:\Program Files\Git\mingw64\include'
-          Get-ChildItem -Path 'C:\Program Files\Git\mingw64' -Recurse
       - name: Build Makefile with CMake
         run: |
           Set-Location build
-          cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_CXX_STANDARD_LIBRARIES=-L\ lib
+          cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DGITBUILD=true
       - name: Build with Makefile
         run: mingw32-make -C build DungeonIntern
       - name: Archive production artifact

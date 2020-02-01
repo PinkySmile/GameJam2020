@@ -9,6 +9,11 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 	add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
 endif ()
 
+if ("${GITBUILD}" STREQUAL true)
+	include_directories(DungeonIntern nlohmann include)
+	link_directories(DungeonIntern lib)
+endif ()
+
 add_executable(
 	DungeonIntern
 	src/main.cpp
