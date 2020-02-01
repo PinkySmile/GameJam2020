@@ -24,6 +24,7 @@ namespace DungeonIntern
 
 	public:
 		Player(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input, Map &map);
+		virtual ~Player() override = default;
 
 		virtual void update() override;
 		void interact(Entity &);

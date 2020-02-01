@@ -25,8 +25,13 @@ namespace DungeonIntern
 		class Map &_map;
 
 	public:
+<<<<<<< HEAD
 		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Map &_map);
 		~Character() override = default;
+=======
+		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, class Map &_map);
+		virtual ~Character() override = default;
+>>>>>>> 9d7594c2d75df7ef25f74509c24df372c8c2dbf0
 
 		//! @brief This update should check for collisions between entities.
 		virtual void update() override;

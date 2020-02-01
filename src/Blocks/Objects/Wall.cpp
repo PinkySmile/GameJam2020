@@ -3,7 +3,7 @@
 //
 
 #include "Wall.hpp"
-#include "../Entities/Characters/Character.hpp"
+#include "../../Entities/Characters/Character.hpp"
 
 namespace DungeonIntern
 {

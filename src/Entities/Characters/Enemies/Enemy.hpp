@@ -15,6 +15,7 @@ namespace DungeonIntern
 	class Enemy : public Character {
 	public:
 		Enemy(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &map);
+		virtual ~Enemy() override = default;
 		virtual void update() override;
 	};
 }

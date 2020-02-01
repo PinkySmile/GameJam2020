@@ -12,7 +12,9 @@ namespace DungeonIntern
 		_maxHealth(maxHealth),
 		_health(maxHealth),
 		_map(map)
-	{}
+	{
+		this->setSpeed(1);
+	}
 
 	bool Character::isDead() const
 	{
