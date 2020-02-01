@@ -11,7 +11,9 @@ namespace DungeonIntern
 		Entity(cfg, maxSpeed, x, y, orientation),
 		_maxHealth(maxHealth),
 		_health(maxHealth)
-	{}
+	{
+		this->setSpeed(1);
+	}
 
 	bool Character::isDead() const
 	{

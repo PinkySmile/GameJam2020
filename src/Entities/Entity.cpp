@@ -19,8 +19,14 @@ namespace DungeonIntern
 		this->_entity.setSize({32, 32});
 	}
 
+	void Entity::setSpeed(float speed)
+	{
+		_speed = speed;
+	}
+
 	void Entity::render()
 	{
+		this->_entity.setPosition({this->_pos.x, this->_pos.y});
 		this->_entity.update();
 	}
 
@@ -38,5 +44,16 @@ namespace DungeonIntern
 	{
 		this->_screen.removeEntity(this->_entity);
 		logger.debug("Entity destroyed");
+	}
+
+	void Entity::move(float x, float y)
+	{
+		this->_pos.x += x;
+		this->_pos.y += y;
+	}
+
+	float Entity::getSpeed() const
+	{
+		return _speed;
 	}
 }

@@ -9,7 +9,6 @@
 #include <memory>
 #include "../Character.hpp"
 #include "../../../Input/Input.hpp"
-#include "../../../Objects/Block.hpp"
 
 namespace DungeonIntern
 {

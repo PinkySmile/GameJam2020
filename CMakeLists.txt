@@ -26,8 +26,8 @@ add_executable(
 	src/Utils.hpp
 	src/Loader.cpp
 	src/Loader.hpp
-	src/Objects/Block.cpp
-	src/Objects/Block.hpp
+	src/Blocks/Block.cpp
+	src/Blocks/Block.hpp
 	src/Resources.cpp
 	src/Resources.hpp
 	src/Exceptions.cpp
@@ -56,12 +56,12 @@ add_executable(
 	src/Entities/Characters/Character.hpp
 	src/Entities/Characters/Enemies/Enemy.cpp
 	src/Entities/Characters/Enemies/Enemy.hpp
-	src/Objects/Air.cpp
-	src/Objects/Air.hpp
-	src/Objects/Wall.cpp
-	src/Objects/Wall.hpp
-	src/Objects/HardBlock.cpp
-	src/Objects/HardBlock.hpp
+	src/Blocks/Objects/Air.cpp
+	src/Blocks/Objects/Air.hpp
+	src/Blocks/Objects/Wall.cpp
+	src/Blocks/Objects/Wall.hpp
+	src/Blocks/Objects/HardBlock.cpp
+	src/Blocks/Objects/HardBlock.hpp
 )
 
 target_link_libraries(

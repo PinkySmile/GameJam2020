@@ -7,7 +7,6 @@
 
 
 #include "../Character.hpp"
-#include "../../../Objects/Block.hpp"
 #include "../../../Map.hpp"
 
 namespace DungeonIntern
