@@ -82,4 +82,17 @@ namespace DungeonIntern
 			this->_health = 0;
 		this->_health -= damages;
 	}
+
+	void Entity::update()
+	{
+		for (auto &block : this->_map.getObjects()) {
+			auto &pos = block->getPosition();
+			auto &size = block->getSize();
+
+			if (((pos.x < this->_pos.x && this->_pos.x < pos.x + size.x) || (pos.x < this->_pos.x + this->_size.x && this->_pos.x + this->_size.x < pos.x + size.x)) &&
+			   (((pos.y < this->_pos.y && this->_pos.y < pos.y + size.y) || (pos.y < this->_pos.y + this->_size.y && this->_pos.y + this->_size.y < pos.y + size.y)))) {
+				block->onWalk(*this);
+			}
+		}
+	}
 }

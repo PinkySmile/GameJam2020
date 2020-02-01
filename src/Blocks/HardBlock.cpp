@@ -5,6 +5,7 @@
 ** HardBlock.cpp
 */
 
+#include <iostream>
 #include "../Entities/Characters/Character.hpp"
 #include "HardBlock.hpp"
 

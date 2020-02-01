@@ -48,7 +48,7 @@ namespace DungeonIntern
 		bool destroyed() const;
 		void destroy();
 		void render();
-		virtual void update() = 0;
+		virtual void update();
 
 		const Position<float> &getPos() const;
 
