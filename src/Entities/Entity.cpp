@@ -24,6 +24,16 @@ namespace DungeonIntern
 		_speed = speed;
 	}
 
+	bool Entity::destroyed() const
+	{
+		return this->_destroyed;
+	}
+
+	void Entity::destroy()
+	{
+		this->_destroyed = true;
+	}
+
 	void Entity::render()
 	{
 		this->_entity.setPosition({this->_pos.x, this->_pos.y});
