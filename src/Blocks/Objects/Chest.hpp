@@ -7,12 +7,16 @@
 
 
 #include "../HardBlock.hpp"
+#include "../../Game.hpp"
 
 namespace DungeonIntern
 {
 	class Chest : public HardBlock {
+	private:
+		Game &_game;
+
 	public:
-		Chest();
+		Chest(Game &game);
 		~Chest() override = default;
 
 		void onWalk(class Entity &entity) override;

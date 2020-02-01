@@ -6,12 +6,16 @@
 #define DUNGEONINTERN_TRAP1_HPP
 
 #include "../Block.hpp"
+#include "../../Game.hpp"
 
 namespace DungeonIntern
 {
 	class Trap1 : public Block {
+	private:
+		Game &_game;
+
 	public:
-		Trap1();
+		Trap1(Game &game);
 		~Trap1() override = default;
 
 		void onWalk(class Entity &entity) override;
