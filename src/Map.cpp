@@ -2,9 +2,9 @@
 // Created by andgel on 31/01/2020
 //
 
-#include <sys/stat.h>
 #include "Map.hpp"
 #include "Entities/Characters/Players/Player.hpp"
+#include "Entities/Characters/Players/DragonMan.hpp"
 #include "Game.hpp"
 #include "Exceptions.hpp"
 #include "Blocks/Objects/Air.hpp"

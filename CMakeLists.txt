@@ -9,6 +9,12 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 	add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
 endif ()
 
+if ("${GITBUILD}" STREQUAL true)
+	include_directories(DungeonIntern nlohmann build/include)
+	link_directories(DungeonIntern build/lib)
+	message("Git build is true")
+endif ()
+
 add_executable(
 	DungeonIntern
 	src/main.cpp
@@ -52,6 +58,16 @@ add_executable(
 	src/Entities/Entity.hpp
 	src/Entities/Characters/Players/Player.cpp
 	src/Entities/Characters/Players/Player.hpp
+	src/Entities/Characters/Players/Goblin.cpp
+	src/Entities/Characters/Players/Goblin.hpp
+	src/Entities/Characters/Players/BigSlime.cpp
+	src/Entities/Characters/Players/BigSlime.hpp
+	src/Entities/Characters/Players/Ghost.cpp
+	src/Entities/Characters/Players/Ghost.hpp
+	src/Entities/Characters/Players/DragonMan.cpp
+	src/Entities/Characters/Players/DragonMan.hpp
+	src/Entities/Characters/Players/Imp.cpp
+	src/Entities/Characters/Players/Imp.hpp
 	src/Entities/Characters/Character.cpp
 	src/Entities/Characters/Character.hpp
 	src/Entities/Characters/Enemies/Enemy.cpp
@@ -64,6 +80,8 @@ add_executable(
 	src/Blocks/HardBlock.hpp
 	src/Blocks/Objects/Trap1.cpp
 	src/Blocks/Objects/Trap1.hpp
+	src/Blocks/Objects/Trap2.cpp
+	src/Blocks/Objects/Trap2.hpp
 	src/Blocks/Objects/Chest.cpp
 	src/Blocks/Objects/Chest.hpp
 )
