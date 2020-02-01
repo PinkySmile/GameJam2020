@@ -95,7 +95,7 @@ namespace DungeonIntern
 		);
 		this->_player2 = new Player(
 			{*this->_game.resources.screen, "assets/entities/dragon.json", *this},
-			50,
+			5,
 			this->_size.x * 64 / 2,
 			this->_size.y * 64 - 64,
 			64,

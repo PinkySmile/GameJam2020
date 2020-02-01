@@ -15,7 +15,7 @@ namespace DungeonIntern
 	class Imp : public Player {
 
 	public:
-		Imp(EntityConfig cfg, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
+		Imp(Rendering::Screen &screen, Map &map, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
 		virtual ~Imp() override = default;
 	};
 }

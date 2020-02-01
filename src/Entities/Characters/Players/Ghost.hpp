@@ -15,7 +15,7 @@ namespace DungeonIntern
 	class Ghost : public Player {
 
 	public:
-		Ghost(EntityConfig cfg, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
+		Ghost(Rendering::Screen &screen, Map &map, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
 		virtual ~Ghost() override = default;
 	};
 }
