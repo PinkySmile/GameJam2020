@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cmath>
 #include "Player.hpp"
+#include "../../Items/Item.hpp"
 
 #define DASH_STUN 15
 
@@ -79,5 +80,14 @@ namespace DungeonIntern
 	const bool & Player::canFly()
 	{
 		return (this->_fly);
+	}
+
+	bool Player::pickItem(Item &item)
+	{
+		if (this->_itemCarried != nullptr)
+			return false;
+		this->_itemCarried = &item;
+		item.setCarried(true);
+		return true;
 	}
 }

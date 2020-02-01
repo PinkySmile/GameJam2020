@@ -1,0 +1,21 @@
+{
+	"texture": "pickaxe",
+	"animations": [
+	    1,
+	    1,
+	    1,
+	    1,
+	    1
+	],
+	"tileSize": {
+		"x": 128,
+		"y": 128
+	},
+	"delays": [
+		0,
+		0,
+		0,
+		0,
+		0
+	]
+}
