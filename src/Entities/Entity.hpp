@@ -33,7 +33,7 @@ namespace DungeonIntern
 		}
 		bool destroyed() const;
 		void destroy();
-		virtual void render() = 0;
+		void render();
 		virtual void update() = 0;
 	};
 }

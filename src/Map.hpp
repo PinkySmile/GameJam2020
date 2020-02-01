@@ -13,13 +13,16 @@
 
 namespace DungeonIntern
 {
+	class Game;
+
 	class Map {
 	private:
 		std::vector<std::unique_ptr<Entity>> _entities;
 		std::vector<std::unique_ptr<Block>> _objects;
+		Game &_game;
 
 	public:
-		Map(class Game &);
+		Map(Game &);
 
 		void loadMap();
 		void update();

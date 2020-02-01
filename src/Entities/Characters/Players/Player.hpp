@@ -10,7 +10,6 @@
 #include "../Character.hpp"
 #include "../../../Input/Input.hpp"
 #include "../../../Objects/Block.hpp"
-#include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
@@ -29,6 +28,7 @@ namespace DungeonIntern
 		virtual void update() override;
 		void interact(Entity &);
 		void dash();
+		void onDeath() override;
 	};
 }
 

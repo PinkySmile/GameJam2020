@@ -26,4 +26,9 @@ namespace DungeonIntern
 	{
 
 	}
+
+	void Player::onDeath()
+	{
+
+	}
 }

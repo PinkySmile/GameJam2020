@@ -12,4 +12,9 @@ namespace DungeonIntern
 		_pos(x, y, r)
 	{
 	}
+
+	void Entity::render()
+	{
+
+	}
 }
