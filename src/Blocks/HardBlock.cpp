@@ -46,7 +46,6 @@ namespace DungeonIntern
 
 		char block_id = (static_cast<int>((4*(relative_y - -PLAYERSIZE) / (TILESIZE - -PLAYERSIZE))) << 2)
 						+ (static_cast<int>((4*(relative_x - -PLAYERSIZE) / (TILESIZE - -PLAYERSIZE))));
-		printf("%d: %.4f %.4f (%d %d) %.3f %.3f => ", block_id, relative_x, relative_y, block_pos.x, block_pos.y, pl_pos.x, pl_pos.y);
 		switch (block_id) {
 		case 0:
 			pl_pos.y -= std::min(relative_x + PLAYERSIZE, relative_y + PLAYERSIZE) + 0.1; // rup
@@ -86,7 +85,6 @@ namespace DungeonIntern
 		case 10:
 			pl_pos = old_pos;
 		}
-		printf("%.3f, %.3f\n", pl_pos.x, pl_pos.y);
 		character.setSpeed(0);
 		character.setPos(pl_pos);
 	}
