@@ -32,7 +32,7 @@ jobs:
         run: Remove-Item -Recurse -Path * -Exclude DungeonIntern.exe,bin/*
       - name: Copy shared libs
         run: Copy-Item -Path 'C:\Program Files\Git\mingw64\bin\*.dll' -Destination build
-     - name: Copy assets
+      - name: Copy assets
         run: |
          New-Item -ItemType "directory" -Path build/assets
          Copy-Item -Path assets -Destination build/assets
