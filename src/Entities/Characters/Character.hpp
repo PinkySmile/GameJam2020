@@ -27,6 +27,7 @@ namespace DungeonIntern
 
 		//! @brief This update should check for collisions between entities.
 		virtual void update() override;
+		virtual void onCollide(Entity &other) override;
 		bool isDead() const;
 		virtual void onDeath() = 0;
 	};

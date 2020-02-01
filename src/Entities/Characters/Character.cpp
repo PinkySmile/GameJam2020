@@ -9,9 +9,7 @@ namespace DungeonIntern
 {
 	Character::Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation) :
 		Entity(maxHealth, cfg, maxSpeed, x, y, sx, sy, orientation)
-	{
-		this->setSpeed(maxSpeed);
-	}
+	{}
 
 	bool Character::isDead() const
 	{
@@ -21,5 +19,10 @@ namespace DungeonIntern
 	void Character::update()
 	{
 		Entity::update();
+	}
+
+	void Character::onCollide(Entity &other)
+	{
+		//TODO : Character can't move if they are blocked each other
 	}
 }
