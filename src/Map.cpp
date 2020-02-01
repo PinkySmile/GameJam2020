@@ -24,7 +24,7 @@ namespace DungeonIntern
 		{' ', [](Game &    ){ return new Air(); }},
 		{'W', [](Game &game){ return new Wall(game); }},
 		{'T', [](Game &game){ return new Trap1(game); }},
-		{'C', [](Game &game){ return new Chest(); }},
+		{'C', [](Game &game){ return new Chest(game); }},
 		{'2', [](Game &game){ return new Trap2(); }}
 	};
 

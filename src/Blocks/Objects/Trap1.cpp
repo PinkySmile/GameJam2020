@@ -34,6 +34,7 @@ namespace DungeonIntern
 
 	void Trap1::repair(Player &)
 	{
+		this->_needRepair = false;
 	}
 
 	void Trap1::render()
