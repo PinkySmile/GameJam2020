@@ -23,10 +23,10 @@ namespace DungeonIntern
 		//! @brief Will be deleted soon by the engine.
 		bool _destroyed = false;
 		//! @brief Size of the entity.
-		Size<int> _size;
+		Size<unsigned> _size;
 
 	public:
-		Entity(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, int sx, int sy, Orientation r = SOUTH);
+		Entity(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned sx, unsigned sy, Orientation r = SOUTH);
 		virtual ~Entity() = default;
 
 		template<typename type>

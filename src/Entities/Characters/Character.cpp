@@ -7,7 +7,7 @@
 
 namespace DungeonIntern
 {
-	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, int sx, int sy, unsigned maxHealth, Map &map) :
+	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Map &map) :
 		Entity(screen, entityJsonPath, x, y, sx, sy),
 		_maxHealth(maxHealth),
 		_health(maxHealth),
@@ -21,8 +21,14 @@ namespace DungeonIntern
 
 	void Character::update()
 	{
-		for (int i = 0; i < _map.getObjects.size; i++) {
-			if
+		auto &blocks = this->_map.getObjects();
+		for (int i = 0; i < blocks.size(); i++) {
+			Position<unsigned> posBlock = blocks[i]->getPosition();
+			Size<unsigned> sizeBlock = blocks[i]->getSize();
+			if (((this->_pos.x >= posBlock.x && this->_pos.x <= posBlock.x + sizeBlock.x) && (this->_pos.y >= posBlock.y && this->_pos.y >= posBlock.y - sizeBlock.y)) || ((this->_pos.x + this->_size.x >= posBlock.x && this->_pos.x + this->_size.x <= posBlock.x + sizeBlock.x) && (this->_pos.y + this->_size.y >= posBlock.y && this->_pos.y + this->_size.y >= posBlock.y - sizeBlock.y))) {
+				blocks[i]->onWalk(*this);
+				return;
+			}
 		}
 	}
 

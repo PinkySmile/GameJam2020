@@ -8,7 +8,7 @@
 namespace DungeonIntern
 {
 	Wall::Wall() :
-		HardBlock(0, SOUTH)
+		HardBlock(0, SOUTH, 64, 64)
 	{
 	}
 

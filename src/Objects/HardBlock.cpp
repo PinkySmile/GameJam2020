@@ -10,8 +10,8 @@
 
 namespace DungeonIntern
 {
-	HardBlock::HardBlock(unsigned maxHealth, Orientation orientation) :
-		Block(maxHealth, orientation)
+	HardBlock::HardBlock(unsigned maxHealth, Orientation orientation, unsigned sx, unsigned sy) :
+		Block(maxHealth, orientation, sx, sy)
 	{
 	}
 

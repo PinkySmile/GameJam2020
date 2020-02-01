@@ -16,7 +16,7 @@ namespace DungeonIntern
 
 		Size(type x = 0, type y = 0) :
 			x(x),
-			y(y),
+			y(y)
 		{}
 	};
 }

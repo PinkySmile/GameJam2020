@@ -7,7 +7,7 @@
 namespace DungeonIntern
 {
 	Air::Air() :
-		Block(0, SOUTH)
+		Block(0, SOUTH, 64, 64)
 	{
 	}
 
