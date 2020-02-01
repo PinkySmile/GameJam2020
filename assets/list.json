@@ -9,6 +9,14 @@
 		"bigSlimePlayer": "entities/dragon.png",
 		"goblinPlayer": "entities/dragon.png",
 		"ghostPlayer": "entities/dragon.png",
+		"warriorEnemy": "entities/dragon.png",
+		"thiefEnemy": "entities/dragon.png",
+		"archerEnemy": "entities/dragon.png",
+		"ninjaEnemy": "entities/dragon.png",
+		"bombermanEnemy": "entities/dragon.png",
+		"lonkEnemy": "entities/dragon.png",
+		"vlogerEnemy": "entities/dragon.png",
+
 		"wall": "objects/Wall_2.png"
 	},
 	"icon": "icon.png"
