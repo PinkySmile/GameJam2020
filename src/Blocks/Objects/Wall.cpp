@@ -7,8 +7,9 @@
 
 namespace DungeonIntern
 {
-	Wall::Wall() :
-		HardBlock(0, SOUTH, 64, 64)
+	Wall::Wall(Game &game) :
+		HardBlock(0, SOUTH, 64, 64),
+		_game(game)
 	{
 	}
 
@@ -24,8 +25,12 @@ namespace DungeonIntern
 	{
 	}
 
-
 	void Wall::render()
 	{
+		this->_game.resources.screen->draw(
+			this->_game.resources.textures.at("wall"),
+			{static_cast<float>(this->_pos.x), static_cast<float>(this->_pos.y)},
+			{64, 64}
+		);
 	}
 }

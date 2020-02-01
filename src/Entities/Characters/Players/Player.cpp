@@ -7,10 +7,12 @@
 
 namespace DungeonIntern
 {
-	Player::Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input) :
+	Player::Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input, float strengthMult, bool fly) :
 		Character(cfg, maxSpeed, x, y, sx, sy, maxHealth),
-		_input(input)
-	{ }
+		_input(input),
+		_strengthMult(strengthMult),
+		_fly(fly)
+	{}
 
 	void Player::update()
 	{
@@ -40,5 +42,10 @@ namespace DungeonIntern
 	void Player::onDeath()
 	{
 
+	}
+
+	const bool & Player::canFly()
+	{
+		return (this->_fly);
 	}
 }
