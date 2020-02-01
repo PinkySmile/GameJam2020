@@ -6,12 +6,12 @@
 #define DUNGEONINTERN_THIEF_HPP
 
 
-#include "../Character.hpp"
+#include "Enemy.hpp"
 #include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
-	class Thief : public Character {
+	class Thief : public Enemy {
 	public:
 		Thief(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Thief() override = default;

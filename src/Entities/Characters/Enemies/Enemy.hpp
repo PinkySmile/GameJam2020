@@ -16,6 +16,7 @@ namespace DungeonIntern
 		Enemy(EntityConfig cfd, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Enemy() override = default;
 		virtual void update() override;
+		virtual void onDeath() override;
 	};
 }
 

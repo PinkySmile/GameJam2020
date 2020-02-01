@@ -6,12 +6,14 @@
 #define DUNGEONINTERN_WARRIOR_HPP
 
 
-#include "../Character.hpp"
+#include "Enemy.hpp"
 #include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
-	class Warrior : public Character {
+	class Warrior : public Enemy {
+	private:
+		int tmp = 50;
 	public:
 		Warrior(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Warrior() override = default;
