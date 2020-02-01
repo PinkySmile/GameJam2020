@@ -14,7 +14,7 @@ namespace DungeonIntern
 {
 	class DragonMan : public Player {
 	public:
-		DragonMan(Rendering::Screen &screen, Map &map, float x, float y, Input &input);
+		DragonMan(Rendering::Screen &screen, Map &map, float x, float y, Input &input, Resources &resources);
 		virtual ~DragonMan() override = default;
 	};
 }

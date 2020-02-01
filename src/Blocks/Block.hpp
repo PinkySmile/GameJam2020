@@ -26,6 +26,7 @@ namespace DungeonIntern
 		Block(Orientation orientation, unsigned sx, unsigned sy);
 		virtual ~Block() = default;
 
+		bool needsRepair() const;
 		//! @brief Called when a character walk on the block. This should push back the character if he isn't allowed to walk on this block.
 		virtual void onWalk(class Entity &entity) = 0;
 		//! @brief For example, using a ladder will make the player go up and ask him to press keys.

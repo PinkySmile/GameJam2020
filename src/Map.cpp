@@ -16,6 +16,7 @@
 #include "Blocks/Objects/Trap1.hpp"
 #include "Blocks/Objects/Chest.hpp"
 #include "Blocks/Objects/Trap2.hpp"
+#include "Entities/Items/Pickaxe.hpp"
 #include <functional>
 
 namespace DungeonIntern
@@ -101,7 +102,8 @@ namespace DungeonIntern
 			*this,
 			this->_size.x * 64 / 2 - 64,
 			this->_size.y * 64 - 128,
-			*this->_game.state.settings.inputs[1]
+			*this->_game.state.settings.inputs[0],
+			this->_game.resources
 		);
 		this->_player2 = new Player(
 			{*this->_game.resources.screen, "assets/entities/dragon.json", *this},
@@ -111,7 +113,8 @@ namespace DungeonIntern
 			64,
 			64,
 			100,
-			*this->_game.state.settings.inputs[0]
+			*this->_game.state.settings.inputs[1],
+			this->_game.resources
 		);
 
 		this->_entities.emplace_back(
@@ -119,6 +122,15 @@ namespace DungeonIntern
 		);
 		this->_entities.emplace_back(
 			this->_player2
+		);
+
+		this->_entities.emplace_back(
+				new Pickaxe(
+						*this->_game.resources.screen,
+						*this,
+						this->_size.x * 64 / 2 - 64,
+						this->_size.y * 64 - 256
+				)
 		);
 	}
 

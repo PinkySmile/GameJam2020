@@ -50,7 +50,7 @@ namespace DungeonIntern
 		}
 		bool destroyed() const;
 		void destroy();
-		void render();
+		virtual void render();
 		virtual void onCollide(Entity &other) = 0;
 		virtual void update();
 		bool collideWith(const Position<int> &pos, const Size<unsigned> &size) const;

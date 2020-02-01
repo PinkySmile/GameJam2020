@@ -2,17 +2,20 @@
 // Created by andgel on 31/01/2020
 //
 
-#include <search.h>
-#include <iostream>
 #include <cmath>
+#include <iostream>
 #include "Player.hpp"
+#include "../../Items/Item.hpp"
+#include "../../../Map.hpp"
+#include "../../../Resources.hpp"
 
 #define DASH_STUN 15
 
 namespace DungeonIntern
 {
-	Player::Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input, float strengthMult, bool fly) :
+	Player::Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input, Resources &resources, float strengthMult, bool fly) :
 		Character(cfg, maxSpeed, x, y, sx, sy, maxHealth),
+		_resources(resources),
 		_input(input),
 		_strengthMult(strengthMult),
 		_fly(fly)
@@ -71,13 +74,45 @@ namespace DungeonIntern
 		this->_dash_cooldown = DASH_STUN * 2;
 	}
 
+	void Player::render()
+	{
+		Entity::render();
+		sf::Vector2<unsigned> vec{
+			static_cast<unsigned>(std::cos(this->_pos.r * M_PI_2 + M_PI_2) * -64 + this->_pos.x + this->_size.x / 2),
+			static_cast<unsigned>(std::sin(this->_pos.r * M_PI_2 + M_PI_2) * -64 + this->_pos.y + this->_size.y / 2)
+		};
+		auto &objs = this->_map.getObjects();
+		auto size = this->_map.getSize();
+
+		if (vec.x < size.x * 64 && vec.y < size.y * 64 && objs[(vec.x - (vec.x % 64)) / 64 + (vec.y - (vec.y % 64)) * size.x / 64]->needsRepair()) {
+			this->_resources.screen->draw(
+				this->_resources.textures.at("keyA"),
+				{
+					static_cast<float>(vec.x - std::fmod(vec.x, 64)),
+					static_cast<float>(vec.y - std::fmod(vec.y, 64))
+				},
+				{64, 64},
+				{static_cast<int>(this->_clock.getElapsedTime().asSeconds()) % 2 * 64, 0, 64, 64}
+			);
+		}
+	}
+
 	void Player::onDeath()
 	{
 
 	}
 
-	const bool & Player::canFly()
+	bool Player::canFly() const
 	{
 		return (this->_fly);
+	}
+
+	bool Player::pickItem(Item &item)
+	{
+		if (this->_itemCarried != nullptr)
+			return false;
+		this->_itemCarried = &item;
+		item.setCarried(true);
+		return true;
 	}
 }
