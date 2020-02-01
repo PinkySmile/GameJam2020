@@ -33,7 +33,7 @@ jobs:
       - name: Build with Makefile
         run: make -C build DungeonIntern
       - name: Copy assets
-        run: mkdir -p build/assets && cp assets build/assets
+        run: mkdir -p build/assets && cp -r assets build/assets
       - name: Archive production artifact
         uses: actions/upload-artifact@v1
         with:
