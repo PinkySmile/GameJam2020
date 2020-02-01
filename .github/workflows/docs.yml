@@ -23,6 +23,6 @@ jobs:
           git add -A;
           git commit -m "Deploying the doc";
           git remote set-url --push origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/Gegel85/GameJam2020;
-          git push --quiet --force;
+          git push origin gh-pages --quiet --force;
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
