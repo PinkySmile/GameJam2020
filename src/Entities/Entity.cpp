@@ -7,9 +7,11 @@
 
 namespace DungeonIntern
 {
-	Entity::Entity(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, Orientation r) :
-		_entity(screen.addEntity(entityJsonPath)),
-		_pos(x, y, r)
+	Entity::Entity(EntityConfig cfg, float maxSpeed, float x, float y, Orientation r) :
+		_entity(cfg.screen.addEntity(cfg.entityJsonPath)),
+		_pos(x, y, r),
+		_maxSpeed(maxSpeed),
+		_map(cfg.map)
 	{
 	}
 

@@ -14,7 +14,7 @@ namespace DungeonIntern
 {
 	class Enemy : public Character {
 	public:
-		Enemy(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &map);
+		Enemy(EntityConfig cfd, float maxSpeed, float x, float y, unsigned maxHealth);
 		virtual void update() override;
 	};
 }

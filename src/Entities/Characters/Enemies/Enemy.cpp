@@ -6,5 +6,7 @@
 
 namespace DungeonIntern
 {
-
+	Enemy::Enemy(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth):
+			Character(cfg, maxSpeed, x, y, maxHealth, NORTH)
+	{}
 }

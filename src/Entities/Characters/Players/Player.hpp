@@ -23,7 +23,7 @@ namespace DungeonIntern
 		class Item *_itemCarried; //TODO: Code class Item
 
 	public:
-		Player(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Input &input, Map &map);
+		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth, Input &input);
 
 		virtual void update() override;
 		void interact(Entity &);

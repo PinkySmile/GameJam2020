@@ -7,11 +7,10 @@
 
 namespace DungeonIntern
 {
-	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &map) :
-		Entity(screen, entityJsonPath, x, y),
+	Character::Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth, Orientation orientation) :
+		Entity(cfg, maxSpeed, x, y, orientation),
 		_maxHealth(maxHealth),
-		_health(maxHealth),
-		_map(map)
+		_health(maxHealth)
 	{}
 
 	bool Character::isDead() const
