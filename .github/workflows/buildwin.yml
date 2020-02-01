@@ -18,6 +18,7 @@ jobs:
       - name: Build Makefile with CMake
         run: |
           Set-Location build
+          Get-Items -Path include
           cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DGITBUILD=true
       - name: Build with Makefile
         run: mingw32-make -C build DungeonIntern
