@@ -6,7 +6,7 @@
 #define DUNGEONINTERN_WALL_HPP
 
 
-#include "HardBlock.hpp"
+#include "../HardBlock.hpp"
 
 namespace DungeonIntern
 {
