@@ -7,6 +7,10 @@
 
 
 #include "../Position.hpp"
+#include "../Entities/Characters/Character.hpp"
+#include "../Entities/Characters/Players/Player.hpp"
+#include "../Entities/Characters/Enemies/Enemy.hpp"
+
 
 namespace DungeonIntern
 {
@@ -26,13 +30,13 @@ namespace DungeonIntern
 		virtual ~Block() = default;
 
 		//! @brief Called when a character walk on the block. This should push back the character if he isn't allowed to walk on this block.
-		virtual void onWalk(class Character &) = 0;
+		virtual void onWalk(Character &) = 0;
 		//! @brief For example, using a ladder will make the player go up and ask him to press keys.
-		virtual void use(class Player &) = 0;
+		virtual void use(Player &) = 0;
 		//! @brief When an enemy use the block (loot for a chest, fall into a trap...)
-		virtual void loot(class Enemy &) = 0;
+		virtual void loot(Enemy &) = 0;
 		//! @brief For example, filling the chest or repairing it if it is broke.
-		virtual void repair(class Player &) = 0;
+		virtual void repair(Player &) = 0;
 		virtual void render() = 0;
 	};
 }

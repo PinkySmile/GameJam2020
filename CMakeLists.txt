@@ -54,6 +54,8 @@ add_executable(
 	src/Entities/Characters/Enemies/Enemy.hpp
 	src/Objects/Air.cpp
 	src/Objects/Air.hpp
+	src/Objects/Wall.cpp
+	src/Objects/Wall.hpp
 )
 
 target_link_libraries(
