@@ -15,7 +15,7 @@ jobs:
           Invoke-WebRequest -Uri https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip -OutFile sfml.zip
           Expand-Archive sfml.zip -DestinationPath . -Force
           Move-Item -Path SFML-2.5.1 -Destination build
-          Move-Item -Path build/include/SFML -Destination C:\Program\ Files\Git\mingw64\include
+          Move-Item -Path build/include/SFML -Destination 'C:\Program Files\Git\mingw64\include'
       - name: Build Makefile with CMake
         run: |
           Set-Location build
