@@ -2,6 +2,7 @@
 // Created by andgel on 31/01/2020
 //
 
+#include <iostream>
 #include "../Rendering/Screen.hpp"
 #include "Entity.hpp"
 #include "../Game.hpp"
@@ -56,12 +57,16 @@ namespace DungeonIntern
 		logger.debug("Entity destroyed");
 	}
 
-	void Entity::move(float x, float y, double angle)
+	void Entity::move(double angle)
 	{
-		this->_pos.x += x;
-		this->_pos.y += y;
-		if (x != 0)
-			this->_entity.setDirection((angle > (M_PI / 2) && angle < 3 * M_PI) ? Rendering::WEST : Rendering::EAST);
+		this->_pos.x += std::cos(angle) * this->_speed;
+		this->_pos.y += std::sin(angle) * this->_speed;
+		while (angle < 0)
+			angle += 2 * M_PI;
+		angle = std::fmod(angle, 2 * M_PI);
+		std::cout << angle << std::endl;
+		if (std::abs(std::cos(angle)) * this->_speed > 0.1)
+			this->_entity.setDirection((angle > (M_PI / 2) && angle < 1.5f * M_PI) ? Rendering::WEST : Rendering::EAST);
 	}
 
 	float Entity::getSpeed() const

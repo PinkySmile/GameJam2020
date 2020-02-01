@@ -14,27 +14,17 @@ namespace DungeonIntern
 
 	void Player::update()
 	{
-		sf::Vector2<float> direction = {0, 0};
+		bool moving = false;
 
 		for (auto &action : this->_input.getActions()) {
-			switch (action) {
-			case Input::UP:
-				direction.y -= 1;
-				break;
-			case Input::DOWN:
-				direction.y += 1;
-				break;
-			case Input::LEFT:
-				direction.x -= 1;
-				break;
-			case Input::RIGHT:
-				direction.x += 1;
-				break;
-			default:
-				break;
-			}
+			if (action == Input::UP || action == Input::RIGHT || action == Input::LEFT || action == Input::DOWN)
+				moving = true;
 		}
-		this->move(direction.x * this->getSpeed(), direction.y * this->getSpeed(), this->_input.getDirectionAngle());
+		if (moving) {
+			this->_speed = this->_maxSpeed;
+			this->move(this->_input.getDirectionAngle());
+		} else
+			this->_speed = 0;
 	}
 
 	void Player::interact(Entity &)
