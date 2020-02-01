@@ -19,7 +19,12 @@ namespace DungeonIntern
 	private:
 		std::vector<std::unique_ptr<Entity>> _entities;
 		std::vector<std::unique_ptr<Block>> _objects;
+		Size<size_t> _size;
 		Game &_game;
+		class Player *_player1;
+		class Player *_player2;
+
+		static const std::map<char, std::function<Block *(Game &)>> _blockBuilders;
 
 	public:
 		Map(Game &);
@@ -28,8 +33,9 @@ namespace DungeonIntern
 		void update();
 		void render();
 		void reset();
-		const std::vector<std::unique_ptr<Entity>> & getEntities();
-		const std::vector<std::unique_ptr<Block>> & getObjects();
+		Size<size_t> getSize() const;
+		const std::vector<std::unique_ptr<Block>> &getObjects() const;
+		const std::vector<std::unique_ptr<Entity>> &getEntities() const;
 	};
 }
 

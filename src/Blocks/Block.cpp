@@ -13,12 +13,17 @@ namespace DungeonIntern
 		this->_pos.r = orientation;
 	}
 
-	const Position<unsigned> & Block::getPosition()
+	void Block::setPosition(Position<int> newPos)
+	{
+		this->_pos = newPos;
+	}
+
+	const Position<int> &Block::getPosition() const
 	{
 		return (this->_pos);
 	}
 
-	const Size<unsigned> & Block::getSize()
+	const Size<unsigned> &Block::getSize() const
 	{
 		return (this->_size);
 	}

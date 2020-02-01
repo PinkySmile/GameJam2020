@@ -4,7 +4,8 @@
 	"sfx": {
 	},
 	"sprites": {
-		"testEntity": "entities/test.png"
+		"dragonPlayer": "entities/dragon.png",
+		"wall": "objects/Wall_2.png"
 	},
 	"icon": "icon.png"
 }

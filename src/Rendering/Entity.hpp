@@ -8,6 +8,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#define NB_DIRS 4
+
 namespace DungeonIntern
 {
 	class Resources;
@@ -114,7 +116,7 @@ namespace DungeonIntern::Rendering
 		//! This can cause issues if you want to reset back to IDLE while the entity is doing and IDLEANIM.
 		//! If you want to override this behaviour, set forceReset to true.
 		//! It will discard the check results and change the animation no matter what.
-		void setAnimation(Animation newAnimation, bool forceReset = true);
+		void setAnimation(Animation newAnimation, bool forceReset = false);
 
 		//! @brief Change the position of the entity on the Screen.
 		void setPosition(sf::Vector2f newPos);
