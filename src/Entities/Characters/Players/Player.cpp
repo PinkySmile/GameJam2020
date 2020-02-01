@@ -3,6 +3,7 @@
 //
 
 #include <search.h>
+#include <iostream>
 #include "Player.hpp"
 
 namespace DungeonIntern
@@ -16,13 +17,28 @@ namespace DungeonIntern
 
 	void Player::update()
 	{
-		bool moving = false;
+		sf::Vector2i movement = {0, 0};
 
 		for (auto &action : this->_input.getActions()) {
-			if (action == Input::UP || action == Input::RIGHT || action == Input::LEFT || action == Input::DOWN)
-				moving = true;
+			switch (action) {
+			case Input::UP:
+				movement.y -= 1;
+				break;
+			case Input::DOWN:
+				movement.y += 1;
+				break;
+			case Input::RIGHT:
+				movement.x += 1;
+				break;
+			case Input::LEFT:
+				movement.x -= 1;
+				break;
+			default:
+				break;
+			}
 		}
-		if (moving) {
+		if (movement.x || movement.y) {
+			std::cout << "Moving" << std::endl;
 			this->_speed = this->_maxSpeed;
 			this->move(this->_input.getDirectionAngle());
 		} else
