@@ -6,6 +6,7 @@
 #define THFGAME_MAINMENU_HPP
 
 
+#include <TGUI/TGUI.hpp>
 #include "../Menus/Menu.hpp"
 #include "../Menus/MenuMgr.hpp"
 #include "../Resources.hpp"
@@ -15,9 +16,11 @@ namespace DungeonIntern
 {
 	class MainMenu : public Menu {
 	private:
+		sf::View _view;
 		Map &_map;
 		MenuMgr &_menu;
 		Resources &_resources;
+		std::shared_ptr<tgui::Gui> _gui;
 
 	public:
 		MainMenu(MenuMgr &menu, Map &map, Resources &resources);

@@ -21,28 +21,29 @@ Renderer.1 {
 }
 
 BitmapButton.play {
-    Image = "assets/buttons/Play.png";
+    Image = "assets/menus/Play.png";
     ImageScaling = 0;
-    Position = (70, 106.058);
+    Position = (30, 76.058);
     Size = (66.2, 29.1536);
     TextSize = 13;
     renderer = &1;
 }
 
 Picture.Picture1 {
-    Position = (40, 10);
+    IgnoreMouseEvents = true;
+    Position = (0, -10);
     Size = (128, 104);
 
     Renderer {
-        texture = "assets/buttons/Logo.png";
+        texture = "assets/menus/Logo.png";
         transparenttexture = false;
     }
 }
 
 BitmapButton.quit {
-    Image = "assets/buttons/Quit.png";
+    Image = "assets/menus/Quit.png";
     ImageScaling = 0;
-    Position = (70, 146.058);
+    Position = (30, 106.058);
     Size = (66.2, 29.1536);
     TextSize = 13;
     renderer = &1;

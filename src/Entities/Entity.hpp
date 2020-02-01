@@ -49,6 +49,7 @@ namespace DungeonIntern
 		bool destroyed() const;
 		void destroy();
 		void render();
+		virtual void onCollide(Entity &other) = 0;
 		virtual void update();
 
 		const Position<float> &getPos() const;
@@ -61,7 +62,7 @@ namespace DungeonIntern
 
 		void setSpeed(float speed);
 
-		void takeDamage(unsigned damages);
+		virtual void takeDamage(unsigned damages);
 
 		const Size<unsigned> & getSize() const;
 	};

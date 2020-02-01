@@ -21,6 +21,8 @@ namespace DungeonIntern
 		//! @brief The item the player is currently holding.
 		class Item *_itemCarried; //TODO: Code class Item
 		bool _fly;
+		double _angle = 0;
+		unsigned _dash_cooldown = 0;
 
 	public:
 		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input, float strengthMult = 1, bool fly = false);

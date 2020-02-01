@@ -4,7 +4,10 @@
 
 #include <search.h>
 #include <iostream>
+#include <cmath>
 #include "Player.hpp"
+
+#define DASH_STUN 15
 
 namespace DungeonIntern
 {
@@ -33,15 +36,26 @@ namespace DungeonIntern
 			case Input::LEFT:
 				movement.x -= 1;
 				break;
+			case Input::CANCEL:
+				this->dash();
 			default:
 				break;
 			}
 		}
+		bool speed_overflow = this->_speed > this->_maxSpeed;
+		if (speed_overflow)
+			this->_speed /= 1.2;
 		if (movement.x || movement.y) {
-			this->_speed = this->_maxSpeed;
-			this->move(this->_input.getDirectionAngle());
+			if (this->_dash_cooldown <= DASH_STUN)
+				this->_angle = this->_input.getDirectionAngle();
+			if (!speed_overflow)
+				this->_speed = std::fmin(this->_speed + 1, this->_maxSpeed);
 		} else
-			this->_speed = 0;
+			this->_speed = std::fmax(this->_speed - 1, 0);
+		printf("speed : %f\n", this->_speed);
+		this->move(this->_angle);
+		if (this->_dash_cooldown)
+			this->_dash_cooldown--;
 		Character::update();
 	}
 
@@ -52,7 +66,10 @@ namespace DungeonIntern
 
 	void Player::dash()
 	{
-
+		if (this->_dash_cooldown)
+			return;
+		this->_speed = this->_maxSpeed * 10;
+		this->_dash_cooldown = DASH_STUN * 2;
 	}
 
 	void Player::onDeath()
