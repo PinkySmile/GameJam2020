@@ -37,7 +37,7 @@ jobs:
       - name: Clean up
         run: |
           shopt -s extglob
-          rm -rf !("build/assets"|"DungeonIntern")
+          cd build && rm -rf !("assets"|"DungeonIntern")
       - name: Archive production artifact
         uses: actions/upload-artifact@v1
         with:
