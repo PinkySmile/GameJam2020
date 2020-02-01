@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <iostream>
 #include "Player.hpp"
 #include "../../../Map.hpp"
 #include "../../../Resources.hpp"
@@ -75,14 +76,14 @@ namespace DungeonIntern
 	void Player::render()
 	{
 		Entity::render();
-		sf::Vector2<int> vec{
-			static_cast<int>(std::cos(this->_pos.r * M_PI_2 + M_PI_2) + this->_pos.x),
-			static_cast<int>(std::sin(this->_pos.r * M_PI_2 + M_PI_2) + this->_pos.y)
+		sf::Vector2<unsigned> vec{
+			static_cast<unsigned>(std::cos(this->_pos.r * M_PI_2 + M_PI_2) * -64 + this->_pos.x + this->_size.x / 2),
+			static_cast<unsigned>(std::sin(this->_pos.r * M_PI_2 + M_PI_2) * -64 + this->_pos.y + this->_size.y / 2)
 		};
 		auto &objs = this->_map.getObjects();
 		auto size = this->_map.getSize();
 
-		if (0 < vec.x && vec.x < size.x * 64 && 0 < vec.y && vec.y < size.y * 64){// && objs[vec.x / 64 + vec.y * size.x / 64]->needsRepair()) {
+		if (vec.x < size.x * 64 && vec.y < size.y * 64 && objs[(vec.x - (vec.x % 64)) / 64 + (vec.y - (vec.y % 64)) * size.x / 64]->needsRepair()) {
 			this->_resources.screen->draw(
 				this->_resources.textures.at("keyA"),
 				{
@@ -90,7 +91,7 @@ namespace DungeonIntern
 					static_cast<float>(vec.y - std::fmod(vec.y, 64))
 				},
 				{64, 64},
-				{64 * static_cast<int>(this->_clock.getElapsedTime().asSeconds()) % 2, 0, 64, 64}
+				{static_cast<int>(this->_clock.getElapsedTime().asSeconds()) % 2 * 64, 0, 64, 64}
 			);
 		}
 	}
