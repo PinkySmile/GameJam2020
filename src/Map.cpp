@@ -11,7 +11,7 @@ namespace DungeonIntern
 {
 	Map::Map(DungeonIntern::Game &game)
 	{
-		this->_screen = game.resources.screen;
+		//this->_screen = game.resources.screen;
 	}
 
 	void Map::update()
@@ -35,7 +35,7 @@ namespace DungeonIntern
 
 	void Map::loadMap()
 	{
-		Game game;
-		this->_entities.push_back(Player(game.resources.screen, "assets/entities/player.json", 0, 0, 100, ))
+		//Game game;
+		//this->_entities.push_back(Player(game.resources.screen, "assets/entities/player.json", 0, 0, 100, ))
 	}
 }
