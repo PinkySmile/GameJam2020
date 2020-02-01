@@ -92,10 +92,6 @@ namespace DungeonIntern::Rendering
 		if (this->_animation == newAnimation && !forceReset)
 			return;
 
-		if ((this->_animation == IDLEANIM2 || this->_animation == IDLEANIM1) && newAnimation == IDLE && !forceReset)
-			return;
-
-		this->_idleDelay = 300;
 		this->_animation = newAnimation;
 		this->_animationState = 0;
 		this->_delay = this->_configs.delays[newAnimation];
@@ -119,7 +115,7 @@ namespace DungeonIntern::Rendering
 	void Entity::render(Rendering::Screen &screen)
 	{
 		unsigned char	dir = (this->_animation != DEAD) * this->_dir;
-		unsigned char	animation = this->_animation * 8 + dir;
+		unsigned char	animation = this->_animation * 4 + dir;
 		sf::Vector2u	pos = this->_configs.getPositionFromAnimationIndex(this->_configs.animationStart[animation] + this->_animationState);
 
 		this->_sprite.setTexture(this->_resources.textures.at(this->_configs.texture));
@@ -168,27 +164,9 @@ namespace DungeonIntern::Rendering
 
 	void Entity::update()
 	{
-		if (!this->_idleDelay) {
-			std::uniform_int_distribution distribution{0, 59};
-			std::uniform_int_distribution distribution2{0, 1};
-
-			if (!distribution(this->_resources.random)) {
-				this->_animation = static_cast<Animation>(IDLEANIM1 + distribution2(this->_resources.random));
-				this->_animationState = 0;
-				this->_delay = this->_configs.delays[this->_animation];
-			}
-			this->_idleDelay = 20;
-		} else
-			this->_idleDelay -= this->_animation == IDLE;
-
 		if (!this->_delay) {
 			this->_delay = this->_configs.delays[this->_animation];
 			switch (this->_animation) {
-				case IDLEANIM1:
-				case IDLEANIM2:
-					if (this->_animationState + 1 == this->_configs.animations[this->_animation])
-						this->_animation = IDLE;
-					break;
 				case DEAD:
 				case HIT:
 					if (this->_animationState + 2 == this->_configs.animations[this->_animation])
