@@ -18,4 +18,14 @@ namespace DungeonIntern
 	{
 		return this->_dead;
 	}
+
+	void Character::update()
+	{
+
+	}
+
+	void Character::takeDamage(unsigned damages)
+	{
+
+	}
 }
