@@ -62,6 +62,8 @@ add_executable(
 	src/Blocks/Objects/Wall.hpp
 	src/Blocks/HardBlock.cpp
 	src/Blocks/HardBlock.hpp
+	src/Blocks/Objects/Trap1.cpp
+	src/Blocks/Objects/Trap1.hpp
 )
 
 target_link_libraries(
