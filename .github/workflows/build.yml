@@ -36,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: DungonInternLinux
-          path: build/DungonInternLinux
+          path: build/DungonIntern
