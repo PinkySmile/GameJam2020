@@ -36,6 +36,6 @@ namespace DungeonIntern
 	void Map::loadMap()
 	{
 		logger.debug("Loading the map.");
-		this->_entities.emplace_back(new Player(*this->_game.resources.screen, "assets/entities/test.json", 50, 50, 100,  *this->_game.state.settings.input, *this));
+		this->_entities.emplace_back(new Player({*this->_game.resources.screen, "assets/entities/test.json", *this}, 50, 50, 100, 100, *this->_game.state.settings.input));
 	}
 }

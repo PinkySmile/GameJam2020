@@ -8,10 +8,13 @@
 
 namespace DungeonIntern
 {
-	Entity::Entity(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, Orientation r) :
-		_entity(screen.addEntity(entityJsonPath)),
+	Entity::Entity(EntityConfig cfg, float maxSpeed, float x, float y, Orientation r) :
+		_entity(cfg.screen.addEntity(cfg.entityJsonPath)),
+		_maxSpeed(maxSpeed),
 		_pos(x, y, r),
-		_screen(screen)
+		_map(cfg.map),
+		_screen(cfg.screen)
+
 	{
 		this->_entity.setSize({32, 32});
 	}

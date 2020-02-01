@@ -5,7 +5,7 @@
 ** HardBlock.cpp
 */
 
-#include "../Entities/Characters/Character.hpp"
+#include "../../Entities/Characters/Character.hpp"
 #include "HardBlock.hpp"
 
 namespace DungeonIntern

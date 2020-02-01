@@ -7,7 +7,7 @@
 #ifndef DUNGEONINTERN_HARDBLOCK_HPP
 #define DUNGEONINTERN_HARDBLOCK_HPP
 
-#include "Block.hpp"
+#include "../Block.hpp"
 
 namespace DungeonIntern {
 	class HardBlock : public Block {

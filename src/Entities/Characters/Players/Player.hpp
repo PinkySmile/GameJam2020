@@ -9,7 +9,6 @@
 #include <memory>
 #include "../Character.hpp"
 #include "../../../Input/Input.hpp"
-#include "../../../Objects/Block.hpp"
 
 namespace DungeonIntern
 {
@@ -23,7 +22,7 @@ namespace DungeonIntern
 		class Item *_itemCarried; //TODO: Code class Item
 
 	public:
-		Player(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Input &input, Map &map);
+		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth, Input &input);
 		virtual ~Player() override = default;
 
 		virtual void update() override;

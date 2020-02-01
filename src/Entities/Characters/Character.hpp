@@ -22,10 +22,9 @@ namespace DungeonIntern
 		//! @brief Path to the sound assets for the death.
 		std::string _deathSound;
 		//! @brief A reference to other entities and blocks.
-		class Map &_map;
 
 	public:
-		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, class Map &_map);
+		Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth, Orientation r = SOUTH);
 		virtual ~Character() override = default;
 
 		//! @brief This update should check for collisions between entities.
