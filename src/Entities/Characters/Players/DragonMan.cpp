@@ -7,7 +7,7 @@
 
 namespace DungeonIntern
 {
-	DragonMan::DragonMan(EntityConfig cfg, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input) :
-		Player(cfg, 4.5, x, y, sx, sy, maxHealth, input, 0.8, true)
+	DragonMan::DragonMan(Rendering::Screen &screen, Map &map, float x, float y, Input &input) :
+		Player({screen, "assets/entities/dragon.json", map}, 4.5, x, y, 64, 64, 100, input, 0.8, true)
 	{}
 }

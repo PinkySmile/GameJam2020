@@ -86,17 +86,15 @@ namespace DungeonIntern
 		}
 		logger.debug("Map size is " + std::to_string(this->_size.x) + ", " + std::to_string(this->_size.y));
 
-		this->_player1 = new Player(
-			{*this->_game.resources.screen, "assets/entities/test.json", *this},
-			50,
+		this->_player1 = new DragonMan(
+			*this->_game.resources.screen,
+			*this,
 			this->_size.x * 64 / 2 - 64,
 			this->_size.y * 64 - 64,
-			64,
-			64,
-			100, *this->_game.state.settings.inputs[1]
+			*this->_game.state.settings.inputs[1]
 		);
 		this->_player2 = new Player(
-			{*this->_game.resources.screen, "assets/entities/test.json", *this},
+			{*this->_game.resources.screen, "assets/entities/dragon.json", *this},
 			50,
 			this->_size.x * 64 / 2,
 			this->_size.y * 64 - 64,
