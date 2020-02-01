@@ -31,9 +31,5 @@ namespace DungeonIntern
 
 	void InGameMenu::handleEvent(const Input::Event &event)
 	{
-		if (event.type == Input::Event::EVENT_TRIGGERED) {
-			switch (event.action) {
-			}
-		}
 	}
 }

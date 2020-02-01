@@ -12,6 +12,11 @@ namespace DungeonIntern
 		this->_pos.r = orientation;
 	}
 
+	bool Block::needsRepair() const
+	{
+		return this->_needRepair;
+	}
+
 	void Block::setPosition(Position<int> newPos)
 	{
 		this->_pos = newPos;

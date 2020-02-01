@@ -14,6 +14,8 @@ namespace DungeonIntern
 {
 	class Player : public Character {
 	protected:
+		sf::Clock _clock;
+		Resources &_resources;
 		//! @brief Inputs used by the player to move
 		Input &_input;
 		//! @brief Used for custom player characters (after).
@@ -25,14 +27,15 @@ namespace DungeonIntern
 		unsigned _dash_cooldown = 0;
 
 	public:
-		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input, float strengthMult = 1, bool fly = false);
+		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input, Resources &resources, float strengthMult = 1, bool fly = false);
 		virtual ~Player() override = default;
 
+		void render() override;
 		virtual void update() override;
 		void interact(Entity &);
 		void dash();
 		void onDeath() override;
-		const bool & canFly();
+		bool canFly() const;
 	};
 }
 

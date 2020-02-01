@@ -13,6 +13,7 @@ namespace DungeonIntern
 {
 	class Chest : public HardBlock {
 	private:
+		sf::Clock _clock;
 		Game &_game;
 
 	public:
