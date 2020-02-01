@@ -21,10 +21,11 @@ namespace DungeonIntern
 		Position<float> _pos;
 		//! @brief Will be deleted soon by the engine.
 		bool _destroyed = false;
+		Rendering::Screen &_screen;
 
 	public:
 		Entity(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, Orientation r = SOUTH);
-		virtual ~Entity() = default;
+		virtual ~Entity();
 
 		template<typename type>
 		type &to()

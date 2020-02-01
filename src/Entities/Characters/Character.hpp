@@ -26,6 +26,7 @@ namespace DungeonIntern
 
 	public:
 		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, class Map &_map);
+		virtual ~Character() override = default;
 
 		//! @brief This update should check for collisions between entities.
 		virtual void update() override;
