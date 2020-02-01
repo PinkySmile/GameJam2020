@@ -18,7 +18,7 @@ jobs:
         run: |
           New-Item -ItemType directory -Path build
           Set-Location build
-          cmake .. -G "MinGW Makefiles"
+          cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
       - name: Build with Makefile
         run: mingw32-make -C build DungeonIntern
       - name: Archive production artifact
