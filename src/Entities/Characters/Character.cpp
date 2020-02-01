@@ -3,12 +3,29 @@
 //
 
 #include "Character.hpp"
+#include "../../Map.hpp"
 
 namespace DungeonIntern
 {
-	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth) :
+	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &map) :
 		Entity(screen, entityJsonPath, x, y),
 		_maxHealth(maxHealth),
-		_health(maxHealth)
+		_health(maxHealth),
+		_map(map)
 	{}
+
+	bool Character::isDead() const
+	{
+		return this->_dead;
+	}
+
+	void Character::update()
+	{
+
+	}
+
+	void Character::takeDamage(unsigned damages)
+	{
+
+	}
 }

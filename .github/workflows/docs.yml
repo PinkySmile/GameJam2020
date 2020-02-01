@@ -16,10 +16,13 @@ jobs:
       - name: Update the docs
         run: doxygen Doxyfile
       - name: Deploy
-        if: success()
-        uses: crazy-max/ghaction-github-pages@v1
-        with:
-          target_branch: gh-pages
-          build_dir: docs
+        run:
+          git config --global user.email "${GITHUB_ACTOR}@github.com";
+          git config --global user.name "${GITHUB_ACTOR}";
+          git checkout -B gh-pages;
+          git add -A;
+          git commit -m "Deploying the doc";
+          git remote set-url --push origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/Gegel85/GameJam2020;
+          git push origin gh-pages --quiet --force;
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

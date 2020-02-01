@@ -8,6 +8,7 @@
 
 #include <string>
 #include "../Entity.hpp"
+#include "../../Map.hpp"
 
 namespace DungeonIntern
 {
@@ -15,13 +16,19 @@ namespace DungeonIntern
 	private:
 		const unsigned _maxHealth;
 		unsigned _health;
-		bool _dead;
+		bool _dead = false;
 		unsigned _invFrames = 0;
-		std::string _sound;
+		//! @brief Path to the sound assets for the heart.
+		std::string _heartSound;
+		//! @brief Path to the sound assets for the death.
+		std::string _deathSound;
+		//! @brief A reference to other entities and blocks.
+		Map &_map;
 
 	public:
-		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth);
+		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &_map);
 
+		//! @brief This update should check for collisions between entities.
 		virtual void update() override;
 		bool isDead() const;
 		void takeDamage(unsigned damages);

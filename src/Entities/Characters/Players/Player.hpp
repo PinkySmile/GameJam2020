@@ -6,22 +6,25 @@
 #define DUNGEONINTERN_PLAYER_HPP
 
 
+#include <memory>
 #include "../Character.hpp"
 #include "../../../Input/Input.hpp"
 #include "../../../Objects/Block.hpp"
+#include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
 	class Player : public Character {
 	private:
-		float _strengthMult;
+		//! @brief Used for custom player characters (after).
+		float _strengthMult = 1;
+		//! @brief Inputs used by the player to move
 		Input &_input;
-		std::vector<std::unique_ptr<Block>> &_blocks;
-		std::vector<std::unique_ptr<Entity>> &_entities;
+		//! @brief The item the player is currently holding.
 		class Item *_itemCarried; //TODO: Code class Item
 
 	public:
-		Player(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Input &input, std::vector<std::unique_ptr<Block>> &blocks, std::vector<std::unique_ptr<Entity>> &entities);
+		Player(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Input &input, Map &map);
 
 		virtual void update() override;
 		void interact(Entity &);
