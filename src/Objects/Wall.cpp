@@ -20,27 +20,6 @@ namespace DungeonIntern
 	{
 	}
 
-	void Wall::onWalk(Character &character)
-	{
-		Position<float> pos = character.getPos();
-		if (pos.r == NORTH) {
-			pos.y += 1;
-			character.setPos(pos);
-		}
-		if (pos.r == SOUTH) {
-			pos.y -= 1;
-			character.setPos(pos);
-		}
-		if (pos.r == WEST) {
-			pos.x += 1;
-			character.setPos(pos);
-		}
-		if (pos.r == EAST) {
-			pos.x -= 1;
-			character.setPos(pos);
-		}
-	}
-
 	void Wall::repair(class Player &)
 	{
 	}
