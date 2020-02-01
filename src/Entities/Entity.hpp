@@ -29,10 +29,11 @@ namespace DungeonIntern
 		//! @brief Will be deleted soon by the engine.
 		bool _destroyed = false;
 		class Map &_map;
+		Rendering::Screen &_screen;
 
 	public:
 		Entity(EntityConfig cfg, float maxSpeed, float x, float y, Orientation r = SOUTH);
-		virtual ~Entity() = default;
+		virtual ~Entity();
 
 		template<typename type>
 		type &to()

@@ -12,6 +12,7 @@
 namespace DungeonIntern {
 	class HardBlock : public Block {
 	public:
+		HardBlock(unsigned maxHealth, Orientation orientation);
 		void onWalk(Character &character) override;
 	};
 }

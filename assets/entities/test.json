@@ -1,0 +1,21 @@
+{
+	"texture": "testEntity",
+	"animations": [
+		1,
+		3,
+		3,
+		3,
+		3
+	],
+	"tileSize": {
+		"x": 32,
+		"y": 32
+	},
+	"delays": [
+		1,
+		4,
+		2,
+		2,
+		10
+	]
+}

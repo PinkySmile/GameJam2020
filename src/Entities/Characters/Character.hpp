@@ -25,6 +25,7 @@ namespace DungeonIntern
 
 	public:
 		Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth, Orientation r = SOUTH);
+		virtual ~Character() override = default;
 
 		//! @brief This update should check for collisions between entities.
 		virtual void update() override;

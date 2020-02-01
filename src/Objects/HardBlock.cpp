@@ -4,9 +4,17 @@
 ** File description:
 ** HardBlock.cpp
 */
+
+#include "../Entities/Characters/Character.hpp"
 #include "HardBlock.hpp"
 
-namespace DungeonIntern {
+namespace DungeonIntern
+{
+	HardBlock::HardBlock(unsigned maxHealth, Orientation orientation) :
+		Block(maxHealth, orientation)
+	{
+	}
+
 	void HardBlock::onWalk(Character &character)
 	{
 		Position<float>pos = character.getPos();

@@ -24,6 +24,7 @@ namespace DungeonIntern
 
 	public:
 		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth, Input &input);
+		virtual ~Player() override = default;
 
 		virtual void update() override;
 		void interact(Entity &);

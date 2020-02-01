@@ -10,9 +10,7 @@ namespace DungeonIntern
 		_map(map),
 		_menu(menu),
 		_resources(resources)
-	{
-		this->switched(false);
-	}
+	{}
 
 	void MainMenu::render()
 	{}
