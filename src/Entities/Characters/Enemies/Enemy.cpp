@@ -12,4 +12,7 @@ namespace DungeonIntern
 
 	void Enemy::update()
 	{}
+
+	void Enemy::onDeath()
+	{}
 }

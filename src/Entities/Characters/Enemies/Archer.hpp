@@ -6,12 +6,12 @@
 #define DUNGEONINTERN_ARCHER_HPP
 
 
-#include "../Character.hpp"
+#include "Enemy.hpp"
 #include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
-	class Archer : public Character {
+	class Archer : public Enemy {
 	public:
 		Archer(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Archer() override = default;

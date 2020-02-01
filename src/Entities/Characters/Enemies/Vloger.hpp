@@ -6,12 +6,12 @@
 #define DUNGEONINTERN_VLOGER_HPP
 
 
-#include "../Character.hpp"
+#include "Enemy.hpp"
 #include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
-	class Vloger : public Character {
+	class Vloger : public Enemy {
 	public:
 		Vloger(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Vloger() override = default;

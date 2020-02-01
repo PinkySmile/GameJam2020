@@ -6,12 +6,12 @@
 #define DUNGEONINTERN_NINJA_HPP
 
 
-#include "../Character.hpp"
+#include "Enemy.hpp"
 #include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
-	class Ninja : public Character {
+	class Ninja : public Enemy {
 	public:
 		Ninja(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Ninja() override = default;
