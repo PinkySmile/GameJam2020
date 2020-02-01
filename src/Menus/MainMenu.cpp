@@ -13,7 +13,8 @@ namespace DungeonIntern
 	{}
 
 	void MainMenu::render()
-	{}
+	{
+	}
 
 	void MainMenu::switched(bool isActive)
 	{
