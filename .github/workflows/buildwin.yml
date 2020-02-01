@@ -16,7 +16,7 @@ jobs:
           Expand-Archive sfml.zip -DestinationPath . -Force
           Move-Item -Path SFML-2.5.1 -Destination build
           Move-Item -Path build/include/ -Destination 'C:\Program Files\Git\mingw64\include'
-          Get-ChildItem -Path 'C:\Program Files\Git\mingw64'
+          tree 'C:\Program Files\Git\mingw64\'
       - name: Build Makefile with CMake
         run: |
           Set-Location build
