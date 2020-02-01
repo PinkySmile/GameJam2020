@@ -13205,7 +13205,7 @@ class basic_json
       `{"key": 2, "key": 1}` could be equal to either `{"key": 1}` or
       `{"key": 2}`.
     - Internally, name/value pairs are stored in lexicographical order of the
-      names. Objects will also be serialized (see @ref dump) in this order.
+      names. Blocks will also be serialized (see @ref dump) in this order.
       For instance, `{"b": 1, "a": 2}` and `{"a": 2, "b": 1}` will be stored
       and serialized as `{"a": 2, "b": 1}`.
     - When comparing objects, the order of the name/value pairs is irrelevant.
@@ -13225,7 +13225,7 @@ class basic_json
 
     #### Storage
 
-    Objects are stored as pointers in a @ref basic_json type. That is, for any
+    Blocks are stored as pointers in a @ref basic_json type. That is, for any
     access to object values, a pointer of type `object_t*` must be
     dereferenced.
 

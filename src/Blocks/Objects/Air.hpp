@@ -6,7 +6,7 @@
 #define DUNGEONINTERN_AIR_HPP
 
 
-#include "Block.hpp"
+#include "../Block.hpp"
 
 namespace DungeonIntern
 {
