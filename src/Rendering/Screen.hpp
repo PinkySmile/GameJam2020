@@ -7,6 +7,7 @@
 
 
 #include <SFML/Graphics.hpp>
+#include <TGUI/Gui.hpp>
 #include "Entity.hpp"
 
 namespace DungeonIntern::Rendering
@@ -14,6 +15,9 @@ namespace DungeonIntern::Rendering
 	//! @brief Represents the screen
 	class Screen : public sf::RenderWindow {
 	private:
+		//! @brief All guis registered
+		std::vector<std::shared_ptr<tgui::Gui>> _guis;
+
 		//! @brief The Resources the Screen is in.
 		Resources &_resources;
 
@@ -69,6 +73,18 @@ namespace DungeonIntern::Rendering
 
 		//! @brief Change the text size
 		void	textSize(const size_t &size);
+
+		//! @brief Override for pollEvent
+		bool pollEvent(sf::Event &event);
+
+		//! @brief Creates a Gui.
+		std::shared_ptr<tgui::Gui> makeGui();
+
+		//! @brief Attach the gui to the screen
+		void attach(const std::shared_ptr<tgui::Gui>& gui);
+
+		//! @brief Detach the gui from the screen
+		void detach(const std::shared_ptr<tgui::Gui>& gui);
 
 		//! @brief Adds an entity on the screen
 		//! @param configFile The path the a JSON file describing the entity

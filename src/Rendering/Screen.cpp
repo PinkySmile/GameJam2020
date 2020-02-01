@@ -25,6 +25,22 @@ namespace DungeonIntern::Rendering
 		logger.info("Destroying window \"" + this->_title + "\"");
 	}
 
+	std::shared_ptr<tgui::Gui> Screen::makeGui()
+	{
+		return this->_guis.emplace_back(new tgui::Gui(*this));
+	}
+
+	void Screen::attach(const std::shared_ptr<tgui::Gui> &gui)
+	{
+		if (std::find(this->_guis.begin(), this->_guis.end(), gui) == this->_guis.end())
+			this->_guis.push_back(gui);
+	}
+
+	void Screen::detach(const std::shared_ptr<tgui::Gui> &gui)
+	{
+		this->_guis.erase(std::find(this->_guis.begin(), this->_guis.end(), gui));
+	}
+
 	const std::string &Screen::getTitle() const
 	{
 		return this->_title;
@@ -109,6 +125,16 @@ namespace DungeonIntern::Rendering
 		return this->_cameraCenter;
 	}
 
+	bool Screen::pollEvent(sf::Event &event)
+	{
+		if (!sf::RenderWindow::pollEvent(event))
+			return false;
+
+		for (auto &gui : this->_guis)
+			gui->handleEvent(event);
+		return true;
+	}
+
 	void Screen::renderEntities()
 	{
 		for (auto &entity : this->_entities)
@@ -131,6 +157,8 @@ namespace DungeonIntern::Rendering
 	{
 		this->_fps = 1 / this->_clock.getElapsedTime().asSeconds();
 		this->_clock.restart();
+		for (auto &gui : this->_guis)
+			gui->draw();
 		sf::RenderWindow::display();
 	}
 
