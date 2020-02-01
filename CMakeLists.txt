@@ -52,6 +52,16 @@ add_executable(
 	src/Entities/Entity.hpp
 	src/Entities/Characters/Players/Player.cpp
 	src/Entities/Characters/Players/Player.hpp
+	src/Entities/Characters/Players/Goblin.cpp
+	src/Entities/Characters/Players/Goblin.hpp
+	src/Entities/Characters/Players/BigSlime.cpp
+	src/Entities/Characters/Players/BigSlime.hpp
+	src/Entities/Characters/Players/Ghost.cpp
+	src/Entities/Characters/Players/Ghost.hpp
+	src/Entities/Characters/Players/DragonMan.cpp
+	src/Entities/Characters/Players/DragonMan.hpp
+	src/Entities/Characters/Players/Imp.cpp
+	src/Entities/Characters/Players/Imp.hpp
 	src/Entities/Characters/Character.cpp
 	src/Entities/Characters/Character.hpp
 	src/Entities/Characters/Enemies/Enemy.cpp

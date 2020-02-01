@@ -4,6 +4,7 @@
 
 #include "Map.hpp"
 #include "Entities/Characters/Players/Player.hpp"
+#include "Entities/Characters/Players/DragonMan.hpp"
 #include "Game.hpp"
 
 
@@ -39,8 +40,8 @@ namespace DungeonIntern
 	void Map::loadMap()
 	{
 		logger.debug("Loading the map.");
-		this->_entities.emplace_back(new Player({*this->_game.resources.screen, "assets/entities/test.json", *this}, 50, 50, 100, 32, 32, 100, *this->_game.state.settings.inputs[0]));
-		this->_entities.emplace_back(new Player({*this->_game.resources.screen, "assets/entities/test.json", *this}, 50, 25, 25, 32, 32, 100, *this->_game.state.settings.inputs[1]));
+		this->_entities.emplace_back(new Player({*this->_game.resources.screen, "assets/entities/test.json", *this}, 5, 50, 100, 32, 32, 100, *this->_game.state.settings.inputs[0]));
+		this->_entities.emplace_back(new DragonMan({*this->_game.resources.screen, "assets/entities/test.json", *this}, 25, 25, 64, 64, 100, *this->_game.state.settings.inputs[1]));
 	}
 
 	const std::vector<std::unique_ptr<Entity>> & Map::getEntities()
