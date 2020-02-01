@@ -11,7 +11,7 @@ endif ()
 
 if ("${GITBUILD}" STREQUAL true)
 	include_directories(DungeonIntern nlohmann build/include)
-	link_directories(DungeonIntern lib)
+	link_directories(DungeonIntern build/lib)
 	message("Git build is true")
 endif ()
 
