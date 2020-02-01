@@ -21,7 +21,7 @@ namespace DungeonIntern
 		//! @brief Used for custom player characters (after).
 		float _strengthMult = 1;
 		//! @brief The item the player is currently holding.
-		class Item *_itemCarried; //TODO: Code class Item
+		class Item *_itemCarried;
 		bool _fly;
 		double _angle = 0;
 		unsigned _dash_cooldown = 0;
@@ -35,6 +35,7 @@ namespace DungeonIntern
 		void interact(Entity &);
 		void dash();
 		void onDeath() override;
+		bool pickItem(Item &item);
 		bool canFly() const;
 	};
 }

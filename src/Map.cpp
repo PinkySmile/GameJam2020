@@ -23,6 +23,7 @@
 #include "Blocks/Objects/Trap1.hpp"
 #include "Blocks/Objects/Chest.hpp"
 #include "Blocks/Objects/Trap2.hpp"
+#include "Entities/Items/Pickaxe.hpp"
 #include <functional>
 
 namespace DungeonIntern
@@ -128,6 +129,15 @@ namespace DungeonIntern
 		);
 		this->_entities.emplace_back(
 			this->_player2
+		);
+
+		this->_entities.emplace_back(
+				new Pickaxe(
+						*this->_game.resources.screen,
+						*this,
+						this->_size.x * 64 / 2 - 64,
+						this->_size.y * 64 - 256
+				)
 		);
 	}
 

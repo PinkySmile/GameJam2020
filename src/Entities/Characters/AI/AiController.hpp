@@ -13,7 +13,6 @@ namespace DungeonIntern::AI
 	class AIController : public Character {
 	private:
 		std::vector<sf::Vector2u> _path;
-
 		std::vector<sf::Vector2u> &_findPath();
 	public:
 		AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation = SOUTH);
@@ -23,6 +22,7 @@ namespace DungeonIntern::AI
 		virtual void update() override;
 		virtual void onCollide(Entity &other) override;
 		bool isDead() const;
+		uNode findTarget();
 		virtual void onDeath() override;
 	};
 }

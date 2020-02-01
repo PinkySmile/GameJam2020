@@ -5,6 +5,7 @@
 #include <cmath>
 #include <iostream>
 #include "Player.hpp"
+#include "../../Items/Item.hpp"
 #include "../../../Map.hpp"
 #include "../../../Resources.hpp"
 
@@ -104,5 +105,14 @@ namespace DungeonIntern
 	bool Player::canFly() const
 	{
 		return (this->_fly);
+	}
+
+	bool Player::pickItem(Item &item)
+	{
+		if (this->_itemCarried != nullptr)
+			return false;
+		this->_itemCarried = &item;
+		item.setCarried(true);
+		return true;
 	}
 }
