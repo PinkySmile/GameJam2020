@@ -8,6 +8,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#define NB_DIRS 4
+
 namespace DungeonIntern
 {
 	class Resources;
