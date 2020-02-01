@@ -7,12 +7,16 @@
 
 
 #include "../HardBlock.hpp"
+#include "../../Game.hpp"
 
 namespace DungeonIntern
 {
 	class Wall : public HardBlock {
+	private:
+		Game &_game;
+
 	public:
-		Wall();
+		Wall(Game &game);
 		~Wall() override = default;
 
 		void use(Player &) override;

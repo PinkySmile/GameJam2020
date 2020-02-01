@@ -6,10 +6,18 @@
 #include "Entities/Characters/Players/Player.hpp"
 #include "Entities/Characters/Players/DragonMan.hpp"
 #include "Game.hpp"
+#include "Exceptions.hpp"
+#include "Blocks/Objects/Air.hpp"
+#include "Blocks/Objects/Wall.hpp"
 
 
 namespace DungeonIntern
 {
+	const std::map<char, std::function<Block *(Game &)>> Map::_blockBuilders{
+		{'0', [](Game &    ){ return new Air(); }},
+		{'W', [](Game &game){ return new Wall(game); }}
+	};
+
 	Map::Map(DungeonIntern::Game &game)
 		: _game(game)
 	{}
@@ -25,6 +33,10 @@ namespace DungeonIntern
 
 	void Map::render()
 	{
+		this->_game.resources.screen->setCameraCenter({
+			this->_player1->getPos().x + 32,
+			this->_player1->getPos().y + 32
+		});
 		for (auto &obj : this->_objects)
 			obj->render();
 		for (auto &ent : this->_entities)
@@ -39,17 +51,80 @@ namespace DungeonIntern
 
 	void Map::loadMap()
 	{
-		logger.debug("Loading the map.");
-		this->_entities.emplace_back(new Player({*this->_game.resources.screen, "assets/entities/test.json", *this}, 5, 50, 100, 32, 32, 100, *this->_game.state.settings.inputs[0]));
-		this->_entities.emplace_back(new DragonMan({*this->_game.resources.screen, "assets/entities/test.json", *this}, 25, 25, 64, 64, 100, *this->_game.state.settings.inputs[1]));
+		std::ifstream stream{"assets/map.txt"};
+		std::vector<std::string> lines;
+		std::string line;
+
+		logger.info("Loading map from assets/map.txt");
+		this->_size = {0, 0};
+		if (stream.fail())
+			throw InvalidSavedMap(std::string("Cannot open assets/map.txt: ") + strerror(errno));
+		while (std::getline(stream, line)) {
+			if (line.empty()) {
+				logger.warn("An empty line was found in the map. Ignoring...");
+				continue;
+			}
+			this->_size.y++;
+			this->_size.x = std::max(this->_size.x, line.size());
+			for (auto it = lines.begin(); it < lines.end(); it++)
+				it->resize(this->_size.x, '0');
+			lines.push_back(line);
+		}
+
+		for (unsigned y = 0; y < lines.size(); y++) {
+			for (unsigned x = 0; x < lines[y].size(); x++)
+				try {
+					auto &p = this->_objects.emplace_back(Map::_blockBuilders.at(lines[y][x])(this->_game));
+					auto pos = p->getPosition();
+
+					pos.x = x * 64;
+					pos.y = y * 64;
+					p->setPosition(pos);
+				} catch (std::exception &) {
+					throw InvalidSavedMap(std::string("No object can be built for character '") + lines[y][x] + "' (ASCII " + std::to_string(lines[y][x]) + ")");
+				}
+		}
+		logger.debug("Map size is " + std::to_string(this->_size.x) + ", " + std::to_string(this->_size.y));
+
+		this->_player1 = new Player(
+			{*this->_game.resources.screen, "assets/entities/test.json", *this},
+			50,
+			this->_size.x * 64 / 2 - 64,
+			this->_size.y * 64 - 64,
+			64,
+			64,
+			100, *this->_game.state.settings.inputs[1]
+		);
+		this->_player2 = new Player(
+			{*this->_game.resources.screen, "assets/entities/test.json", *this},
+			50,
+			this->_size.x * 64 / 2,
+			this->_size.y * 64 - 64,
+			64,
+			64,
+			100,
+			*this->_game.state.settings.inputs[0]
+		);
+
+		this->_entities.emplace_back(
+			this->_player1
+		);
+		this->_entities.emplace_back(
+			this->_player2
+		);
 	}
 
-	const std::vector<std::unique_ptr<Entity>> & Map::getEntities()
+	Size<size_t> Map::getSize() const
+	{
+		return this->_size;
+	}
+
+	const std::vector<std::unique_ptr<Entity>> &Map::getEntities() const
 	{
 		return (this->_entities);
 	}
 
-	const std::vector<std::unique_ptr<Block>> & Map::getObjects()
+	const std::vector<std::unique_ptr<Block>> &Map::getObjects() const
 	{
 		return (this->_objects);
 	}

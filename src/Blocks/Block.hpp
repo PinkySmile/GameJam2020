@@ -21,7 +21,7 @@ namespace DungeonIntern
 		//! @brief For example, a chest will need repair if he is empty or broken (same cost for the player).
 		bool _needRepair = false;
 		//! @brief Position of the block. 0, 0 is the top left corner of the screen.
-		Position<unsigned> _pos;
+		Position<int> _pos;
 		//! @brief Size of the entity.
 		Size<unsigned> _size;
 
@@ -38,8 +38,9 @@ namespace DungeonIntern
 		//! @brief For example, filling the chest or repairing it if it is broke.
 		virtual void repair(Player &) = 0;
 		virtual void render() = 0;
-		const Position<unsigned> & getPosition();
-		const Size<unsigned> & getSize();
+		void setPosition(Position<int> newPos);
+		const Position<int> &getPosition() const;
+		const Size<unsigned> &getSize() const;
 	};
 }
 
