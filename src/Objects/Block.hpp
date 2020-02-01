@@ -7,6 +7,10 @@
 
 
 #include "../Position.hpp"
+#include "../Entities/Characters/Character.hpp"
+#include "../Entities/Characters/Players/Player.hpp"
+#include "../Entities/Characters/Enemies/Enemy.hpp"
+
 
 namespace DungeonIntern
 {
@@ -21,10 +25,10 @@ namespace DungeonIntern
 		Block(unsigned maxHealth, Orientation orientation);
 		virtual ~Block() = default;
 
-		virtual void onWalk(class Character &) = 0;
-		virtual void use(class Player &) = 0;
-		virtual void loot(class Enemy &) = 0;
-		virtual void repair(class Player &) = 0;
+		virtual void onWalk(Character &) = 0;
+		virtual void use(Player &) = 0;
+		virtual void loot(Enemy &) = 0;
+		virtual void repair(Player &) = 0;
 		virtual void render() = 0;
 	};
 }

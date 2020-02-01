@@ -12,4 +12,14 @@ namespace DungeonIntern
 		_pos(x, y, r)
 	{
 	}
+
+	const Position<float> &Entity::getPos() const
+	{
+		return _pos;
+	}
+
+	void Entity::setPos(const Position<float> &pos)
+	{
+		_pos = pos;
+	}
 }

@@ -31,6 +31,10 @@ namespace DungeonIntern
 		void destroy();
 		virtual void render() = 0;
 		virtual void update() = 0;
+
+		const Position<float> &getPos() const;
+
+		void setPos(const Position<float> &pos);
 	};
 }
 
