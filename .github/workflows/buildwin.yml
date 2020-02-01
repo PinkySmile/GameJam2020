@@ -13,10 +13,9 @@ jobs:
       - name: Install the SFML.
         run: |
           Invoke-WebRequest -Uri https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip -OutFile sfml.zip
-          Expand-Archive sfml.zip -DestinationPath . -Force
+          Expand-Archive sfml.zip -DestinationPath build -Force
       - name: Build Makefile with CMake
         run: |
-          New-Item -ItemType directory -Path build
           Set-Location build
           cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_CXX_FLAGS=-I\ include\ -L\ lib
       - name: Build with Makefile
