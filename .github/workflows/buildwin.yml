@@ -37,7 +37,7 @@ jobs:
       - name: Copy assets
         run: |
          New-Item -ItemType "directory" -Path build/assets
-         Copy-Item -Path assets -Destination build/assets
+         Copy-Item -Recurse -Path assets -Destination build/assets
       - name: Archive production artifact
         uses: actions/upload-artifact@v1
         with:

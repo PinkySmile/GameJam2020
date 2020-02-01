@@ -34,8 +34,10 @@ jobs:
         run: make -C build DungeonIntern
       - name: Copy assets
         run: mkdir -p build/assets && cp -r assets build/assets
+      - name: Clean up
+        run: rm -rf !(build/assets|DungeonIntern)
       - name: Archive production artifact
         uses: actions/upload-artifact@v1
         with:
           name: DungeonInternLinux
-          path: build/DungeonIntern
+          path: build
