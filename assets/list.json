@@ -49,7 +49,7 @@
 		"bombermanEnemy": "entities/dragon.png",
 		"lonkEnemy": "entities/dragon.png",
 		"vlogerEnemy": "entities/dragon.png",
-
+		"trap1": "objects/trap1.png",
 		"wall": "objects/Wall_2.png"
 	},
 	"icon": "icon.png"

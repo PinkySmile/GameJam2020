@@ -8,8 +8,9 @@
 
 namespace DungeonIntern
 {
-	Trap1::Trap1() :
-		Block(SOUTH, 64, 64)
+	Trap1::Trap1(Game &game) :
+		Block(SOUTH, 64, 64),
+		_game(game)
 	{
 	}
 
@@ -37,5 +38,11 @@ namespace DungeonIntern
 
 	void Trap1::render()
 	{
+		this->_game.resources.screen->draw(
+			this->_game.resources.textures.at("trap1"),
+			{static_cast<float>(this->_pos.x), static_cast<float>(this->_pos.y)},
+			{64, 64},
+			{64 * this->_needRepair, 0, 64, 64}
+		);
 	}
 }
