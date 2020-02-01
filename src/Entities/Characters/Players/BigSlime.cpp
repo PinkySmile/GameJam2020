@@ -7,7 +7,7 @@
 
 namespace DungeonIntern
 {
-	BigSlime::BigSlime(EntityConfig cfg, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input) :
-		Player(cfg, 2, x, y, sx, sy, maxHealth, input, 1.5)
+	BigSlime::BigSlime(Rendering::Screen &screen, Map &map, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input) :
+		Player({screen, "assets/entities/bigSlime.json", map}, 2, x, y, sx, sy, maxHealth, input, 1.5)
 	{}
 }

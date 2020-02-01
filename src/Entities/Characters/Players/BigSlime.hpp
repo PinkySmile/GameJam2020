@@ -15,7 +15,7 @@ namespace DungeonIntern
 	class BigSlime : public Player {
 
 	public:
-		BigSlime(EntityConfig cfg, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
+		BigSlime(Rendering::Screen &screen, Map &map, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
 		virtual ~BigSlime() override = default;
 	};
 	//TODO faire en sorte que +5 speed lorsque walk on slime

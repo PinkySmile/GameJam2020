@@ -5,6 +5,10 @@
 	},
 	"sprites": {
 		"dragonPlayer": "entities/dragon.png",
+		"impPlayer": "entities/dragon.png",
+		"bigSlimePlayer": "entities/dragon.png",
+		"goblinPlayer": "entities/dragon.png",
+		"ghostPlayer": "entities/dragon.png",
 		"wall": "objects/Wall_2.png"
 	},
 	"icon": "icon.png"
