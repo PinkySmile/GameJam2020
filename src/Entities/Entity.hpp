@@ -13,9 +13,13 @@ namespace DungeonIntern
 {
 	class Entity {
 	private:
+		//! @brief The entity used by the renderer.
 		Rendering::Entity &_entity;
+		//! @brief The speed at witch the entity move in the direction indicated by the _pos orientation value.
 		float _speed = 0;
+		//! @brief Position + Orientation of the entity.
 		Position<float> _pos;
+		//! @brief Will be deleted soon by the engine.
 		bool _destroyed = false;
 
 	public:

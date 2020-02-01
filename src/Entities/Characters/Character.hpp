@@ -18,13 +18,17 @@ namespace DungeonIntern
 		unsigned _health;
 		bool _dead = false;
 		unsigned _invFrames = 0;
+		//! @brief Path to the sound assets for the heart.
 		std::string _heartSound;
+		//! @brief Path to the sound assets for the death.
 		std::string _deathSound;
+		//! @brief A reference to other entities and blocks.
 		Map &_map;
 
 	public:
 		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &_map);
 
+		//! @brief This update should check for collisions between entities.
 		virtual void update() override;
 		bool isDead() const;
 		void takeDamage(unsigned damages);

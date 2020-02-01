@@ -11,6 +11,7 @@ namespace DungeonIntern
 		_menu(menu),
 		_resources(resources)
 	{
+		this->switched(false);
 	}
 
 	void MainMenu::render()
