@@ -18,21 +18,23 @@ namespace DungeonIntern
 
 	void HardBlock::onWalk(class Entity &character)
 	{
-		Position<float>pos = character.getPos();
+		Position<float> pos = character.getPos();
+		Size<unsigned> size = character.getSize();
+
 		if (pos.r == NORTH) {
-			pos.y += 1;
+			pos.y = this->_pos.y + this->_size.y + 1;
 			character.setPos(pos);
 		}
 		if (pos.r == SOUTH) {
-			pos.y -= 1;
+			pos.y = this->_pos.y - size.y - 1;
 			character.setPos(pos);
 		}
 		if (pos.r == WEST) {
-			pos.x += 1;
+			pos.x = this->_pos.x + this->_size.x + 1;
 			character.setPos(pos);
 		}
 		if (pos.r == EAST) {
-			pos.x -= 1;
+			pos.x = this->_pos.x - size.x - 1;
 			character.setPos(pos);
 		}
 	}
