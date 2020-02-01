@@ -10,7 +10,7 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
 endif ()
 
 if ("${GITBUILD}" STREQUAL true)
-	include_directories(DungeonIntern nlohmann include)
+	include_directories(DungeonIntern nlohmann build/include)
 	link_directories(DungeonIntern lib)
 	message("Git build is true")
 endif ()
