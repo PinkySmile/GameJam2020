@@ -19,7 +19,7 @@ jobs:
         run: |
           Set-Location build
           Get-ChildItem
-          cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_CXX_FLAGS=-I\ include\ -L\ lib
+          cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_CXX_FLAGS=-I\ include -DCMAKE_CXX_STANDARD_LIBRARIES=-L\ lib
       - name: Build with Makefile
         run: mingw32-make -C build DungeonIntern
       - name: Archive production artifact
