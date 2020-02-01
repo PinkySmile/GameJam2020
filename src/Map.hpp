@@ -6,6 +6,7 @@
 #define DUNGEONINTERN_MAP_HPP
 
 
+#include <functional>
 #include <memory>
 #include <vector>
 #include "Blocks/Block.hpp"

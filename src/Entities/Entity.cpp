@@ -65,9 +65,8 @@ namespace DungeonIntern
 		while (angle < 0)
 			angle += 2 * M_PI;
 		angle = std::fmod(angle, 2 * M_PI);
-		std::cout << angle << std::endl;
-		if (std::abs(std::cos(angle)) * this->_speed > 0.1)
-			this->_entity.setDirection((angle > (M_PI / 2) && angle < 1.5f * M_PI) ? Rendering::WEST : Rendering::EAST);
+		if (std::abs(std::cos(angle)) * this->_speed > M_PI_4)
+			this->_entity.setDirection((angle > M_PI_2 && angle < 3 * M_PI_2) ? Rendering::WEST : Rendering::EAST);
 	}
 
 	float Entity::getSpeed() const
