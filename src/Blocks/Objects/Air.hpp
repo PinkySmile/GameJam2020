@@ -15,7 +15,7 @@ namespace DungeonIntern
 		Air();
 		~Air() override = default;
 
-		void onWalk(class Character &) override;
+		void onWalk(class Entity &) override;
 		void use(class Player &) override;
 		void loot(class Enemy &) override;
 		void repair(class Player &) override;

@@ -13,8 +13,6 @@ namespace DungeonIntern
 {
 	class Character : public Entity {
 	protected:
-		const unsigned _maxHealth;
-		unsigned _health;
 		bool _dead = false;
 		unsigned _invFrames = 0;
 		//! @brief Path to the sound assets for the heart.
@@ -30,7 +28,6 @@ namespace DungeonIntern
 		//! @brief This update should check for collisions between entities.
 		virtual void update() override;
 		bool isDead() const;
-		void takeDamage(unsigned damages);
 		virtual void onDeath() = 0;
 	};
 }

@@ -9,9 +9,11 @@
 
 namespace DungeonIntern
 {
-	Entity::Entity(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, Orientation r) :
+	Entity::Entity(unsigned maxHealth, EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, Orientation r) :
 		_entity(cfg.screen.addEntity(cfg.entityJsonPath)),
 		_maxSpeed(maxSpeed),
+		_maxHealth(maxHealth),
+		_health(maxHealth),
 		_pos(x, y, r),
 		_size(sx, sy),
 		_map(cfg.map),
@@ -72,5 +74,12 @@ namespace DungeonIntern
 	float Entity::getSpeed() const
 	{
 		return _speed;
+	}
+
+	void Entity::takeDamage(unsigned damages)
+	{
+		if (damages > this->_health)
+			this->_health = 0;
+		this->_health -= damages;
 	}
 }

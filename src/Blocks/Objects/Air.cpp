@@ -7,7 +7,7 @@
 namespace DungeonIntern
 {
 	Air::Air() :
-		Block(0, SOUTH, 64, 64)
+		Block(SOUTH, 64, 64)
 	{
 	}
 
@@ -19,7 +19,7 @@ namespace DungeonIntern
 	{
 	}
 
-	void Air::onWalk(class Character &)
+	void Air::onWalk(class Entity &)
 	{
 	}
 

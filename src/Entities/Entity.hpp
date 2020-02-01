@@ -25,6 +25,8 @@ namespace DungeonIntern
 		//! @brief The speed at witch the entity move in the direction indicated by the _pos orientation value.
 		float _speed = 0;
 		float _maxSpeed = 0;
+		const unsigned _maxHealth;
+		unsigned _health;
 		//! @brief Position + Orientation of the entity.
 		Position<float> _pos;
 		//! @brief Size of the entity.
@@ -35,7 +37,7 @@ namespace DungeonIntern
 		Rendering::Screen &_screen;
 
 	public:
-		Entity(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, Orientation r = SOUTH);
+		Entity(unsigned maxHealth, EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, Orientation r = SOUTH);
 		virtual ~Entity();
 
 		template<typename type>
@@ -57,6 +59,8 @@ namespace DungeonIntern
 		float getSpeed() const;
 
 		void setSpeed(float speed);
+
+		void takeDamage(unsigned damages);
 	};
 }
 

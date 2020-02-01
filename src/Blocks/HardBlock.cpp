@@ -10,12 +10,12 @@
 
 namespace DungeonIntern
 {
-	HardBlock::HardBlock(unsigned maxHealth, Orientation orientation, unsigned sx, unsigned sy) :
-		Block(maxHealth, orientation, sx, sy)
+	HardBlock::HardBlock(Orientation orientation, unsigned sx, unsigned sy) :
+		Block(orientation, sx, sy)
 	{
 	}
 
-	void HardBlock::onWalk(Character &character)
+	void HardBlock::onWalk(class Entity &character)
 	{
 		Position<float>pos = character.getPos();
 		if (pos.r == NORTH) {

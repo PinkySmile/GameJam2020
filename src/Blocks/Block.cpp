@@ -6,8 +6,7 @@
 
 namespace DungeonIntern
 {
-	Block::Block(unsigned maxHealth, Orientation orientation, unsigned sx, unsigned sy) :
-		_maxHealth(maxHealth),
+	Block::Block(Orientation orientation, unsigned sx, unsigned sy) :
 		_size(sx, sy)
 	{
 		this->_pos.r = orientation;

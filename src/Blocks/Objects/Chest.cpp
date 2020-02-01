@@ -9,13 +9,12 @@
 namespace DungeonIntern
 {
 	Chest::Chest() :
-		HardBlock(0, SOUTH, 64, 64)
+		HardBlock(SOUTH, 64, 64)
 	{
 	}
 
 	void Chest::loot(Enemy &)
 	{
-		this->_health = 0;
 		this->_needRepair = true;
 	}
 
@@ -23,9 +22,9 @@ namespace DungeonIntern
 	{
 	}
 
-	void Chest::onWalk(Character &character)
+	void Chest::onWalk(class Entity &)
 	{
-		this->loot(dynamic_cast<Enemy &>(character));
+		this->_needRepair = true;
 	}
 
 	void Chest::repair(Player &)

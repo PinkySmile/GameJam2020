@@ -8,9 +8,7 @@
 namespace DungeonIntern
 {
 	Character::Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation) :
-		Entity(cfg, maxSpeed, x, y, sx, sy, orientation),
-		_maxHealth(maxHealth),
-		_health(maxHealth)
+		Entity(maxHealth, cfg, maxSpeed, x, y, sx, sy, orientation)
 	{
 		this->setSpeed(maxSpeed);
 	}
@@ -39,12 +37,5 @@ namespace DungeonIntern
 			)
 				blocks[i]->onWalk(*this);
 		}
-	}
-
-	void Character::takeDamage(unsigned damages)
-	{
-		if (damages > this->_health)
-			this->_health = 0;
-		this->_health -= damages;
 	}
 }

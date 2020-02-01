@@ -11,14 +11,12 @@
 namespace DungeonIntern
 {
 	Trap2::Trap2() :
-		Block(100, SOUTH, 128, 128)
+		Block(SOUTH, 128, 128)
 	{
 	}
 
-	void Trap2::loot(Enemy &enemy)
+	void Trap2::loot(Enemy &)
 	{
-		enemy.takeDamage(-1);
-		this->_health = 0;
 		this->_needRepair = true;
 	}
 
@@ -26,9 +24,13 @@ namespace DungeonIntern
 	{
 	}
 
-	void Trap2::onWalk(Character &character)
+	void Trap2::onWalk(class Entity &character)
 	{
-		this->loot(dynamic_cast<Enemy &>(character));
+		if (this->_needRepair)
+			return;
+
+		character.takeDamage(-1);
+		this->_needRepair = true;
 	}
 
 	void Trap2::repair(Player &)

@@ -1,0 +1,49 @@
+Renderer.1 {
+    backgroundcolor = transparent;
+    backgroundcolordisabled = transparent;
+    backgroundcolordown = transparent;
+    backgroundcolorhover = transparent;
+    bordercolor = transparent;
+    bordercolordisabled = transparent;
+    bordercolordown = transparent;
+    bordercolorfocused = transparent;
+    bordercolorhover = transparent;
+    borders = (1, 1, 1, 1);
+    textcolor = transparent;
+    textcolordisabled = transparent;
+    textcolordown = transparent;
+    textcolorhover = transparent;
+    texture = None;
+    texturedisabled = None;
+    texturedown = None;
+    texturefocused = None;
+    texturehover = None;
+}
+
+BitmapButton.play {
+    Image = "assets/buttons/Play.png";
+    ImageScaling = 0;
+    Position = (70, 106.058);
+    Size = (66.2, 29.1536);
+    TextSize = 13;
+    renderer = &1;
+}
+
+Picture.Picture1 {
+    Position = (40, 10);
+    Size = (128, 104);
+
+    Renderer {
+        texture = "assets/buttons/Logo.png";
+        transparenttexture = false;
+    }
+}
+
+BitmapButton.quit {
+    Image = "assets/buttons/Quit.png";
+    ImageScaling = 0;
+    Position = (70, 146.058);
+    Size = (66.2, 29.1536);
+    TextSize = 13;
+    renderer = &1;
+}

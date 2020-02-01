@@ -14,7 +14,7 @@ namespace DungeonIntern
 		Trap2();
 		~Trap2() override = default;
 
-		void onWalk(Character &) override;
+		void onWalk(class Entity &entity) override;
 		void use(Player &) override;
 		void loot(Enemy &) override;
 		void repair(Player &) override;
