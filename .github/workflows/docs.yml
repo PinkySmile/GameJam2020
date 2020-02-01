@@ -16,8 +16,11 @@ jobs:
       - name: Update the docs
         run: doxygen Doxyfile
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          BRANCH: gh-pages
-          FOLDER: docs
+        run:
+          git checkout -B gh-pages
+          git add -A
+          git commit -m "Deploying the doc"
+          git remote set-url --push origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/Gegel85/GameJam2020
+          git push --quiet --force
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
