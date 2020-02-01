@@ -9,6 +9,9 @@
 #include "../Entities/Characters/Character.hpp"
 #include "HardBlock.hpp"
 
+#define PLAYERSIZE 64
+#define TILESIZE 64
+
 namespace DungeonIntern
 {
 	HardBlock::HardBlock(Orientation orientation, unsigned sx, unsigned sy) :
@@ -17,22 +20,74 @@ namespace DungeonIntern
 
 	void HardBlock::onWalk(class Entity &character)
 	{
-		Position<float> pos = character.getPos();
+		Position<float> pl_pos = character.getPos();
+		Position<float> old_pos = character.getOldPosition();
+		Position<float> mid_pos = {(pl_pos.x + old_pos.x) / 2, (pl_pos.y + old_pos.y) / 2, old_pos.r};
 		Size<unsigned> size = character.getSize();
+		Position<int> block_pos = this->_pos;
+
+		double relative_x = pl_pos.x - block_pos.x;
+		double relative_y = pl_pos.y - block_pos.y;
+
+		if (this->collideWith(mid_pos, size))
+			pl_pos = mid_pos;
 
 
-		if ((this->_pos.y < pos.y && pos.y < this->_pos.y + this->_size.y) || (this->_pos.y < pos.y + _size.y && pos.y + size.y < this->_pos.y + this->_size.y)) {
-			if (pos.x + size.x > this->_pos.x + this->_size.x / 2) // LEFT
-				pos.x = this->_pos.x + this->_size.x + 1;
-			if (pos.x + size.x < this->_pos.x + this->_size.x / 2) // RIGHT
-				pos.x = this->_pos.x - size.x - 1;
+		/* block_id represent which zone of the block the player collide, block_id use value like that (in hexa)
+		 *  +-+-+-+-+
+		 *  |0|1|2|3|    0 and 5 : UP LEFT
+		 *  +-+-+-+-+    1 and 2 : UP
+		 *  |4|5|6|7|    3 and 6 : UP RIGHT
+		 *  +-+-+-+-+    4 and 8 : LEFT
+		 *  |8|9|A|B|    7 and B : RIGHT
+		 *  +-+-+-+-+    9 and C : DOWN LEFT
+		 *  |C|D|E|F|    D and E : DOWN
+		 *  +-+-+-+-+    A and F : DOWN RIGHT*/
+
+		char block_id = (static_cast<int>((4*(relative_y - -PLAYERSIZE) / (TILESIZE - -PLAYERSIZE))) << 2)
+						+ (static_cast<int>((4*(relative_x - -PLAYERSIZE) / (TILESIZE - -PLAYERSIZE))));
+		printf("%d: %.4f %.4f (%d %d) %.3f %.3f => ", block_id, relative_x, relative_y, block_pos.x, block_pos.y, pl_pos.x, pl_pos.y);
+		switch (block_id) {
+		case 0:
+			pl_pos.y -= std::min(relative_x + PLAYERSIZE, relative_y + PLAYERSIZE) + 0.1; // rup
+			pl_pos.x -= std::min(relative_x + PLAYERSIZE, relative_y + PLAYERSIZE) + 0.1; // rleft
+			break;
+		case 1:
+		case 2: // UP
+			pl_pos.y = block_pos.y - PLAYERSIZE - 1;
+			break;
+		case 3:
+			pl_pos.y -= std::min(relative_x + PLAYERSIZE, relative_y + PLAYERSIZE) + 0.1; // rup
+			pl_pos.x += std::min(TILESIZE - relative_x, TILESIZE - relative_y) + 0.1; // rright
+			break;
+		case 4:
+		case 8: // LEFT
+			pl_pos.x = block_pos.x - TILESIZE - 0.1;
+			break;
+		case 7:
+		case 11: // RIGHT
+			pl_pos.x = block_pos.x + TILESIZE + 0.1;
+			break;
+		case 12: // DOWN LEFT
+			pl_pos.y += std::min(TILESIZE - relative_x, TILESIZE - relative_y) + 0.1; // rdown
+			pl_pos.x -= std::min(relative_x + PLAYERSIZE, relative_y + PLAYERSIZE) + 0.1; // rleft
+			break;
+		case 13:
+		case 14: // DOWN
+			pl_pos.y = block_pos.y + TILESIZE + 0.1;
+			break;
+		case 15: // DOWN RIGHT
+			pl_pos.y += std::min(TILESIZE - relative_x, TILESIZE - relative_y) + 0.1; // rdown
+			pl_pos.x += std::min(TILESIZE - relative_x, TILESIZE - relative_y) + 0.1; // rright
+			break;
+		case 5:
+		case 6:
+		case 9:
+		case 10:
+			pl_pos = old_pos;
 		}
-		if ((this->_pos.x <= pos.x && pos.x < this->_pos.x + this->_size.x) || (this->_pos.x < pos.x + _size.x && pos.x + size.x < this->_pos.x + this->_size.x)) {
-			if (pos.y + size.y > this->_pos.y + this->_size.y / 2) // NORTH
-				pos.y = this->_pos.y + this->_size.y + 1;
-			if (pos.y + size.y < this->_pos.y + this->_size.y / 2) // SOUTH
-				pos.y = this->_pos.y - size.y - 1;
-		}
-		character.setPos(pos);
+		printf("%.3f, %.3f\n", pl_pos.x, pl_pos.y);
+		character.setSpeed(0);
+		character.setPos(pl_pos);
 	}
 }
