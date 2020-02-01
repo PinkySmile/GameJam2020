@@ -21,13 +21,13 @@ namespace DungeonIntern
 
 	void Wall::onWalk(Character &character)
 	{
-		Position<int>pos = character.getPos();
+		Position<int>pos = (Position<int> &&) character.getPos();
 		if (pos.r == NORTH) {
-			pos.y -= 1;
+			pos.y += 1;
 			character.setPos(pos);
 		}
 		if (pos.r == SOUTH) {
-			pos.y += 1;
+			pos.y -= 1;
 			character.setPos(pos);
 		}
 		if (pos.r == WEST) {
