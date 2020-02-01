@@ -15,7 +15,7 @@ namespace DungeonIntern
 	class Goblin : public Player {
 
 	public:
-		Goblin(EntityConfig cfg, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
+		Goblin(Rendering::Screen &screen, Map &map, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
 		virtual ~Goblin() override = default;
 	};
 }

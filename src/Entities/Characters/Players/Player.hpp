@@ -14,10 +14,10 @@ namespace DungeonIntern
 {
 	class Player : public Character {
 	protected:
-		//! @brief Used for custom player characters (after).
-		float _strengthMult = 1;
 		//! @brief Inputs used by the player to move
 		Input &_input;
+		//! @brief Used for custom player characters (after).
+		float _strengthMult = 1;
 		//! @brief The item the player is currently holding.
 		class Item *_itemCarried; //TODO: Code class Item
 		bool _fly;
