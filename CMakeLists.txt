@@ -69,6 +69,8 @@ add_executable(
 	src/Blocks/HardBlock.hpp
 	src/Blocks/Objects/Trap1.cpp
 	src/Blocks/Objects/Trap1.hpp
+	src/Blocks/Objects/Chest.cpp
+	src/Blocks/Objects/Chest.hpp
 )
 
 target_link_libraries(
