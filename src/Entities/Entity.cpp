@@ -16,7 +16,7 @@ namespace DungeonIntern
 		_map(cfg.map),
 		_screen(cfg.screen)
 	{
-		this->_entity.setSize({32, 32});
+		this->_entity.setSize({sx, sy});
 	}
 
 	void Entity::setSpeed(float speed)
@@ -36,6 +36,7 @@ namespace DungeonIntern
 
 	void Entity::render()
 	{
+		this->_entity.setAnimation(this->_speed != 0 ? Rendering::WALK : Rendering::IDLE);
 		this->_entity.setPosition({this->_pos.x, this->_pos.y});
 		this->_entity.update();
 	}
