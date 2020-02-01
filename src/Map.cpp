@@ -13,13 +13,19 @@
 #include "Exceptions.hpp"
 #include "Blocks/Objects/Air.hpp"
 #include "Blocks/Objects/Wall.hpp"
+#include "Blocks/Objects/Trap1.hpp"
+#include "Blocks/Objects/Chest.hpp"
+#include "Blocks/Objects/Trap2.hpp"
 #include <functional>
 
 namespace DungeonIntern
 {
 	const std::map<char, std::function<Block *(Game &)>> Map::_blockBuilders{
-		{'0', [](Game &    ){ return new Air(); }},
-		{'W', [](Game &game){ return new Wall(game); }}
+		{' ', [](Game &    ){ return new Air(); }},
+		{'W', [](Game &game){ return new Wall(game); }},
+		{'T', [](Game &game){ return new Trap1(game); }},
+		{'C', [](Game &game){ return new Chest(game); }},
+		{'2', [](Game &game){ return new Trap2(); }}
 	};
 
 	Map::Map(DungeonIntern::Game &game)
@@ -71,7 +77,7 @@ namespace DungeonIntern
 			this->_size.y++;
 			this->_size.x = std::max(this->_size.x, line.size());
 			for (auto it = lines.begin(); it < lines.end(); it++)
-				it->resize(this->_size.x, '0');
+				it->resize(this->_size.x, ' ');
 			lines.push_back(line);
 		}
 

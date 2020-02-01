@@ -38,6 +38,7 @@ namespace DungeonIntern
 		void setPosition(Position<int> newPos);
 		const Position<int> &getPosition() const;
 		const Size<unsigned> &getSize() const;
+		bool collideWith(const Position<float> &pos, const Size<unsigned> &size) const;
 	};
 }
 

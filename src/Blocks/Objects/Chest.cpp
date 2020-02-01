@@ -8,8 +8,9 @@
 
 namespace DungeonIntern
 {
-	Chest::Chest() :
-		HardBlock(SOUTH, 64, 64)
+	Chest::Chest(Game &game) :
+		HardBlock(SOUTH, 64, 64),
+		_game(game)
 	{
 	}
 
@@ -22,8 +23,9 @@ namespace DungeonIntern
 	{
 	}
 
-	void Chest::onWalk(class Entity &)
+	void Chest::onWalk(class Entity &entity)
 	{
+		HardBlock::onWalk(entity);
 		this->_needRepair = true;
 	}
 
@@ -33,5 +35,11 @@ namespace DungeonIntern
 
 	void Chest::render()
 	{
+		this->_game.resources.screen->draw(
+			this->_game.resources.textures.at("chest"),
+			{static_cast<float>(this->_pos.x), static_cast<float>(this->_pos.y)},
+			{64, 64},
+			{64 * this->_needRepair, 0, 64, 64}
+		);
 	}
 }
