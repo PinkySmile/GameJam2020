@@ -33,7 +33,7 @@ jobs:
       - name: Build with Makefile
         run: make -C build DungeonIntern
       - name: Copy assets
-        run: mkdir -p build/assets && cp -r assets build/assets
+        run: cp -r assets build/
       - name: Clean up
         run: |
           shopt -s extglob
