@@ -35,7 +35,7 @@ namespace DungeonIntern
 				break;
 			}
 		}
-		this->move(direction.x * this->getSpeed(), direction.y * this->getSpeed());
+		this->move(direction.x * this->getSpeed(), direction.y * this->getSpeed(), this->_input.getDirectionAngle());
 	}
 
 	void Player::interact(Entity &)

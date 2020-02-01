@@ -41,7 +41,7 @@ namespace DungeonIntern
 
 		void setPos(const Position<float> &pos);
 
-		void move(float x, float y);
+		void move(float x, float y, double angle);
 
 		float getSpeed() const;
 
