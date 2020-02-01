@@ -1,0 +1,25 @@
+name: Build commit artifact
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  Building:
+    runs-on: [windows-latest]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install the SFML.
+        run: |
+          Invoke-WebRequest -Uri https://www.sfml-dev.org/files/SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit.zip -OutFile sfml.zip
+          Expand-Archive sfml.zip -DestinationPath lib/ -Force
+      - name: Build Makefile with CMake
+        run: New-Item -ItemType directory -Path build && Set-Location build && cmake .. -G "MinGW Makefiles"
+      - name: Build with Makefile
+        run: mingw32-make -C build DungeonIntern
+      - name: Archive production artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: DungonInternWindows
+          path: build/DungonInternWindows
