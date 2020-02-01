@@ -39,10 +39,10 @@ namespace DungeonIntern
 			character.setPos(pos);
 		}
 	}
-	}
 
 	void Wall::repair(class Player &)
 	{
+	}
 
 
 	void Wall::render()
