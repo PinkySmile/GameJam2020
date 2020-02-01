@@ -4,13 +4,14 @@
 
 #include "AiController.hpp"
 #include "AStarNode.hpp"
+#include "../../../Blocks/Block.hpp"
+#include "../../../Map.hpp"
 
 namespace DungeonIntern::AI
 {
 	AIController::AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation) :
 		Character(cfg, maxSpeed, x, y, sx, sy, maxHealth, orientation)
 	{
-
 	}
 
 	std::vector<sf::Vector2u> &AIController::_findPath()
@@ -69,5 +70,14 @@ namespace DungeonIntern::AI
 	void AIController::onDeath()
 	{
 
+	}
+
+	uNode AIController::findTarget()
+	{
+		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
+
+	//	for (auto &block : blocks) {
+	//	  }
+		return DungeonIntern::AI::uNode(0, 0);
 	}
 }

@@ -33,10 +33,10 @@ namespace DungeonIntern
 		Position<float> _old_position = 0;
 		//! @brief Size of the entity.
 		Size<unsigned> _size;
+		class Map &_map;
 	protected:
 		//! @brief Will be deleted soon by the engine.
 		bool _destroyed = false;
-		class Map &_map;
 		Rendering::Screen &_screen;
 
 	public:
