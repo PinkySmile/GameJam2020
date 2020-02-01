@@ -1,4 +1,4 @@
-name: Build commit artifact
+name: Build commit artifact for linux
 
 on:
   push:
