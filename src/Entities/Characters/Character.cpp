@@ -7,11 +7,10 @@
 
 namespace DungeonIntern
 {
-	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Map &map) :
-		Entity(screen, entityJsonPath, x, y, sx, sy),
+	Character::Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation) :
+		Entity(cfg, maxSpeed, x, y, sx, sy, orientation),
 		_maxHealth(maxHealth),
-		_health(maxHealth),
-		_map(map)
+		_health(maxHealth)
 	{
 		this->setSpeed(1);
 	}
@@ -24,7 +23,7 @@ namespace DungeonIntern
 	void Character::update()
 	{
 		auto &blocks = this->_map.getObjects();
-		for (int i = 0; i < blocks.size(); i++) {
+		for (long unsigned i = 0; i < blocks.size(); i++) {
 			Position<unsigned> posBlock = blocks[i]->getPosition();
 			Size<unsigned> sizeBlock = blocks[i]->getSize();
 			if (((this->_pos.x >= posBlock.x && this->_pos.x <= posBlock.x + sizeBlock.x) && (this->_pos.y >= posBlock.y && this->_pos.y >= posBlock.y - sizeBlock.y)) || ((this->_pos.x + this->_size.x >= posBlock.x && this->_pos.x + this->_size.x <= posBlock.x + sizeBlock.x) && (this->_pos.y + this->_size.y >= posBlock.y && this->_pos.y + this->_size.y >= posBlock.y - sizeBlock.y))) {

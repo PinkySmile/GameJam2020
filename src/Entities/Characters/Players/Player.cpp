@@ -7,10 +7,9 @@
 
 namespace DungeonIntern
 {
-
-	Player::Player(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned sx, unsigned sy, 
-				unsigned maxHealth, Input &input, Map &map)
-	   : Character(screen, entityJsonPath, x, y, sx, sy, maxHealth, map), _input(input)
+	Player::Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input) :
+		Character(cfg, maxSpeed, x, y, sx, sy, maxHealth),
+		_input(input)
 	{ }
 
 	void Player::update()

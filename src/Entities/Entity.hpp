@@ -12,22 +12,31 @@
 
 namespace DungeonIntern
 {
+	struct EntityConfig {
+		Rendering::Screen &screen;
+		const std::string &entityJsonPath;
+		class Map &map;
+	};
+
 	class Entity {
 	protected:
 		//! @brief The entity used by the renderer.
 		Rendering::Entity &_entity;
 		//! @brief The speed at witch the entity move in the direction indicated by the _pos orientation value.
 		float _speed = 0;
+		float _maxSpeed = 0;
 		//! @brief Position + Orientation of the entity.
 		Position<float> _pos;
-		//! @brief Will be deleted soon by the engine.
-		bool _destroyed = false;
 		//! @brief Size of the entity.
 		Size<unsigned> _size;
+		//! @brief Will be deleted soon by the engine.
+		bool _destroyed = false;
+		class Map &_map;
+		Rendering::Screen &_screen;
 
 	public:
-		Entity(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned sx, unsigned sy, Orientation r = SOUTH);
-		virtual ~Entity() = default;
+		Entity(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, Orientation r = SOUTH);
+		virtual ~Entity();
 
 		template<typename type>
 		type &to()

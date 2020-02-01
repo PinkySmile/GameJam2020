@@ -8,7 +8,7 @@
 
 #include <memory>
 #include <vector>
-#include "Objects/Block.hpp"
+#include "Blocks/Block.hpp"
 #include "Entities/Entity.hpp"
 
 namespace DungeonIntern
