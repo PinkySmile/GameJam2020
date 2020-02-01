@@ -69,6 +69,15 @@ namespace DungeonIntern
 		angle = std::fmod(angle, 2 * M_PI);
 		if (std::abs(std::cos(angle)) * this->_speed > M_PI_4)
 			this->_entity.setDirection((angle > M_PI_2 && angle < 3 * M_PI_2) ? Rendering::WEST : Rendering::EAST);
+
+		if (angle < M_PI_4)
+			this->_pos.r = Orientation::EAST;
+		else if (angle < M_PI_4 * 3)
+			this->_pos.r = Orientation::SOUTH;
+		else if (angle < M_PI + M_PI_4)
+			this->_pos.r = Orientation::WEST;
+		else
+			this->_pos.r = Orientation::NORTH;
 	}
 
 	float Entity::getSpeed() const
@@ -81,5 +90,24 @@ namespace DungeonIntern
 		if (damages > this->_health)
 			this->_health = 0;
 		this->_health -= damages;
+	}
+
+	void Entity::update()
+	{
+		for (auto &block : this->_map.getObjects()) {
+			auto &pos = block->getPosition();
+			auto &size = block->getSize();
+
+			if (((pos.x <= this->_pos.x && this->_pos.x <= pos.x + size.x) || (pos.x <= this->_pos.x + this->_size.x && this->_pos.x + this->_size.x <= pos.x + size.x)) &&
+			   (((pos.y <= this->_pos.y && this->_pos.y <= pos.y + size.y) || (pos.y <= this->_pos.y + this->_size.y && this->_pos.y + this->_size.y <= pos.y + size.y)))) {
+				block->onWalk(*this);
+			}
+		}
+	}
+
+	const Size<unsigned> & Entity::getSize() const
+	{
+		return
+		_size;
 	}
 }

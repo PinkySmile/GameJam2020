@@ -31,6 +31,7 @@ namespace DungeonIntern
 		Position<float> _pos;
 		//! @brief Size of the entity.
 		Size<unsigned> _size;
+	protected:
 		//! @brief Will be deleted soon by the engine.
 		bool _destroyed = false;
 		class Map &_map;
@@ -48,7 +49,7 @@ namespace DungeonIntern
 		bool destroyed() const;
 		void destroy();
 		void render();
-		virtual void update() = 0;
+		virtual void update();
 
 		const Position<float> &getPos() const;
 
@@ -61,6 +62,8 @@ namespace DungeonIntern
 		void setSpeed(float speed);
 
 		void takeDamage(unsigned damages);
+
+		const Size<unsigned> & getSize() const;
 	};
 }
 

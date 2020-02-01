@@ -20,22 +20,6 @@ namespace DungeonIntern
 
 	void Character::update()
 	{
-		auto &blocks = this->_map.getObjects();
-
-		for (long unsigned i = 0; i < blocks.size(); i++) {
-			auto posBlock = blocks[i]->getPosition();
-			auto sizeBlock = blocks[i]->getSize();
-
-			if (
-				(
-					(this->_pos.x >= posBlock.x && this->_pos.x <= posBlock.x + sizeBlock.x) &&
-					(this->_pos.y >= posBlock.y && this->_pos.y >= posBlock.y - sizeBlock.y)
-				) || (
-					(this->_pos.x + this->_size.x >= posBlock.x && this->_pos.x + this->_size.x <= posBlock.x + sizeBlock.x) &&
-					(this->_pos.y + this->_size.y >= posBlock.y && this->_pos.y + this->_size.y >= posBlock.y - sizeBlock.y)
-				)
-			)
-				blocks[i]->onWalk(*this);
-		}
+		Entity::update();
 	}
 }
