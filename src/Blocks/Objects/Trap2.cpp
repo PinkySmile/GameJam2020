@@ -11,7 +11,7 @@
 namespace DungeonIntern
 {
 	Trap2::Trap2() :
-		Block(100, SOUTH, 128, 128)
+		Block(100, SOUTH, 64, 64)
 	{
 	}
 
