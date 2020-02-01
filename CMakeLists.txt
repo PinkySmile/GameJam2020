@@ -12,6 +12,7 @@ endif ()
 if ("${GITBUILD}" STREQUAL true)
 	include_directories(DungeonIntern nlohmann include)
 	link_directories(DungeonIntern lib)
+	message("Git build is true")
 endif ()
 
 add_executable(
