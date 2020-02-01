@@ -13,7 +13,7 @@ namespace DungeonIntern
 {
 	class Warrior : public Character {
 	public:
-		Warrior(EntityConfig cfd, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
+		Warrior(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Warrior() override = default;
 		virtual void update() override;
 	};
