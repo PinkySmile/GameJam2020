@@ -9,7 +9,7 @@
 #include "Exceptions.hpp"
 #include "Blocks/Objects/Air.hpp"
 #include "Blocks/Objects/Wall.hpp"
-
+#include <functional>
 
 namespace DungeonIntern
 {

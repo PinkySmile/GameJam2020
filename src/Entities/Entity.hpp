@@ -52,7 +52,7 @@ namespace DungeonIntern
 
 		void setPos(const Position<float> &pos);
 
-		void move(float x, float y, double angle);
+		void move(double angle);
 
 		float getSpeed() const;
 
