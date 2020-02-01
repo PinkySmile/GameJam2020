@@ -28,6 +28,8 @@ jobs:
           cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DGITBUILD=true
       - name: Build with Makefile
         run: mingw32-make -C build DungeonIntern
+      - name: Cleanup
+        run: Remove-Item -Recurse -Path * -Exclude DungeonIntern.exe bin/*
       - name: Copy shared libs
         run: Copy-Item -Path 'C:\Program Files\Git\mingw64\bin\*.dll' -Destination build
       - name: Archive production artifact
