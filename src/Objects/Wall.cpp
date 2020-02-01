@@ -3,6 +3,7 @@
 //
 
 #include "Wall.hpp"
+#include "../Entities/Characters/Character.hpp"
 
 namespace DungeonIntern
 {
@@ -21,7 +22,7 @@ namespace DungeonIntern
 
 	void Wall::onWalk(Character &character)
 	{
-		Position<int>pos = (Position<int> &&) character.getPos();
+		Position<float> pos = character.getPos();
 		if (pos.r == NORTH) {
 			pos.y += 1;
 			character.setPos(pos);
