@@ -52,7 +52,6 @@ namespace DungeonIntern
 				this->_speed = std::fmin(this->_speed + 1, this->_maxSpeed);
 		} else
 			this->_speed = std::fmax(this->_speed - 1, 0);
-		printf("speed : %f\n", this->_speed);
 		this->move(this->_angle);
 		if (this->_dash_cooldown)
 			this->_dash_cooldown--;
