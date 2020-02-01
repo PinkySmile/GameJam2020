@@ -16,10 +16,10 @@ jobs:
           Expand-Archive sfml.zip -DestinationPath . -Force
           Move-Item -Path SFML-2.5.1 -Destination build
           Move-Item -Path build/include/SFML -Destination 'C:\Program Files\Git\mingw64\include'
+          Get-ChildItem -Path 'C:\Program Files\Git\mingw64\include'
       - name: Build Makefile with CMake
         run: |
           Set-Location build
-          Get-ChildItem
           cmake .. -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_CXX_STANDARD_LIBRARIES=-L\ lib
       - name: Build with Makefile
         run: mingw32-make -C build DungeonIntern
