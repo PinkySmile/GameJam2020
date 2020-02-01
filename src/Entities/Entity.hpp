@@ -29,6 +29,8 @@ namespace DungeonIntern
 		unsigned _health;
 		//! @brief Position + Orientation of the entity.
 		Position<float> _pos;
+		//! @brief Old Position for colision
+		Position<float> _old_position = 0;
 		//! @brief Size of the entity.
 		Size<unsigned> _size;
 		//! @brief Will be deleted soon by the engine.
@@ -50,7 +52,7 @@ namespace DungeonIntern
 		virtual void render();
 		virtual void onCollide(Entity &other) = 0;
 		virtual void update();
-
+		bool collideWith(const Position<int> &pos, const Size<unsigned> &size) const;
 		const Position<float> &getPos() const;
 
 		void setPos(const Position<float> &pos);
@@ -64,6 +66,8 @@ namespace DungeonIntern
 		virtual void takeDamage(unsigned damages);
 
 		const Size<unsigned> & getSize() const;
+
+		const Position<float> &getOldPosition() const;
 	};
 }
 
