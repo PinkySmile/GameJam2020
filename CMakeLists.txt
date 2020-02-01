@@ -5,6 +5,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(DungeonIntern nlohmann)
 
+if ("${CMAKE_BUILD_TYPE}" STREQUAL Debug)
+	add_compile_options(-Wall -Wextra -W -g -D_DEBUG)
+endif ()
+
 add_executable(
 	DungeonIntern
 	src/main.cpp
@@ -54,6 +58,10 @@ add_executable(
 	src/Entities/Characters/Enemies/Enemy.hpp
 	src/Objects/Air.cpp
 	src/Objects/Air.hpp
+	src/Objects/Wall.cpp
+	src/Objects/Wall.hpp
+	src/Objects/HardBlock.cpp
+	src/Objects/HardBlock.hpp
 )
 
 target_link_libraries(

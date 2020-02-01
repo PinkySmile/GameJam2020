@@ -21,24 +21,17 @@ namespace DungeonIntern::Rendering
 	enum Animation {
 		IDLE,
 		WALK,
-		RUN,
 		HIT,
 		ATTACKING,
-		IDLEANIM1,
-		IDLEANIM2,
 		DEAD
 	};
 
 	//! @brief All the direction of an entity
 	enum Direction {
 		NORTH,
-		NORTH_EAST,
 		EAST,
-		SOUTH_EAST,
 		SOUTH,
-		SOUTH_WEST,
 		WEST,
-		NORTH_WEST,
 	};
 
 	//! @brief An entity that can be rendered on a Screen
@@ -94,9 +87,6 @@ namespace DungeonIntern::Rendering
 
 		//! @brief The direction the entity is facing.
 		Direction 	_dir{NORTH};
-
-		//! @brief Internal clock to prevent idle animation to start to early.
-		unsigned int	_idleDelay{0};
 
 		//! @brief Internal clock used to know when to switch to the next tile.
 		unsigned int	_delay{0};

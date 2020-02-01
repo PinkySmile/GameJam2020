@@ -10,9 +10,8 @@
 namespace DungeonIntern
 {
 	Map::Map(DungeonIntern::Game &game)
-	{
-		//this->_screen = game.resources.screen;
-	}
+		: _game(game)
+	{}
 
 	void Map::update()
 	{
@@ -35,8 +34,7 @@ namespace DungeonIntern
 
 	void Map::loadMap()
 	{
-		//Game game;
-		//this->_entities.push_back(Player(game.resources.screen, "assets/entities/player.json", 0, 0, 100, ))
+		//this->_entities.push_back(Player(*this->_game.resources.screen, "assets/entities/player.json", 0, 0, 100,  *this->_game.state.settings.input, *this));
 	}
 
 	const std::vector<std::unique_ptr<Entity>> & Map::getEntities()

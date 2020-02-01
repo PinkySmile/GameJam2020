@@ -8,7 +8,6 @@
 
 #include <string>
 #include "../Entity.hpp"
-#include "../../Map.hpp"
 
 namespace DungeonIntern
 {
@@ -23,7 +22,7 @@ namespace DungeonIntern
 		//! @brief Path to the sound assets for the death.
 		std::string _deathSound;
 		//! @brief A reference to other entities and blocks.
-		Map &_map;
+		class Map &_map;
 
 	public:
 		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, int sx, int sy, unsigned maxHealth, Map &_map);

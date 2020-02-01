@@ -9,6 +9,7 @@
 #include "../Position.hpp"
 #include "../Size.hpp"
 
+
 namespace DungeonIntern
 {
 	//! @brief Every position of the map where you can move is a block. If there is nothing on this tile, use an AirBlock (it will do nothing).
@@ -35,7 +36,7 @@ namespace DungeonIntern
 		//! @brief When an enemy use the block (loot for a chest, fall into a trap...)
 		virtual void loot(class Enemy &) = 0;
 		//! @brief For example, filling the chest or repairing it if it is broke.
-		virtual void repair(class Player &) = 0;
+		virtual void repair(Player &) = 0;
 		virtual void render() = 0;
 	};
 }
