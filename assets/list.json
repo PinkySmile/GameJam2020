@@ -1,5 +1,29 @@
 {
 	"musics": {
+		"music": {
+			"path": "Sounds/AventurierTime.ogg",
+			"description": ""
+		},
+		"prepare": {
+			"path": "Sounds/Dungeon_Intern_-_Preparation.ogg",
+			"looping": false,
+			"description": ""
+		},
+		"radio1": {
+			"path": "musics/Sounds/Radio/Radio_Interview_Remastered.ogg",
+			"looping": false,
+			"description": ""
+		},
+		"radio2": {
+			"path": "musics/Sounds/Radio/Radio_Interview2_Remastered.ogg",
+			"looping": false,
+			"description": ""
+		},
+		"radio3": {
+			"path": "musics/Sounds/Radio/Radio_JT_Midi_Remastered.ogg",
+			"looping": false,
+			"description": ""
+		}
 	},
 	"sfx": {
 		"insult1": "Sounds/Boss/Boss_Insult1.ogg",

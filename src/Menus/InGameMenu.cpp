@@ -26,6 +26,7 @@ namespace DungeonIntern
 		if (!isActive)
 			return;
 
+		this->_game.resources.playMusic("prepare");
 		this->_screen.setCameraCenter({0, 0});
 	}
 
