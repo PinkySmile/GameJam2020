@@ -34,7 +34,7 @@ namespace DungeonIntern
 
 	void Map::loadMap()
 	{
-		//this->_entities.push_back(Player(*this->_game.resources.screen, "assets/entities/player.json", 0, 0, 100,  *this->_game.state.settings.input, *this));
+		this->_entities.emplace_back(new Player(*this->_game.resources.screen, "assets/entities/test.json", 0, 0, 100,  *this->_game.state.settings.input, *this));
 	}
 
 	const std::vector<std::unique_ptr<Entity>> & Map::getEntities()
