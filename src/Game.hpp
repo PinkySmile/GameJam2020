@@ -22,7 +22,7 @@ namespace DungeonIntern
 		float sfxVolume;
 
 		//! @brief The current input
-		std::unique_ptr<Input> input;
+		std::vector<std::unique_ptr<Input>> inputs;
 	};
 
 	//! @brief Describe the current game state

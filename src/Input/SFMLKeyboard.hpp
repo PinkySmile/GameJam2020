@@ -42,7 +42,7 @@ namespace DungeonIntern::Inputs
 		void _updateState();
 	public:
 		//! @param window The reference window (if any)
-		SFMLKeyboard(sf::RenderWindow *window);
+		SFMLKeyboard(sf::RenderWindow *window, std::vector<sf::Keyboard::Key> keys);
 		bool changeKeyFor(Action) override;
 		void cancelChangeKey() override;
 		bool actionPressed(Action) const override;

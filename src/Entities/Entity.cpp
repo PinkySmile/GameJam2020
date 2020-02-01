@@ -50,8 +50,8 @@ namespace DungeonIntern
 	{
 		this->_pos.x += x;
 		this->_pos.y += y;
-		if (x != 0 || y != 0)
-			this->_entity.setDirection((angle > (M_PI / 2) && angle < 3 * M_PI) ? Rendering::EAST : Rendering::WEST);
+		if (x != 0)
+			this->_entity.setDirection((angle > (M_PI / 2) && angle < 3 * M_PI) ? Rendering::WEST : Rendering::EAST);
 	}
 
 	float Entity::getSpeed() const

@@ -38,8 +38,9 @@ namespace DungeonIntern
 				if (event.type == sf::Event::Closed)
 					game.resources.screen->close();
 
-			for (auto e = game.state.settings.input->pollEvent(); e; e = game.state.settings.input->pollEvent())
-				game.state.menuMgr.handleEvent(*e);
+			for (auto &input : game.state.settings.inputs)
+				for (auto e = input->pollEvent(); e; e = input->pollEvent())
+					game.state.menuMgr.handleEvent(*e);
 
 			game.state.menuMgr.renderMenu();
 			game.resources.screen->display();

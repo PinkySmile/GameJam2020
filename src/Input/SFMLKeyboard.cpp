@@ -114,15 +114,8 @@ namespace DungeonIntern::Inputs
 		{sf::Keyboard::Pause,     "Pause"},
 	};
 
-	SFMLKeyboard::SFMLKeyboard(sf::RenderWindow *window) :
-		_keys{
-			sf::Keyboard::Z,
-			sf::Keyboard::D,
-			sf::Keyboard::S,
-			sf::Keyboard::Q,
-			sf::Keyboard::Space,
-			sf::Keyboard::LShift,
-		},
+	SFMLKeyboard::SFMLKeyboard(sf::RenderWindow *window, std::vector<sf::Keyboard::Key> keys) :
+		_keys(keys),
 		_window(window),
 		_state(NB_OF_ACTION)
 	{}

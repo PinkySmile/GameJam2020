@@ -9,6 +9,35 @@
 
 namespace DungeonIntern
 {
+	const std::vector<std::vector<sf::Keyboard::Key>> keys = {
+		{ 	sf::Keyboard::Z,
+			sf::Keyboard::D,
+			sf::Keyboard::S,
+			sf::Keyboard::Q,
+			sf::Keyboard::Space,
+			sf::Keyboard::LShift },
+
+		{	sf::Keyboard::Up,
+			sf::Keyboard::Right,
+			sf::Keyboard::Down,
+			sf::Keyboard::Left,
+			sf::Keyboard::LControl,
+			sf::Keyboard::Enter },
+		{	sf::Keyboard::Up,
+			sf::Keyboard::Right,
+			sf::Keyboard::Down,
+			sf::Keyboard::Left,
+			sf::Keyboard::LControl,
+			sf::Keyboard::Enter },
+		{	sf::Keyboard::Up,
+			sf::Keyboard::Right,
+			sf::Keyboard::Down,
+			sf::Keyboard::Left,
+			sf::Keyboard::LControl,
+			sf::Keyboard::Enter }
+	};
+
+
 	bool Loader::loadFile(Settings &, sf::SoundBuffer &buffer, nlohmann::json &path)
 	{
 		return buffer.loadFromFile("assets/" + static_cast<std::string>(path));
@@ -41,7 +70,8 @@ namespace DungeonIntern
 
 		std::ofstream stream("saves/settings.sav");
 
-		settings.input->serialize(stream);
+		for (auto &input : settings.inputs)
+			input->serialize(stream);
 		stream << std::endl << settings.musicVolume << std::endl << settings.sfxVolume;
 		stream.close();
 	}
@@ -51,13 +81,15 @@ namespace DungeonIntern
 		std::ifstream stream("saves/settings.sav");
 
 		logger.info("Loading settings");
-		game.state.settings.input.reset(new Inputs::SFMLKeyboard(&*game.resources.screen));
+		for (int i = 0; i < 4; i++)
+			game.state.settings.inputs.emplace_back(new Inputs::SFMLKeyboard(&*game.resources.screen, keys[i]));
 		if (stream.fail()) {
 			logger.error("Cannot open file save/settings.sav " + std::string(strerror(errno)));
 			game.state.settings.musicVolume = 100;
 			game.state.settings.sfxVolume = 100;
 		} else {
-			game.state.settings.input->unserialize(stream);
+			for (auto &input : game.state.settings.inputs)
+				input->unserialize(stream);
 			stream >> game.state.settings.musicVolume >> game.state.settings.sfxVolume;
 		}
 		game.resources.setMusicVolume(game.state.settings.musicVolume);
