@@ -35,7 +35,9 @@ jobs:
       - name: Copy assets
         run: mkdir -p build/assets && cp -r assets build/assets
       - name: Clean up
-        run: rm -rf !("build/assets"|"DungeonIntern")
+        run: |
+          shopt -s extglob
+          rm -rf !("build/assets"|"DungeonIntern")
       - name: Archive production artifact
         uses: actions/upload-artifact@v1
         with:
