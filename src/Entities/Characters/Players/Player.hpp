@@ -22,7 +22,7 @@ namespace DungeonIntern
 		class Item *_itemCarried; //TODO: Code class Item
 
 	public:
-		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth, Input &input);
+		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input);
 		virtual ~Player() override = default;
 
 		virtual void update() override;

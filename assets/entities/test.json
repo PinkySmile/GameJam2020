@@ -1,7 +1,7 @@
 {
 	"texture": "testEntity",
 	"animations": [
-		1,
+		2,
 		3,
 		3,
 		3,
@@ -12,7 +12,7 @@
 		"y": 32
 	},
 	"delays": [
-		1,
+		10,
 		4,
 		2,
 		2,

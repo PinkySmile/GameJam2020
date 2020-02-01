@@ -28,6 +28,8 @@ namespace DungeonIntern
 		void update();
 		void render();
 		void reset();
+		const std::vector<std::unique_ptr<Entity>> & getEntities();
+		const std::vector<std::unique_ptr<Block>> & getObjects();
 	};
 }
 

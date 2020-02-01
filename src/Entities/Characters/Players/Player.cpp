@@ -7,10 +7,9 @@
 
 namespace DungeonIntern
 {
-
-	Player::Player(EntityConfig cfg, float x, float y, float maxSpeed, unsigned maxHealth,
-				   Input &input)
-	   : Character(cfg, maxSpeed, x, y, maxHealth), _input(input)
+	Player::Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input) :
+		Character(cfg, maxSpeed, x, y, sx, sy, maxHealth),
+		_input(input)
 	{ }
 
 	void Player::update()

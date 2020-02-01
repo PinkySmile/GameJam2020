@@ -13,7 +13,7 @@ namespace DungeonIntern
 {
 	class Enemy : public Character {
 	public:
-		Enemy(EntityConfig cfd, float maxSpeed, float x, float y, unsigned maxHealth);
+		Enemy(EntityConfig cfd, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Enemy() override = default;
 		virtual void update() override;
 	};

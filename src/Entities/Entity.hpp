@@ -7,6 +7,7 @@
 
 
 #include "../Position.hpp"
+#include "../Size.hpp"
 #include "../Rendering/Entity.hpp"
 
 namespace DungeonIntern
@@ -26,13 +27,15 @@ namespace DungeonIntern
 		float _maxSpeed = 0;
 		//! @brief Position + Orientation of the entity.
 		Position<float> _pos;
+		//! @brief Size of the entity.
+		Size<unsigned> _size;
 		//! @brief Will be deleted soon by the engine.
 		bool _destroyed = false;
 		class Map &_map;
 		Rendering::Screen &_screen;
 
 	public:
-		Entity(EntityConfig cfg, float maxSpeed, float x, float y, Orientation r = SOUTH);
+		Entity(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, Orientation r = SOUTH);
 		virtual ~Entity();
 
 		template<typename type>

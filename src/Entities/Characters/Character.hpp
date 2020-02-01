@@ -12,7 +12,7 @@
 namespace DungeonIntern
 {
 	class Character : public Entity {
-	private:
+	protected:
 		const unsigned _maxHealth;
 		unsigned _health;
 		bool _dead = false;
@@ -24,7 +24,7 @@ namespace DungeonIntern
 		//! @brief A reference to other entities and blocks.
 
 	public:
-		Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned maxHealth, Orientation r = SOUTH);
+		Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation = SOUTH);
 		virtual ~Character() override = default;
 
 		//! @brief This update should check for collisions between entities.

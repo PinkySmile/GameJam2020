@@ -7,12 +7,12 @@
 #ifndef DUNGEONINTERN_HARDBLOCK_HPP
 #define DUNGEONINTERN_HARDBLOCK_HPP
 
-#include "../Block.hpp"
+#include "Block.hpp"
 
 namespace DungeonIntern {
 	class HardBlock : public Block {
 	public:
-		HardBlock(unsigned maxHealth, Orientation orientation);
+		HardBlock(unsigned maxHealth, Orientation orientation, unsigned sx, unsigned sy);
 		void onWalk(Character &character) override;
 	};
 }

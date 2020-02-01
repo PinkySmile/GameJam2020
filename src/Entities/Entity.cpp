@@ -8,13 +8,13 @@
 
 namespace DungeonIntern
 {
-	Entity::Entity(EntityConfig cfg, float maxSpeed, float x, float y, Orientation r) :
+	Entity::Entity(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, Orientation r) :
 		_entity(cfg.screen.addEntity(cfg.entityJsonPath)),
 		_maxSpeed(maxSpeed),
 		_pos(x, y, r),
+		_size(sx, sy),
 		_map(cfg.map),
 		_screen(cfg.screen)
-
 	{
 		this->_entity.setSize({32, 32});
 	}
@@ -22,6 +22,16 @@ namespace DungeonIntern
 	void Entity::setSpeed(float speed)
 	{
 		_speed = speed;
+	}
+
+	bool Entity::destroyed() const
+	{
+		return this->_destroyed;
+	}
+
+	void Entity::destroy()
+	{
+		this->_destroyed = true;
 	}
 
 	void Entity::render()
