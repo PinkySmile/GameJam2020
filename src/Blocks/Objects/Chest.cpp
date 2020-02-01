@@ -4,6 +4,7 @@
 
 #include "Chest.hpp"
 #include "../../Entities/Characters/Character.hpp"
+#include "../../Entities/Characters/Players/Player.hpp"
 #include "../../Entities/Characters/Enemies/Enemy.hpp"
 
 namespace DungeonIntern
@@ -31,6 +32,7 @@ namespace DungeonIntern
 
 	void Chest::repair(Player &)
 	{
+		this->_needRepair = false;
 	}
 
 	void Chest::render()

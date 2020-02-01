@@ -32,7 +32,7 @@ namespace DungeonIntern::Rendering
 			this->tileSize = {value["tileSize"]["x"], value["tileSize"]["y"]};
 			for (auto &val : value["animations"]) {
 				if (val == 0)
-					throw InvalidAnimationConfigException("");
+					throw InvalidAnimationConfigException("Animation count can't be 0");
 				this->animations.push_back(val);
 			}
 			for (auto &val : value["delays"])

@@ -52,7 +52,13 @@
 		"trap1": "objects/trap1.png",
 		"chest": "objects/chest.png",
        	        "wall": "objects/Wall_2.png",
-                "pickaxe": "items/pickaxe.png"
+                "pickaxe": "items/pickaxe.png",
+		"keyA": "buttons/Button A.png",
+		"keyB": "buttons/Button B.png",
+		"keyUp": "buttons/arrow up.png",
+		"keyDown": "buttons/arrow down.png",
+		"keyLeft": "buttons/arrow left.png",
+		"keyRight": "buttons/arrow right.png"
 	},
 	"icon": "icon.png"
 }
