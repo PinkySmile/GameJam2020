@@ -7,6 +7,7 @@
 
 
 #include "../Position.hpp"
+#include "../Size.hpp"
 
 namespace DungeonIntern
 {
@@ -20,9 +21,11 @@ namespace DungeonIntern
 		bool _needRepair = false;
 		//! @brief Position of the block. 0, 0 is the top left corner of the screen.
 		Position<unsigned> pos;
+		//! @brief Size of the entity.
+		Size<int> _size;
 
 	public:
-		Block(unsigned maxHealth, Orientation orientation);
+		Block(unsigned maxHealth, Orientation orientation, int sx, int sy);
 		virtual ~Block() = default;
 
 		//! @brief Called when a character walk on the block. This should push back the character if he isn't allowed to walk on this block.

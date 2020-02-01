@@ -38,4 +38,15 @@ namespace DungeonIntern
 		//Game game;
 		//this->_entities.push_back(Player(game.resources.screen, "assets/entities/player.json", 0, 0, 100, ))
 	}
+
+	const std::vector<std::unique_ptr<Entity>> & Map::getEntities()
+	{
+		return (this->_entities);
+	}
+
+	const std::vector<std::unique_ptr<Block>> & Map::getObjects()
+	{
+		return (this->_objects);
+	}
+
 }

@@ -7,8 +7,8 @@
 
 namespace DungeonIntern
 {
-	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &map) :
-		Entity(screen, entityJsonPath, x, y),
+	Character::Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, int sx, int sy, unsigned maxHealth, Map &map) :
+		Entity(screen, entityJsonPath, x, y, sx, sy),
 		_maxHealth(maxHealth),
 		_health(maxHealth),
 		_map(map)
@@ -21,11 +21,15 @@ namespace DungeonIntern
 
 	void Character::update()
 	{
-
+		for (int i = 0; i < _map.getObjects.size; i++) {
+			if
+		}
 	}
 
 	void Character::takeDamage(unsigned damages)
 	{
-
+		if (damages > this->_health)
+			this->_health = 0;
+		this->_health -= damages;
 	}
 }

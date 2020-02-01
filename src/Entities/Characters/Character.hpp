@@ -13,7 +13,7 @@
 namespace DungeonIntern
 {
 	class Character : public Entity {
-	private:
+	protected:
 		const unsigned _maxHealth;
 		unsigned _health;
 		bool _dead = false;
@@ -26,7 +26,7 @@ namespace DungeonIntern
 		Map &_map;
 
 	public:
-		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, unsigned maxHealth, Map &_map);
+		Character(Rendering::Screen &screen, const std::string &entityJsonPath, float x, float y, int sx, int sy, unsigned maxHealth, Map &_map);
 
 		//! @brief This update should check for collisions between entities.
 		virtual void update() override;
