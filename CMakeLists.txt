@@ -43,7 +43,18 @@ add_executable(
 	src/Menus/MainMenu.hpp
 	src/Menus/InGameMenu.cpp
 	src/Menus/InGameMenu.hpp
-	src/Position.hpp src/Entities/Entity.cpp src/Entities/Entity.hpp src/Entities/Characters/Players/Player.cpp src/Entities/Characters/Players/Player.hpp src/Entities/Characters/Character.cpp src/Entities/Characters/Character.hpp src/Entities/Characters/Enemies/Enemy.cpp src/Entities/Characters/Enemies/Enemy.hpp src/Objects/Air.cpp src/Objects/Air.hpp src/Models/Map.hpp)
+	src/Position.hpp
+	src/Entities/Entity.cpp
+	src/Entities/Entity.hpp
+	src/Entities/Characters/Players/Player.cpp
+	src/Entities/Characters/Players/Player.hpp
+	src/Entities/Characters/Character.cpp
+	src/Entities/Characters/Character.hpp
+	src/Entities/Characters/Enemies/Enemy.cpp
+	src/Entities/Characters/Enemies/Enemy.hpp
+	src/Objects/Air.cpp
+	src/Objects/Air.hpp
+)
 
 target_link_libraries(
 	DungeonIntern
