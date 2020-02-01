@@ -20,7 +20,6 @@ namespace DungeonIntern
 		Position<float> pos = character.getPos();
 		Size<unsigned> size = character.getSize();
 
-
 		if ((this->_pos.y < pos.y && pos.y < this->_pos.y + this->_size.y) || (this->_pos.y < pos.y + _size.y && pos.y + size.y < this->_pos.y + this->_size.y)) {
 			if (pos.x + size.x > this->_pos.x + this->_size.x / 2) // LEFT
 				pos.x = this->_pos.x + this->_size.x + 1;

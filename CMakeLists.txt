@@ -98,7 +98,7 @@ add_executable(
 	src/Blocks/Objects/Trap2.hpp
 	src/Blocks/Objects/Chest.cpp
 	src/Blocks/Objects/Chest.hpp
-		src/Entities/Items/Item.cpp src/Entities/Items/Item.hpp)
+		src/Entities/Items/Item.cpp src/Entities/Items/Item.hpp src/Entities/Characters/AI/AiController.cpp src/Entities/Characters/AI/AiController.hpp src/Entities/Characters/AI/AStarNode.hpp)
 
 target_link_libraries(
 	DungeonIntern
