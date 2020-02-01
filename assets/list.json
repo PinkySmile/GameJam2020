@@ -4,6 +4,7 @@
 	"sfx": {
 	},
 	"sprites": {
+		"testEntity": "entities/test.png"
 	},
 	"icon": "icon.png"
 }
