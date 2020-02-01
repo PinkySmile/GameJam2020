@@ -24,6 +24,16 @@ namespace DungeonIntern
 		_speed = speed;
 	}
 
+	bool Entity::destroyed() const
+	{
+		return this->_destroyed;
+	}
+
+	void Entity::destroy()
+	{
+		this->_destroyed = true;
+	}
+
 	void Entity::render()
 	{
 		this->_entity.setPosition({this->_pos.x, this->_pos.y});
@@ -46,10 +56,12 @@ namespace DungeonIntern
 		logger.debug("Entity destroyed");
 	}
 
-	void Entity::move(float x, float y)
+	void Entity::move(float x, float y, double angle)
 	{
 		this->_pos.x += x;
 		this->_pos.y += y;
+		if (x != 0 || y != 0)
+			this->_entity.setDirection((angle > (M_PI / 2) && angle < 3 * M_PI) ? Rendering::EAST : Rendering::WEST);
 	}
 
 	float Entity::getSpeed() const

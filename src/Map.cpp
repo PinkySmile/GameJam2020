@@ -17,6 +17,9 @@ namespace DungeonIntern
 	{
 		for (auto &ent : this->_entities)
 			ent->update();
+		this->_entities.erase(std::remove_if(this->_entities.begin(), this->_entities.end(), [](std::unique_ptr<Entity> &entity){
+			return entity->destroyed();
+		}), this->_entities.end());
 	}
 
 	void Map::render()
