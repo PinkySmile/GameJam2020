@@ -6,16 +6,15 @@
 #define DUNGEONINTERN_WALL_HPP
 
 
-#include "Block.hpp"
+#include "HardBlock.hpp"
 
 namespace DungeonIntern
 {
-	class Wall : public Block {
+	class Wall : public HardBlock {
 	public:
 		Wall();
 		~Wall() override = default;
 
-		void onWalk(Character &character) override;
 		void use(Player &) override;
 		void loot(Enemy &) override;
 		void repair(Player &) override;
