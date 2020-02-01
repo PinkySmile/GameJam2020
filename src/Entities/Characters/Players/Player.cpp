@@ -56,6 +56,7 @@ namespace DungeonIntern
 		this->move(this->_angle);
 		if (this->_dash_cooldown)
 			this->_dash_cooldown--;
+		Character::update();
 	}
 
 	void Player::interact(Entity &)

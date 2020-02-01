@@ -33,13 +33,13 @@ jobs:
       - name: Build with Makefile
         run: make -C build DungeonIntern
       - name: Copy assets
-        run: mkdir -p build/assets && cp -r assets build/assets
+        run: cp -r assets build/
       - name: Clean up
         run: |
           shopt -s extglob
-          rm -rf !("build/assets"|"DungeonIntern")
+          cd build && rm -rf !("assets"|"DungeonIntern")
       - name: Archive production artifact
         uses: actions/upload-artifact@v1
         with:
           name: DungeonInternLinux
-          path: build
+          path: build/
