@@ -25,7 +25,7 @@ namespace DungeonIntern
 
 	void Trap1::onWalk(class Entity &character)
 	{
-		if (this->_needRepair)
+		if (this->_needRepair || this->_clock.getElapsedTime().asSeconds() < 1)
 			return;
 
 		character.takeDamage(-1);
@@ -34,6 +34,7 @@ namespace DungeonIntern
 
 	void Trap1::repair(Player &)
 	{
+		this->_clock.restart();
 		this->_needRepair = false;
 	}
 

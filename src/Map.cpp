@@ -34,7 +34,7 @@ namespace DungeonIntern
 		{'W', [](Game &game){ return new Wall(game); }},
 		{'T', [](Game &game){ return new Trap1(game); }},
 		{'C', [](Game &game){ return new Chest(game); }},
-		{'2', [](Game &game){ return new Trap2(); }},
+		{'2', [](Game &    ){ return new Trap2(); }},
 		{'R', [](Game &game){ return new Radio(game); }}
 	};
 
@@ -78,7 +78,7 @@ namespace DungeonIntern
 		logger.info("Loading map from assets/map.txt");
 		this->_size = {0, 0};
 		if (stream.fail())
-			throw InvalidSavedMap(std::string("Cannot open assets/map.txt: ") + strerror(errno));
+			throw InvalidSavedMapException(std::string("Cannot open assets/map.txt: ") + strerror(errno));
 		while (std::getline(stream, line)) {
 			if (line.empty()) {
 				logger.warn("An empty line was found in the map. Ignoring...");
@@ -94,31 +94,40 @@ namespace DungeonIntern
 		for (unsigned y = 0; y < lines.size(); y++) {
 			for (unsigned x = 0; x < lines[y].size(); x++)
 				try {
-					auto &p = this->_objects.emplace_back(Map::_blockBuilders.at(lines[y][x])(this->_game));
+					auto c = lines[y][x];
+
+					if (c == '0') {
+						this->_startPoints.emplace_back(x, y);
+						c = ' ';
+					}
+					auto &p = this->_objects.emplace_back(Map::_blockBuilders.at(c)(this->_game));
 					auto pos = p->getPosition();
 
 					pos.x = x * 64;
 					pos.y = y * 64;
 					p->setPosition(pos);
 				} catch (std::exception &) {
-					throw InvalidSavedMap(std::string("No object can be built for character '") + lines[y][x] + "' (ASCII " + std::to_string(lines[y][x]) + ")");
+					throw InvalidSavedMapException(std::string("No object can be built for character '") + lines[y][x] + "' (ASCII " + std::to_string(lines[y][x]) + ")");
 				}
 		}
 		logger.debug("Map size is " + std::to_string(this->_size.x) + ", " + std::to_string(this->_size.y));
 
+		if (this->_startPoints.size() != 2)
+			throw InvalidSavedMapException("The map must contain 2 starting points.");
+
 		this->_player1 = new DragonMan(
 			*this->_game.resources.screen,
 			*this,
-			this->_size.x * 64 / 2 - 64,
-			this->_size.y * 64 - 128,
+			this->_startPoints[0].x * 64,
+			this->_startPoints[0].y * 64,
 			*this->_game.state.settings.inputs[0],
 			this->_game.resources
 		);
 		this->_player2 = new Player(
 			{*this->_game.resources.screen, "assets/entities/dragon.json", *this},
 			5,
-			this->_size.x * 64 / 2,
-			this->_size.y * 64 - 128,
+			this->_startPoints[1].x * 64,
+			this->_startPoints[1].y * 64,
 			64,
 			64,
 			100,
@@ -148,6 +157,11 @@ namespace DungeonIntern
 		return this->_size;
 	}
 
+	void Map::addEntity(DungeonIntern::Entity *entity)
+	{
+		this->_entities.emplace_back(entity);
+	}
+
 	const std::vector<std::unique_ptr<Entity>> &Map::getEntities() const
 	{
 		return (this->_entities);
@@ -156,5 +170,10 @@ namespace DungeonIntern
 	const std::vector<std::unique_ptr<Block>> &Map::getObjects() const
 	{
 		return (this->_objects);
+	}
+
+	const std::vector<sf::Vector2u> &Map::getStartPoints() const
+	{
+		return this->_startPoints;
 	}
 }
