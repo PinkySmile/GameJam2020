@@ -28,6 +28,7 @@ namespace DungeonIntern
 		if (this->_needRepair || this->_clock.getElapsedTime().asSeconds() < 1)
 			return;
 
+		this->_game.resources.playSound("traped");
 		character.takeDamage(-1);
 		this->_needRepair = true;
 	}
