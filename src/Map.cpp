@@ -31,7 +31,16 @@ namespace DungeonIntern
 {
 	const std::map<char, std::function<Block *(Game &)>> Map::_blockBuilders{
 		{' ', [](Game &    ){ return new Air(); }},
-		{'W', [](Game &game){ return new Wall(game); }},
+		{'W', [](Game &game){
+			unsigned v = game.resources.random() % 43;
+
+			if (v < 40)
+				return new Wall(game, "wall0");
+			else if (v < 42)
+				return new Wall(game, "wall1");
+			return new Wall(game, "wall2");
+		}},
+		{'w', [](Game &game){ return new Wall(game, "walltop" + std::to_string(game.resources.random() % 43 > 40)); }},
 		{'T', [](Game &game){ return new Trap1(game); }},
 		{'C', [](Game &game){ return new Chest(game); }},
 		{'2', [](Game &    ){ return new Trap2(); }},
