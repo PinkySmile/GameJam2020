@@ -73,7 +73,7 @@ namespace DungeonIntern
 		for (auto &ent : this->_entities)
 			ent->render();
 		this->_game.resources.screen->renderEntities();
-		
+
 	}
 
 	void Map::reset()
