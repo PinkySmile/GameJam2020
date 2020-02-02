@@ -25,6 +25,7 @@
 #include "Blocks/Objects/Trap2.hpp"
 #include "Entities/Items/Pickaxe.hpp"
 #include "Blocks/Objects/Radio.hpp"
+#include "Blocks/Objects/Pot.hpp"
 #include <functional>
 
 namespace DungeonIntern
@@ -44,7 +45,8 @@ namespace DungeonIntern
 		{'T', [](Game &game){ return new Trap1(game); }},
 		{'C', [](Game &game){ return new Chest(game); }},
 		{'2', [](Game &    ){ return new Trap2(); }},
-		{'R', [](Game &game){ return new Radio(game); }}
+		{'R', [](Game &game){ return new Radio(game); }},
+		{'P', [](Game &game){ return new Pot(game); }}
 	};
 
 	Map::Map(DungeonIntern::Game &game)
@@ -71,6 +73,7 @@ namespace DungeonIntern
 		for (auto &ent : this->_entities)
 			ent->render();
 		this->_game.resources.screen->renderEntities();
+		
 	}
 
 	void Map::reset()

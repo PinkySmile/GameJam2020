@@ -71,7 +71,10 @@
 		"keyUp": "buttons/arrow up.png",
 		"keyDown": "buttons/arrow down.png",
 		"keyLeft": "buttons/arrow left.png",
-		"keyRight": "buttons/arrow right.png"
+		"keyRight": "buttons/arrow right.png",
+		"pot0": "objects/pot0.png",
+		"pot1": "objects/pot1.png",
+		"pot2": "objects/pot2.png"
 	},
 	"icon": "icon.png"
 }

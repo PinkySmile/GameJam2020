@@ -12,7 +12,7 @@
 #include "../../Game.hpp"
 
 namespace DungeonIntern {
-	class Pot : HardBlock {
+	class Pot : public HardBlock {
 	private:
 		Game &_game;
 	public:
