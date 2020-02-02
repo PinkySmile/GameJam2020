@@ -157,6 +157,11 @@ namespace DungeonIntern
 		return this->_size;
 	}
 
+	void Map::addEntity(DungeonIntern::Entity *entity)
+	{
+		this->_entities.emplace_back(entity);
+	}
+
 	const std::vector<std::unique_ptr<Entity>> &Map::getEntities() const
 	{
 		return (this->_entities);
@@ -165,5 +170,10 @@ namespace DungeonIntern
 	const std::vector<std::unique_ptr<Block>> &Map::getObjects() const
 	{
 		return (this->_objects);
+	}
+
+	const std::vector<sf::Vector2u> &Map::getStartPoints() const
+	{
+		return this->_startPoints;
 	}
 }

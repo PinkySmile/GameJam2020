@@ -35,7 +35,9 @@ namespace DungeonIntern
 		void update();
 		void render();
 		void reset();
+		void addEntity(Entity *entity);
 		Size<size_t> getSize() const;
+		const std::vector<sf::Vector2u> &getStartPoints() const;
 		const std::vector<std::unique_ptr<Block>> &getObjects() const;
 		const std::vector<std::unique_ptr<Entity>> &getEntities() const;
 	};
