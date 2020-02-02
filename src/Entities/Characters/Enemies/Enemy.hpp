@@ -13,6 +13,7 @@ namespace DungeonIntern
 {
 	class Enemy : public Character {
 	protected:
+		unsigned _counter = 0;
 		Game &_game;
 		unsigned t = 0;
 
