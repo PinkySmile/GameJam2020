@@ -6,7 +6,6 @@
 #include "AiController.hpp"
 #include "AStarNode.hpp"
 #include "../../../Blocks/Block.hpp"
-#include "../../../Map.hpp"
 #include "../../../Blocks/Objects/Chest.hpp"
 
 namespace DungeonIntern::AI
@@ -18,8 +17,8 @@ namespace DungeonIntern::AI
 		{0, -1}
 	};
 
-	AIController::AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth) :
-		Enemy(cfg, maxSpeed, x, y, sx, sy, maxHealth)
+	AIController::AIController(EntityConfig cfg, Game &game, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth) :
+		Enemy(cfg, game, maxSpeed, x, y, sx, sy, maxHealth)
 	{
 	}
 
@@ -112,17 +111,7 @@ namespace DungeonIntern::AI
 		this->_speed = 1;
 		//this->move(std::cos(adj / hyp));
 		this->_pathCounter++;
-		Character::update();
-	}
-
-	void AIController::onCollide(Entity &other)
-	{
-		Character::onCollide(other);
-	}
-
-	void AIController::onDeath()
-	{
-
+		Enemy::update();
 	}
 
 	uNode AIController::findTarget()
