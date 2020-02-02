@@ -6,6 +6,7 @@
 #define THFGAME_INGAMEMENU_HPP
 
 
+#include <thread>
 #include "../Menus/Menu.hpp"
 #include "../Map.hpp"
 #include "../Menus/MenuMgr.hpp"
@@ -18,6 +19,7 @@ namespace DungeonIntern
 		Map &_map;
 		Game &_game;
 		MenuMgr &_menu;
+		std::thread _soundThread;
 		Rendering::Screen &_screen;
 
 	public:

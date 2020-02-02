@@ -24,6 +24,7 @@
 #include "Blocks/Objects/Chest.hpp"
 #include "Blocks/Objects/Trap2.hpp"
 #include "Entities/Items/Pickaxe.hpp"
+#include "Blocks/Objects/Radio.hpp"
 #include <functional>
 
 namespace DungeonIntern
@@ -33,7 +34,8 @@ namespace DungeonIntern
 		{'W', [](Game &game){ return new Wall(game); }},
 		{'T', [](Game &game){ return new Trap1(game); }},
 		{'C', [](Game &game){ return new Chest(game); }},
-		{'2', [](Game &game){ return new Trap2(); }}
+		{'2', [](Game &game){ return new Trap2(); }},
+		{'R', [](Game &game){ return new Radio(game); }}
 	};
 
 	Map::Map(DungeonIntern::Game &game)
@@ -132,12 +134,12 @@ namespace DungeonIntern
 		);
 
 		this->_entities.emplace_back(
-				new Pickaxe(
-						*this->_game.resources.screen,
-						*this,
-						this->_size.x * 64 / 2 - 64,
-						this->_size.y * 64 - 256
-				)
+			new Pickaxe(
+				*this->_game.resources.screen,
+				*this,
+				this->_size.x * 64 / 2 - 64,
+				this->_size.y * 64 - 256
+			)
 		);
 	}
 
