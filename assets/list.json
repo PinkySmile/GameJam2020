@@ -55,7 +55,7 @@
 		"archerEnemy": "entities/dragon.png",
 		"ninjaEnemy": "entities/ninja.png",
 		"bombermanEnemy": "entities/dragon.png",
-		"lonkEnemy": "entities/dragon.png",
+		"lonkEnemy": "entities/lonkEnemy.png",
 		"vlogerEnemy": "entities/dragon.png",
 		"trap1": "objects/trap_sheet.png",
 		"chest": "objects/chest.png",
