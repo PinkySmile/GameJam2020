@@ -104,7 +104,7 @@ add_executable(
 	src/Entities/Items/Pickaxe.hpp
 	src/Entities/Characters/AI/AiController.cpp
 	src/Entities/Characters/AI/AiController.hpp
-	src/Entities/Characters/AI/AStarNode.hpp src/Blocks/Objects/Radio.cpp src/Blocks/Objects/Radio.hpp)
+	src/Entities/Characters/AI/AStarNode.hpp src/Blocks/Objects/Radio.cpp src/Blocks/Objects/Radio.hpp src/Blocks/Objects/Pot.cpp src/Blocks/Objects/Pot.hpp)
 
 target_link_libraries(
 	DungeonIntern

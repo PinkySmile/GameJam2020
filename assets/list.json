@@ -59,7 +59,11 @@
 		"vlogerEnemy": "entities/dragon.png",
 		"trap1": "objects/trap_sheet.png",
 		"chest": "objects/chest.png",
-		"wall": "objects/Wall_2.png",
+		"walltop0": "objects/Wall_1.png",
+		"walltop1": "objects/mur_craquele.png",
+		"wall0": "objects/Wall_2.png",
+		"wall1": "objects/mur_craquele_up.png",
+		"wall2": "objects/Wall_crane.png",
 		"radio": "objects/radio.png",
 		"pickaxe": "items/pickaxe.png",
 		"keyA": "buttons/Button A.png",
@@ -67,7 +71,10 @@
 		"keyUp": "buttons/arrow up.png",
 		"keyDown": "buttons/arrow down.png",
 		"keyLeft": "buttons/arrow left.png",
-		"keyRight": "buttons/arrow right.png"
+		"keyRight": "buttons/arrow right.png",
+		"pot0": "objects/pot0.png",
+		"pot1": "objects/pot1.png",
+		"pot2": "objects/pot2.png"
 	},
 	"icon": "icon.png"
 }
