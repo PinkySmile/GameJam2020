@@ -18,8 +18,8 @@ namespace DungeonIntern::AI
 		{0, -1}
 	};
 
-	AIController::AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation) :
-		Character(cfg, maxSpeed, x, y, sx, sy, maxHealth, orientation)
+	AIController::AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth) :
+		Enemy(cfg, maxSpeed, x, y, sx, sy, maxHealth)
 	{
 	}
 
@@ -41,7 +41,7 @@ namespace DungeonIntern::AI
 	{
 		uNode first(this->_pos.x / 64, this->_pos.y / 64);
 		uNode target = this->findTarget();
-		std::cout << "Target: " << target.x << ", " << target.y << std::endl;
+		logger.debug("Target: " + std::to_string(target.x) + ", " + std::to_string(target.y));
 		uNode *current = nullptr;
 
 		std::vector<uNode *> openList = {};
@@ -56,12 +56,11 @@ namespace DungeonIntern::AI
 			}
 
 			if (*current == target) {
-				logger.debug("New path found" + std::to_string(target.x) + ", " + std::to_string(target.y));
+				logger.debug("New path found " + std::to_string(target.x) + ", " + std::to_string(target.y));
 				break;
 			}
 			closedList.push_back(current);
 			openList.erase(std::find(openList.begin(), openList.end(), current));
-
 			for (unsigned i = 0; i < 4; i++) {
 				uNode neighbor = this->_getNodeFromPos(current->x + directions[i].x, current->y + directions[i].y);
 				if (!neighbor.isWalkable)
@@ -98,13 +97,20 @@ namespace DungeonIntern::AI
 			return;
 		}
 		count = 15;
-		if (this->_pathCounter >= this->_path.size()) {
+		if (this->_pathCounter >= (int)this->_path.size() - 1) {
+			if (!this->_path.empty()) {
+				this->_loot(this->_path.back());
+			}
 			this->_path = this->_findPath();
 			this->_pathCounter = 0;
 		}
 		this->_pos.x = this->_path[this->_pathCounter].x * 64;
 		this->_pos.y = this->_path[this->_pathCounter].y * 64;
-		//this->move(atan2(this->_path[this->_pathCounter].y - this->_pos.y, this->_path[this->_pathCounter].x - this->_pos.x));
+//		float adj = std::abs(this->_path[this->_pathCounter].x * 64 - this->_pos.x);
+//		float op = std::abs(this->_path[this->_pathCounter].y * 64 - this->_pos.y);
+//		float hyp = std::abs(std::sqrt(std::pow(adj, 2) * std::pow(op, 2)));
+		this->_speed = 1;
+		//this->move(std::cos(adj / hyp));
 		this->_pathCounter++;
 		Character::update();
 	}
@@ -152,5 +158,13 @@ namespace DungeonIntern::AI
 			return INT16_MAX;
 		int h = this->_map.getObjects()[x + y * size.x]->heuristic();
 		return std::abs(x - targetX) + std::abs(y - targetY) + h;
+	}
+
+	void AIController::_loot(sf::Vector2u pos)
+	{
+		Size<size_t> size = this->_map.getSize();
+		if (pos.x >= size.x || pos.y >= size.y)
+			return;
+		this->_map.getObjects()[pos.x + pos.y * size.x]->loot(*this);
 	}
 }

@@ -25,6 +25,7 @@ namespace DungeonIntern
 		void loot(Enemy &) override;
 		void repair(Player &) override;
 		void render() override;
+		bool isWalkable() override;
 	};
 }
 

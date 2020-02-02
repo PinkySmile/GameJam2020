@@ -7,18 +7,20 @@
 
 #include "../Character.hpp"
 #include "AStarNode.hpp"
+#include "../Enemies/Enemy.hpp"
 
 namespace DungeonIntern::AI
 {
-	class AIController : public Character {
+	class AIController : public Enemy {
 	private:
 		std::vector<sf::Vector2u> _path;
 		std::vector<sf::Vector2u> _findPath();
-		unsigned _pathCounter = 0;
+		int _pathCounter = 0;
+		void _loot(sf::Vector2u position);
 		virtual uNode _getNodeFromPos(unsigned x, unsigned y);
 		virtual int _heuristic(int x, int y, int targetX, int targetY);
 	public:
-		AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation = SOUTH);
+		AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~AIController() override = default;
 
 		//! @brief This update should check for collisions between entities.
