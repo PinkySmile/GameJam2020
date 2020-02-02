@@ -14,6 +14,7 @@ namespace DungeonIntern {
 	protected:
 		int _timer_cantBePicked = 0;
 		bool _carried = false;
+		Entity *carried_by = nullptr;
 
 	public:
 		Item(unsigned maxHealth, EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, Orientation r = SOUTH);
@@ -21,8 +22,10 @@ namespace DungeonIntern {
 		void takeDamage(unsigned damages) override;
 
 		bool isCarried() const;
-		void setCarried(bool carried);
+		void carry(class Player &player);
+		void uncarry();
 		void onDeath() override;
+		void update() override;
 	};
 }
 

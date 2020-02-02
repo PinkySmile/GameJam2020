@@ -2,6 +2,7 @@
 // Created by Gegel85 on 22/12/2019.
 //
 
+#include <iostream>
 #include "InGameMenu.hpp"
 #include "../Game.hpp"
 #include "../Entities/Characters/Enemies/Lonk.hpp"
@@ -33,8 +34,8 @@ namespace DungeonIntern
 		if (!isActive)
 			return;
 
-		if (this->_soundThread.joinable())
-			this->_soundThread.join();
+		this->_map.reset();
+		this->_map.loadMap();
 		this->appear();
 		this->_lastTime = 30;
 		this->_screen.setCameraCenter({0, 0});
@@ -59,12 +60,19 @@ namespace DungeonIntern
 				if (this->_game.state.menuMgr.getCurrentMenu() != "in_game")
 					return;
 			}
+			auto v = this->_game.resources.random() % 2;
+			try {
+				auto &pos = this->_map.getStartPoints().at(v);
+				auto *entity = new Lonk(
+					*this->_game.resources.screen,
+					this->_game.state.map, this->_game,
+					pos.x * 64, pos.y * 64);
 
-			auto pos = this->_map.getStartPoints()[this->_game.resources.random() % 2];
-			auto *entity = new Lonk(*this->_game.resources.screen, this->_game.state.map, this->_game, pos.x * 64, pos.y * 64);
-
-			this->_game.resources.playMusic("music");
-			this->_game.state.map.addEntity(entity);
+				this->_game.resources.playMusic("music");
+				this->_game.state.map.addEntity(entity);
+			} catch(std::exception &e) {
+				std::cerr << "Error " << e.what() << std::endl;
+			}
 		});
 	}
 
