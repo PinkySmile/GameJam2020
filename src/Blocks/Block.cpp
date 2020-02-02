@@ -37,4 +37,14 @@ namespace DungeonIntern
 		return ((pos.x <= this->_pos.x && this->_pos.x <= pos.x + size.x) || (pos.x <= this->_pos.x + this->_size.x && this->_pos.x + this->_size.x <= pos.x + size.x)) &&
 			   (((pos.y <= this->_pos.y && this->_pos.y <= pos.y + size.y) || (pos.y <= this->_pos.y + this->_size.y && this->_pos.y + this->_size.y <= pos.y + size.y)));
 	}
+
+	bool Block::isWalkable()
+	{
+		return true;
+	}
+
+	int Block::heuristic()
+	{
+		return 0;
+	}
 }

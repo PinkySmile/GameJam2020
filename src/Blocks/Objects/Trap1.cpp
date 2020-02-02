@@ -28,6 +28,7 @@ namespace DungeonIntern
 		if (this->_needRepair || this->_clock.getElapsedTime().asSeconds() < 1)
 			return;
 
+		this->_game.resources.playSound("traped");
 		character.takeDamage(-1);
 		this->_needRepair = true;
 	}
@@ -46,5 +47,10 @@ namespace DungeonIntern
 			{64, 64},
 			{64 * this->_needRepair, 0, 64, 64}
 		);
+	}
+
+	int Trap1::heuristic()
+	{
+		return !this->_needRepair * 5;
 	}
 }

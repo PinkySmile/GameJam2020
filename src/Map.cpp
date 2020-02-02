@@ -27,6 +27,7 @@
 #include "Blocks/Objects/Radio.hpp"
 #include "Blocks/Objects/Pot.hpp"
 #include <functional>
+#include <iostream>
 
 namespace DungeonIntern
 {
@@ -155,8 +156,8 @@ namespace DungeonIntern
 			new Pickaxe(
 				*this->_game.resources.screen,
 				*this,
-				this->_size.x * 64 / 2 - 64,
-				this->_size.y * 64 - 256
+				54 * 64,
+				14 * 64
 			)
 		);
 	}
