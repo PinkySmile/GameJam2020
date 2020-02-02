@@ -15,7 +15,7 @@ namespace DungeonIntern
 
 	void Lonk::onDeath()
 	{
-		AI::AIController::onDeath();
+		Enemy::onDeath();
 		this->_game.resources.playSound("deathS");
 	}
 }

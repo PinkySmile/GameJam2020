@@ -90,6 +90,7 @@ namespace DungeonIntern::AI
 
 	void AIController::update()
 	{
+		Enemy::update();
 		static int count = 0;
 		if (count > 0) {
 			count--;
@@ -104,14 +105,13 @@ namespace DungeonIntern::AI
 			this->_pathCounter = 0;
 		}
 		this->_pos.x = this->_path[this->_pathCounter].x * 64;
-		this->_pos.y = this->_path[this->_pathCounter].y * 64;
+		this->_pos.y = this->_path[this->_pathCounter].y * 64 - 30;
 //		float adj = std::abs(this->_path[this->_pathCounter].x * 64 - this->_pos.x);
 //		float op = std::abs(this->_path[this->_pathCounter].y * 64 - this->_pos.y);
 //		float hyp = std::abs(std::sqrt(std::pow(adj, 2) * std::pow(op, 2)));
 		this->_speed = 1;
 		//this->move(std::cos(adj / hyp));
 		this->_pathCounter++;
-		Enemy::update();
 	}
 
 	uNode AIController::findTarget()
