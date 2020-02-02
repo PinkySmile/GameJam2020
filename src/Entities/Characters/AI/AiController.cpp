@@ -76,13 +76,25 @@ namespace DungeonIntern::AI
 	uNode AIController::findTarget()
 	{
 		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
+		float xPlayer = this->getPos().x;
+		float yPlayer = this->getPos().y;
+		float distanceCache = 999999;
+		float tmpx = 0;
+		float tmpy = 0;
+		float tmp;
 
 		for (auto &block : blocks) {
 			if (dynamic_cast<Chest *>(&*block) != nullptr) {
-				if (block->needsRepair() == false)
-					return DungeonIntern::AI::uNode(block->getPosition().x, block->getPosition().y);
+				if (block->needsRepair() == false) {
+					tmp = sqrt(std::pow(xPlayer - block->getPosition().x, 2) + std::pow(yPlayer - block->getPosition().y, 2));
+					if (tmp < distanceCache) {
+						tmpx = block->getPosition().x;
+						tmpy = block->getPosition().y;
+						distanceCache = tmp;
+					}
+				}
 			}
 		}
-		return DungeonIntern::AI::uNode(0, 0);
+		return DungeonIntern::AI::uNode(tmpx, tmpy);
 	}
 }
