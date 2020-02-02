@@ -43,7 +43,7 @@ namespace DungeonIntern
 		return true;
 	}
 
-	int Block::heuristick()
+	int Block::heuristic()
 	{
 		return 0;
 	}

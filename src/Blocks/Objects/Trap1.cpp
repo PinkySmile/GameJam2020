@@ -48,7 +48,7 @@ namespace DungeonIntern
 		);
 	}
 
-	int Trap1::heuristick()
+	int Trap1::heuristic()
 	{
 		return !this->_needRepair * 5;
 	}

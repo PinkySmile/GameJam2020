@@ -150,7 +150,7 @@ namespace DungeonIntern::AI
 		Size<size_t> size = this->_map.getSize();
 		if (x >= size.x || y >= size.y)
 			return INT16_MAX;
-		int h = this->_map.getObjects()[x + y * size.x]->heuristick();
+		int h = this->_map.getObjects()[x + y * size.x]->heuristic();
 		return std::abs(x - targetX) + std::abs(y - targetY) + h;
 	}
 }

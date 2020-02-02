@@ -25,7 +25,7 @@ namespace DungeonIntern
 		void loot(Enemy &) override;
 		void repair(Player &) override;
 		void render() override;
-		int heuristick() override;
+		int heuristic() override;
 	};
 }
 
