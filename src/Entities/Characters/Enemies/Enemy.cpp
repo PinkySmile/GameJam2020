@@ -17,8 +17,9 @@ namespace DungeonIntern
 	{
 		Character::update();
 
-		if (++t >= 60)
-			this->takeDamage(-1);
+		if (this->_counter >= 40)
+			this->destroy();
+		this->_counter += this->_dead;
 	}
 
 	void Enemy::onDeath()

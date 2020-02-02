@@ -91,12 +91,11 @@ namespace DungeonIntern::AI
 
 	void AIController::update()
 	{
-		static int count = 0;
-		if (count > 0) {
-			count--;
+		Enemy::update();
+		if (this->_counter > 0) {
+			this->_counter--;
 			return;
 		}
-		count = 15;
 		if (this->_pathCounter >= (int)this->_path.size() - 1) {
 			if (!this->_path.empty()) {
 				this->_loot(this->_path.back());
@@ -104,15 +103,22 @@ namespace DungeonIntern::AI
 			this->_path = this->_findPath();
 			this->_pathCounter = 0;
 		}
-		this->_pos.x = this->_path[this->_pathCounter].x * 64;
-		this->_pos.y = this->_path[this->_pathCounter].y * 64;
+//		this->_pos.x = this->_path[this->_pathCounter].x * 64;
+//		this->_pos.y = this->_path[this->_pathCounter].y * 64;
 //		float adj = std::abs(this->_path[this->_pathCounter].x * 64 - this->_pos.x);
 //		float op = std::abs(this->_path[this->_pathCounter].y * 64 - this->_pos.y);
 //		float hyp = std::abs(std::sqrt(std::pow(adj, 2) * std::pow(op, 2)));
-		this->_speed = 1;
-		//this->move(std::cos(adj / hyp));
+		this->_speed = this->_maxSpeed;
+		this->_counter = 64 / this->_speed;
+		if (this->_pos.x < this->_path[this->_pathCounter].x * 64)
+			this->move(0);
+		else if (this->_pos.y > this->_path[this->_pathCounter].y * 64)
+			this->move(M_PI_2);
+		else if (this->_pos.x < this->_path[this->_pathCounter].x * 64)
+			this->move(M_PI);
+		else if (this->_pos.y < this->_path[this->_pathCounter].y * 64)
+			this->move(-M_PI_2);
 		this->_pathCounter++;
-		Character::update();
 	}
 
 	void AIController::onCollide(Entity &other)
