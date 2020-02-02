@@ -1,8 +1,11 @@
-WWWWWWWW
-W    TCW
-W     TW
-W      W
-W      W
-W      W
-WWW  WWW
-WWWWWWWW
+          WWWWWWWWWWW
+WWWWWWWW  W   WT    W
+W    TCW  W W WW W  W
+W     TW  W W    W  W
+W      Wwww WWWWWW  W
+W           WC      W
+W      Wwww WWWW    W
+WWW  WWW  W  T   T  W
+WWWWWWWW  W  WWW WW W
+          W      WT W
+          WWWWWWWWWWW
