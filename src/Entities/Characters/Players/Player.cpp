@@ -94,6 +94,12 @@ namespace DungeonIntern
 			return;
 		this->_speed = this->_maxSpeed * 10;
 		this->_dash_cooldown = DASH_STUN * 2;
+		if (this->_itemCarried != nullptr) {
+			this->_itemCarried->uncarry();
+			this->_itemCarried->setPos(this->_pos);
+			this->_itemCarried->setSpeed(this->_speed);
+			this->_itemCarried = nullptr;
+		}
 	}
 
 	void Player::render()
@@ -135,7 +141,7 @@ namespace DungeonIntern
 		if (this->_itemCarried != nullptr)
 			return false;
 		this->_itemCarried = &item;
-		item.setCarried(true);
+		item.carry(*this);
 		return true;
 	}
 
