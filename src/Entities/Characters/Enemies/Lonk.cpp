@@ -3,6 +3,7 @@
 //
 
 #include "../../../Game.hpp"
+#include "../AI/AStarNode.hpp"
 #include "Lonk.hpp"
 
 namespace DungeonIntern
@@ -17,5 +18,10 @@ namespace DungeonIntern
 	{
 		Enemy::onDeath();
 		this->_game.resources.playSound("deathS");
+	}
+
+	AI::uNode Lonk::findTarget()
+	{
+		AIController::findTarget();
 	}
 }
