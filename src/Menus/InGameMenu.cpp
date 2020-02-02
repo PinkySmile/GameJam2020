@@ -15,6 +15,12 @@ namespace DungeonIntern
 	{
 	}
 
+	InGameMenu::~InGameMenu()
+	{
+		if (this->_soundThread.joinable())
+			this->_soundThread.join();
+	}
+
 	void InGameMenu::render()
 	{
 		this->_map.update();
@@ -31,7 +37,11 @@ namespace DungeonIntern
 		this->_game.resources.stopMusic();
 		this->_game.resources.playSound("prepare");
 		this->_soundThread = std::thread([this]{
-			std::this_thread::sleep_for(std::chrono::seconds(45));
+			for (int i = 0; i < 45; i++) {
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				if (this->_game.state.menuMgr.getCurrentMenu() != "in_game")
+					return;
+			}
 			this->_game.resources.playMusic("music");
 		});
 		this->_screen.setCameraCenter({0, 0});
