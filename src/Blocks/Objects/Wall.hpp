@@ -14,9 +14,10 @@ namespace DungeonIntern
 	class Wall : public HardBlock {
 	private:
 		Game &_game;
+		std::string _texture;
 
 	public:
-		Wall(Game &game);
+		Wall(Game &game, const std::string &texture);
 		~Wall() override = default;
 
 		void use(Player &) override;
