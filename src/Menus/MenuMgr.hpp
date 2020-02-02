@@ -24,6 +24,9 @@ namespace DungeonIntern
 		//! @brief Constructor
 		MenuMgr() = default;
 
+		//! @brief Destructor
+		~MenuMgr();
+
 		//! @brief Adds a menu in the manager
 		template<typename result, typename ...Args>
 		result &addMenu(const std::string &id, Args &...args) {
@@ -40,6 +43,10 @@ namespace DungeonIntern
 		//! @brief Changes the current Menu
 		//! @param newMenu The new menu
 		void changeMenu(const std::string &newMenu);
+
+		//! @brief Get the currently active menu.
+		//! @return The currently active menu.
+		std::string getCurrentMenu() const;
 	};
 }
 

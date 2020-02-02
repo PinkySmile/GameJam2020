@@ -11,11 +11,6 @@ namespace DungeonIntern
 		Entity(maxHealth, cfg, maxSpeed, x, y, sx, sy, orientation)
 	{}
 
-	bool Character::isDead() const
-	{
-		return this->_dead;
-	}
-
 	void Character::update()
 	{
 		Entity::update();
@@ -24,5 +19,9 @@ namespace DungeonIntern
 	void Character::onCollide(Entity &other)
 	{
 		//TODO : Character can't move if they are blocked each other
+	}
+
+	void Character::onDeath()
+	{
 	}
 }

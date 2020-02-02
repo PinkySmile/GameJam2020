@@ -39,4 +39,8 @@ namespace DungeonIntern {
 	{
 		_carried = carried;
 	}
+
+	void Item::onDeath()
+	{
+	}
 }
