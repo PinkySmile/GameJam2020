@@ -39,7 +39,7 @@ namespace DungeonIntern::AI
 
 	std::vector<sf::Vector2u> AIController::_findPath()
 	{
-		uNode first(this->_pos.x / 64, this->_pos.y / 64);
+		uNode first((this->_pos.x + 32) / 64, (this->_pos.y + 32) / 64);
 		uNode target = this->findTarget();
 		logger.debug("Target: " + std::to_string(target.x) + ", " + std::to_string(target.y));
 		uNode *current = nullptr;
@@ -92,16 +92,21 @@ namespace DungeonIntern::AI
 	void AIController::update()
 	{
 		Enemy::update();
-
-		if (this->isDead())
-			return;
-
-		static int count = 0;
-		if (count > 0) {
-			count--;
-			return;
+		for (int i = 0; i < this->_maxSpeed; i++) {
+			if (this->_pathCounter >= (int)this->_path.size() - 1) {
+			} else if (static_cast<unsigned>(this->_pos.x) > this->_path[this->_pathCounter].x * 64)
+				this->move(M_PI);
+			else if (static_cast<unsigned>(this->_pos.y) > this->_path[this->_pathCounter].y * 64 - 4)
+				this->move(-M_PI_2);
+			else if (static_cast<unsigned>(this->_pos.x) < this->_path[this->_pathCounter].x * 64)
+				this->move(0);
+			else if (static_cast<unsigned>(this->_pos.y) < this->_path[this->_pathCounter].y * 64 - 4)
+				this->move(M_PI_2);
 		}
-		count = 15;
+
+		if (this->_pathCounter < (int)this->_path.size() - 1 && (this->_pos.x != this->_path[this->_pathCounter].x * 64 || this->_pos.y != this->_path[this->_pathCounter].y * 64 - 4))
+			return;
+
 		if (this->_pathCounter >= (int)this->_path.size() - 1) {
 			if (!this->_path.empty()) {
 				this->_loot(this->_path.back());
@@ -109,13 +114,13 @@ namespace DungeonIntern::AI
 			this->_path = this->_findPath();
 			this->_pathCounter = 0;
 		}
-		this->_pos.x = this->_path[this->_pathCounter].x * 64;
-		this->_pos.y = this->_path[this->_pathCounter].y * 64 - 30;
+//		this->_pos.x = this->_path[this->_pathCounter].x * 64;
+//		this->_pos.y = this->_path[this->_pathCounter].y * 64 - 30;
 //		float adj = std::abs(this->_path[this->_pathCounter].x * 64 - this->_pos.x);
 //		float op = std::abs(this->_path[this->_pathCounter].y * 64 - this->_pos.y);
 //		float hyp = std::abs(std::sqrt(std::pow(adj, 2) * std::pow(op, 2)));
 		this->_speed = 1;
-		//this->move(std::cos(adj / hyp));
+		this->_counter = 64 / this->_speed;
 		this->_pathCounter++;
 	}
 
