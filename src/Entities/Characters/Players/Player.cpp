@@ -71,6 +71,16 @@ namespace DungeonIntern
 		this->move(this->_angle);
 		if (this->_dash_cooldown)
 			this->_dash_cooldown--;
+		if (this->_boss_ko_timer != 0) {
+			printf("boss timer: %d", _boss_ko_timer);
+			if (this->_boss_ko_timer == 180) {
+				char *randsounds[] = {DEATH_SOUND_BOSS};
+				this->_resources.playSound(std::string(randsounds[this->_resources.random() % 3]));
+				this->_boss_ko_timer = 0;
+			}
+			else
+				this->_boss_ko_timer++;
+		}
 		Character::update();
 	}
 
@@ -112,6 +122,7 @@ namespace DungeonIntern
 
 	void Player::onDeath()
 	{
+		this->_boss_ko_timer = 1;
 		Character::onDeath();
 	}
 
@@ -127,5 +138,12 @@ namespace DungeonIntern
 		this->_itemCarried = &item;
 		item.setCarried(true);
 		return true;
+	}
+
+	void Player::revive()
+	{
+		this->_dead = false;
+		this->_health = this->_maxHealth;
+		this->_boss_ko_timer = 0;
 	}
 }

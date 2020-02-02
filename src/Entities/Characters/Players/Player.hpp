@@ -29,6 +29,7 @@ namespace DungeonIntern
 		bool _fly;
 		double _angle = 0;
 		unsigned _dash_cooldown = 0;
+		int _boss_ko_timer = 0;
 
 	public:
 		Player(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Input &input, Resources &resources, float strengthMult = 1, bool fly = false);
@@ -41,6 +42,7 @@ namespace DungeonIntern
 		void onDeath() override;
 		bool pickItem(Item &item);
 		bool canFly() const;
+		void revive();
 	};
 }
 
