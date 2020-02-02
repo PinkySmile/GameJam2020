@@ -10,6 +10,10 @@
 #include "../Character.hpp"
 #include "../../../Input/Input.hpp"
 
+#define DEATH_SOUND_BOSS "KO1", "KO2", "KO3"
+#define DEATH_SOUND_BIG "deathB"
+#define DEATH_SOUND_SMALL "deathS"
+
 namespace DungeonIntern
 {
 	class Player : public Character {

@@ -16,6 +16,8 @@ namespace DungeonIntern
 	public:
 		DragonMan(Rendering::Screen &screen, Map &map, float x, float y, Input &input, Resources &resources);
 		virtual ~DragonMan() override = default;
+
+		void onDeath() override;
 	};
 }
 

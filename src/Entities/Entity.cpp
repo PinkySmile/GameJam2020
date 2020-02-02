@@ -44,7 +44,10 @@ namespace DungeonIntern
 
 	void Entity::render()
 	{
-		this->_entity.setAnimation(this->_speed != 0 ? Rendering::WALK : Rendering::IDLE);
+		if (this->isDead())
+			this->_entity.setAnimation(Rendering::DEAD);
+		else
+			this->_entity.setAnimation(this->_speed != 0 ? Rendering::WALK : Rendering::IDLE);
 		this->_entity.setPosition({this->_pos.x - 4, this->_pos.y - 4});
 		this->_entity.update();
 	}
@@ -93,9 +96,16 @@ namespace DungeonIntern
 
 	void Entity::takeDamage(unsigned damages)
 	{
+		if (this->isDead())
+			return;
 		if (damages > this->_health)
 			this->_health = 0;
-		this->_health -= damages;
+		else
+			this->_health -= damages;
+		if (this->_health == 0) {
+			onDeath();
+			this->_dead = true;
+		}
 	}
 
 	void Entity::update()
@@ -127,4 +137,8 @@ namespace DungeonIntern
 		_size;
 	}
 
+	bool Entity::isDead() const
+	{
+		return this->_dead;
+	}
 }

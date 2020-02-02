@@ -27,6 +27,7 @@ namespace DungeonIntern
 		float _maxSpeed = 0;
 		const unsigned _maxHealth;
 		unsigned _health;
+		bool _dead = false;
 		//! @brief Position + Orientation of the entity.
 		Position<float> _pos;
 		//! @brief Old Position for colision
@@ -69,6 +70,8 @@ namespace DungeonIntern
 		const Size<unsigned> & getSize() const;
 
 		const Position<float> &getOldPosition() const;
+		bool isDead() const;
+		virtual void onDeath() = 0;
 	};
 }
 

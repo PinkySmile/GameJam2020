@@ -26,6 +26,8 @@ namespace DungeonIntern
 		sf::Vector2i movement = {0, 0};
 
 		for (auto &action : this->_input.getActions()) {
+			if (isDead())
+				break;
 			switch (action) {
 			case Input::UP:
 				movement.y -= 1;
@@ -110,7 +112,7 @@ namespace DungeonIntern
 
 	void Player::onDeath()
 	{
-
+		Character::onDeath();
 	}
 
 	bool Player::canFly() const

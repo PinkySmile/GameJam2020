@@ -21,8 +21,8 @@ namespace DungeonIntern {
 		void takeDamage(unsigned damages) override;
 
 		bool isCarried() const;
-
 		void setCarried(bool carried);
+		void onDeath() override;
 	};
 }
 
