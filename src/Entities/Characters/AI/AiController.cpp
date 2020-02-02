@@ -68,11 +68,11 @@ namespace DungeonIntern::AI
 				if (!oldNeighbor) {
 					neighbor.parent = current;
 					neighbor.cost = current->cost + 1;
-					neighbor.distanceToEnd = std::abs((int) neighbor.x - (int) target.x) + std::abs((int) neighbor.y - (int) target.y);
+					neighbor.distanceToEnd = 0;//std::abs((int) neighbor.x - (int) target.x) + std::abs((int) neighbor.y - (int) target.y);
 					openList.push_back(new uNode(neighbor));
 					std::sort(openList.begin(), openList.end(), [](uNode *l, uNode *r){return *l < *r;});
 				} else if (neighbor.cost < oldNeighbor->cost) {
-					oldNeighbor->cost = neighbor.cost;
+					oldNeighbor->cost = current->cost + 1;
 					oldNeighbor->parent = current;
 				}
 			}
