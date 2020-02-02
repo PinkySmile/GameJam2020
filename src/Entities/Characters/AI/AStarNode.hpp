@@ -17,11 +17,11 @@ namespace DungeonIntern::AI
 		struct AStarNode *parent = nullptr;
 		bool isWalkable = true;
 		int cost = 0;
-		int distanceToEnd = 0;
+		int hCost = 0;
 
 		int getFCost() const
 		{
-			return this->cost + this->distanceToEnd;
+			return this->cost + this->hCost;
 		}
 
 		AStarNode() = default;

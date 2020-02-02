@@ -73,7 +73,7 @@ namespace DungeonIntern::AI
 				if (!oldNeighbor) {
 					neighbor.parent = current;
 					neighbor.cost = current->cost + 1;
-					neighbor.distanceToEnd = this->_heuristic(neighbor.x, neighbor.y, target.x, target.y);
+					neighbor.hCost = this->_heuristic(neighbor.x, neighbor.y, target.x, target.y);
 					openList.push_back(new uNode(neighbor));
 				} else if (neighbor.cost < oldNeighbor->cost) {
 					oldNeighbor->cost = current->cost + 1;
@@ -97,7 +97,7 @@ namespace DungeonIntern::AI
 			count--;
 			return;
 		}
-		count = 60;
+		count = 15;
 		if (this->_pathCounter >= this->_path.size()) {
 			this->_path = this->_findPath();
 			this->_pathCounter = 0;
@@ -147,7 +147,10 @@ namespace DungeonIntern::AI
 
 	int AIController::_heuristic(int x, int y, int targetX, int targetY)
 	{
-		//int h = blocks[x + y * this->_map.getSize().x].;
-		return std::abs(x - targetX) + std::abs(y - targetY);
+		Size<size_t> size = this->_map.getSize();
+		if (x >= size.x || y >= size.y)
+			return INT16_MAX;
+		int h = this->_map.getObjects()[x + y * size.x]->heuristick();
+		return std::abs(x - targetX) + std::abs(y - targetY) + h;
 	}
 }
