@@ -55,11 +55,12 @@ namespace DungeonIntern
 		virtual void onCollide(Entity &other) = 0;
 		virtual void update();
 		bool collideWith(const Position<int> &pos, const Size<unsigned> &size) const;
+		bool collideWith(const Position<float> &pos, const Size<unsigned> &size) const;
 		const Position<float> &getPos() const;
 
 		void setPos(const Position<float> &pos);
 
-		void move(double angle);
+		void move(double angle, bool dontmoveangle = false);
 
 		float getSpeed() const;
 

@@ -6,7 +6,6 @@
 #include "AiController.hpp"
 #include "AStarNode.hpp"
 #include "../../../Blocks/Block.hpp"
-#include "../../../Map.hpp"
 #include "../../../Blocks/Objects/Chest.hpp"
 
 namespace DungeonIntern::AI
@@ -18,8 +17,8 @@ namespace DungeonIntern::AI
 		{0, -1}
 	};
 
-	AIController::AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth) :
-		Enemy(cfg, maxSpeed, x, y, sx, sy, maxHealth)
+	AIController::AIController(EntityConfig cfg, Game &game, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth) :
+		Enemy(cfg, game, maxSpeed, x, y, sx, sy, maxHealth)
 	{
 	}
 
@@ -39,7 +38,7 @@ namespace DungeonIntern::AI
 
 	std::vector<sf::Vector2u> AIController::_findPath()
 	{
-		uNode first(this->_pos.x / 64, this->_pos.y / 64);
+		uNode first((this->_pos.x + 32) / 64, (this->_pos.y + 32) / 64);
 		uNode target = this->findTarget();
 		logger.debug("Target: " + std::to_string(target.x) + ", " + std::to_string(target.y));
 		uNode *current = nullptr;
@@ -92,10 +91,21 @@ namespace DungeonIntern::AI
 	void AIController::update()
 	{
 		Enemy::update();
-		if (this->_counter > 0) {
-			this->_counter--;
-			return;
+		for (int i = 0; i < this->_maxSpeed; i++) {
+			if (this->_pathCounter >= (int)this->_path.size() - 1) {
+			} else if (static_cast<unsigned>(this->_pos.x) > this->_path[this->_pathCounter].x * 64)
+				this->move(M_PI);
+			else if (static_cast<unsigned>(this->_pos.y) > this->_path[this->_pathCounter].y * 64 - 4)
+				this->move(-M_PI_2);
+			else if (static_cast<unsigned>(this->_pos.x) < this->_path[this->_pathCounter].x * 64)
+				this->move(0);
+			else if (static_cast<unsigned>(this->_pos.y) < this->_path[this->_pathCounter].y * 64 - 4)
+				this->move(M_PI_2);
 		}
+
+		if (this->_pathCounter < (int)this->_path.size() - 1 && (this->_pos.x != this->_path[this->_pathCounter].x * 64 || this->_pos.y != this->_path[this->_pathCounter].y * 64 - 4))
+			return;
+
 		if (this->_pathCounter >= (int)this->_path.size() - 1) {
 			if (!this->_path.empty()) {
 				this->_loot(this->_path.back());
@@ -108,27 +118,9 @@ namespace DungeonIntern::AI
 //		float adj = std::abs(this->_path[this->_pathCounter].x * 64 - this->_pos.x);
 //		float op = std::abs(this->_path[this->_pathCounter].y * 64 - this->_pos.y);
 //		float hyp = std::abs(std::sqrt(std::pow(adj, 2) * std::pow(op, 2)));
-		this->_speed = this->_maxSpeed;
+		this->_speed = 1;
 		this->_counter = 64 / this->_speed;
-		if (this->_pos.x < this->_path[this->_pathCounter].x * 64)
-			this->move(0);
-		else if (this->_pos.y > this->_path[this->_pathCounter].y * 64)
-			this->move(M_PI_2);
-		else if (this->_pos.x < this->_path[this->_pathCounter].x * 64)
-			this->move(M_PI);
-		else if (this->_pos.y < this->_path[this->_pathCounter].y * 64)
-			this->move(-M_PI_2);
 		this->_pathCounter++;
-	}
-
-	void AIController::onCollide(Entity &other)
-	{
-		Character::onCollide(other);
-	}
-
-	void AIController::onDeath()
-	{
-
 	}
 
 	uNode AIController::findTarget()

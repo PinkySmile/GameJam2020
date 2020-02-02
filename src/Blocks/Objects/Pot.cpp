@@ -20,12 +20,12 @@ void DungeonIntern::Pot::use(Player &)
 
 void DungeonIntern::Pot::loot(Enemy &)
 {
-
+	this->_needRepair = true;
 }
 
 void DungeonIntern::Pot::repair(Player &)
 {
-
+	this->_needRepair = false;
 }
 
 void DungeonIntern::Pot::render()

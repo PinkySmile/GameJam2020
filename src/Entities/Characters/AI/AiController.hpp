@@ -21,15 +21,11 @@ namespace DungeonIntern::AI
 		virtual uNode _getNodeFromPos(unsigned x, unsigned y);
 		virtual int _heuristic(int x, int y, int targetX, int targetY);
 	public:
-		AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
+		AIController(EntityConfig cfg, Game &game, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~AIController() override = default;
 
-		//! @brief This update should check for collisions between entities.
 		virtual void update() override;
-		virtual void onCollide(Entity &other) override;
-		bool isDead() const;
 		uNode findTarget();
-		virtual void onDeath() override;
 	};
 }
 
