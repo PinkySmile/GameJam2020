@@ -135,14 +135,11 @@ namespace DungeonIntern
 			*this->_game.state.settings.inputs[0],
 			this->_game.resources
 		);
-		this->_player2 = new Player(
-			{*this->_game.resources.screen, "assets/entities/dragon.json", *this},
-			5,
+		this->_player2 = new DragonMan(
+			*this->_game.resources.screen,
+			*this,
 			this->_startPoints[1].x * 64,
 			this->_startPoints[1].y * 64,
-			64,
-			64,
-			100,
 			*this->_game.state.settings.inputs[1],
 			this->_game.resources
 		);
