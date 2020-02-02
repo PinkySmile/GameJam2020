@@ -12,10 +12,10 @@ namespace DungeonIntern::AI
 	template<typename T>
 	struct AStarNode
 	{
-		T x;
-		T y;
-		struct AStarNode *parent;
-		bool isWalkable;
+		T x = 0;
+		T y = 0;
+		struct AStarNode *parent = nullptr;
+		bool isWalkable = true;
 		int cost = 0;
 		int distanceToEnd = 0;
 
@@ -24,14 +24,10 @@ namespace DungeonIntern::AI
 			return this->cost + this->distanceToEnd;
 		}
 
-		AStarNode()
-			: x(0), y(0), isWalkable(true)
-		{}
+		AStarNode() = default;
+
 		AStarNode(T x, T y)
-			: x(x), y(y), isWalkable(true)
-		{}
-		AStarNode(T x, T y, bool isWalkable)
-			: x(x), y(y), isWalkable(isWalkable)
+			: x(x), y(y)
 		{}
 
 		bool operator< (const AStarNode<T> &n2) const
