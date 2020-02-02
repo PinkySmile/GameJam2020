@@ -142,8 +142,6 @@ namespace DungeonIntern::AI
 				}
 			}
 		}
-		std::cout << (std::string("final tmp ") + std::to_string(tmp)) << std::endl;
-		std::cout << (std::string("final tmp coords ") + std::to_string(tmpx)) + std::string(" ") + std::to_string(tmpy) << std::endl;
 		return DungeonIntern::AI::uNode(tmpx, tmpy);
 	}
 
