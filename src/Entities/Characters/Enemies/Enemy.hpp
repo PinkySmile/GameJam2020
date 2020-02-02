@@ -13,9 +13,8 @@ namespace DungeonIntern
 {
 	class Enemy : public Character {
 	protected:
-		unsigned _counter = 0;
 		Game &_game;
-		unsigned t = 0;
+		unsigned _counter = 0;
 
 	public:
 		Enemy(EntityConfig cfg, Game &game, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);

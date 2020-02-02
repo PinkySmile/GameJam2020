@@ -13,6 +13,7 @@ namespace DungeonIntern::AI
 {
 	class AIController : public Enemy {
 	private:
+		unsigned _counter = 0;
 		std::vector<sf::Vector2u> _path;
 		std::vector<sf::Vector2u> _findPath();
 		int _pathCounter = 0;

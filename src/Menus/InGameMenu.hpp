@@ -21,7 +21,7 @@ namespace DungeonIntern
 		MenuMgr &_menu;
 		std::thread _soundThread;
 		Rendering::Screen &_screen;
-		unsigned _lastTime = 0;
+		unsigned _lastTime = 5;
 
 	public:
 		InGameMenu(MenuMgr &menu, Game &game, Map &map, Rendering::Screen &screen);
