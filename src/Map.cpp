@@ -40,7 +40,7 @@ namespace DungeonIntern
 				return new Wall(game, "wall1");
 			return new Wall(game, "wall2");
 		}},
-		{'K', [](Game &game){ return new Wall(game, "walltop" + std::to_string(game.resources.random() % 43 > 40)); }},
+		{'w', [](Game &game){ return new Wall(game, "walltop" + std::to_string(game.resources.random() % 43 > 40)); }},
 		{'T', [](Game &game){ return new Trap1(game); }},
 		{'C', [](Game &game){ return new Chest(game); }},
 		{'2', [](Game &    ){ return new Trap2(); }},
