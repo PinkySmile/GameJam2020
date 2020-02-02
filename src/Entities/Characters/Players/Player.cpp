@@ -41,8 +41,19 @@ namespace DungeonIntern
 				break;
 			case Input::CANCEL:
 				this->dash();
+				break;
 			default:
 				break;
+			case Input::ACTION:
+				sf::Vector2<unsigned> vec{
+					static_cast<unsigned>(std::cos(this->_pos.r * M_PI_2 + M_PI_2) * -64 + this->_pos.x + this->_size.x / 2),
+					static_cast<unsigned>(std::sin(this->_pos.r * M_PI_2 + M_PI_2) * -64 + this->_pos.y + this->_size.y / 2)
+				};
+				auto &objs = this->_map.getObjects();
+				auto size = this->_map.getSize();
+
+				if (vec.x < size.x * 64 && vec.y < size.y * 64 && objs[(vec.x - (vec.x % 64)) / 64 + (vec.y - (vec.y % 64)) * size.x / 64]->needsRepair())
+					objs[(vec.x - (vec.x % 64)) / 64 + (vec.y - (vec.y % 64)) * size.x / 64]->repair(*this);
 			}
 		}
 		bool speed_overflow = this->_speed > this->_maxSpeed;

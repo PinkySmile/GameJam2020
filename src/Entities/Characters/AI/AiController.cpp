@@ -8,6 +8,7 @@
 #include "AStarNode.hpp"
 #include "../../../Blocks/Block.hpp"
 #include "../../../Map.hpp"
+#include "../../../Blocks/Objects/Chest.hpp"
 
 namespace DungeonIntern::AI
 {
@@ -108,8 +109,11 @@ namespace DungeonIntern::AI
 	{
 		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
 
-	//	for (auto &block : blocks) {
-	//	  }
+		for (auto &block : blocks) {
+			if (dynamic_cast<Chest *>(&*block) != nullptr) {
+				return DungeonIntern::AI::uNode(block->getPosition().x, block->getPosition().y);
+			}
+		}
 		return DungeonIntern::AI::uNode(0, 0);
 	}
 }

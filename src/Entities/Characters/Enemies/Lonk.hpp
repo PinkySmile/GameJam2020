@@ -6,12 +6,12 @@
 #define DUNGEONINTERN_LONK_HPP
 
 
-#include "../Character.hpp"
+#include "Enemy.hpp"
 #include "../../../Map.hpp"
 
 namespace DungeonIntern
 {
-	class Lonk : public Character {
+	class Lonk : public Enemy {
 	public:
 		Lonk(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Lonk() override = default;

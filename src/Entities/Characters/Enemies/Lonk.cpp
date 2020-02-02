@@ -7,7 +7,7 @@
 namespace DungeonIntern
 {
 	Lonk::Lonk(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth) :
-			Character({screen, "assets/entities/lonk.json", map}, maxSpeed, x, y, sx, sy, maxHealth, NORTH)
+		Enemy({screen, "assets/entities/lonk.json", map}, maxSpeed, x, y, sx, sy, maxHealth)
 	{}
 
 	void Lonk::update()

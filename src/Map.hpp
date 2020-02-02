@@ -20,6 +20,7 @@ namespace DungeonIntern
 	private:
 		std::vector<std::unique_ptr<Entity>> _entities;
 		std::vector<std::unique_ptr<Block>> _objects;
+		std::vector<sf::Vector2u> _startPoints;
 		Size<size_t> _size;
 		Game &_game;
 		class Player *_player1;
@@ -34,7 +35,9 @@ namespace DungeonIntern
 		void update();
 		void render();
 		void reset();
+		void addEntity(Entity *entity);
 		Size<size_t> getSize() const;
+		const std::vector<sf::Vector2u> &getStartPoints() const;
 		const std::vector<std::unique_ptr<Block>> &getObjects() const;
 		const std::vector<std::unique_ptr<Entity>> &getEntities() const;
 	};

@@ -64,9 +64,9 @@ namespace DungeonIntern
 	};
 
 	//! @brief This file is not a valid saved map.
-	class InvalidSavedMap : public BaseException {
+	class InvalidSavedMapException : public BaseException {
 	public:
-		explicit InvalidSavedMap(const std::string &&msg) :
+		explicit InvalidSavedMapException(const std::string &&msg) :
 			BaseException(static_cast<const std::string &&>(msg))
 		{};
 	};
