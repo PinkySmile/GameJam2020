@@ -37,6 +37,7 @@ namespace DungeonIntern
 		virtual void repair(Player &) = 0;
 		virtual void render() = 0;
 		virtual bool isWalkable();
+		virtual int heuristick();
 		void setPosition(Position<int> newPos);
 		const Position<int> &getPosition() const;
 		const Size<unsigned> &getSize() const;

@@ -153,8 +153,8 @@ namespace DungeonIntern
 		);
 		this->_entities.emplace_back(new AI::AIController({*this->_game.resources.screen, "assets/entities/dragon.json", *this},
 			5,
-			this->_size.x * 64 / 2,
-			this->_size.y * 64 - 128,
+			  this->_startPoints[0].x * 64,
+			  this->_startPoints[0].y * 64,
 		  64,
 		  64,
 		  100));

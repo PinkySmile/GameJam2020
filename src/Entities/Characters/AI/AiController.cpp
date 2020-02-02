@@ -40,12 +40,13 @@ namespace DungeonIntern::AI
 
 	std::vector<sf::Vector2u> AIController::_findPath()
 	{
-		uNode *first = new uNode(this->_pos.x / 64, this->_pos.y / 64);
-		uNode target(10, 15);
+		uNode first(this->_pos.x / 64, this->_pos.y / 64);
+		uNode target = this->findTarget();
+		std::cout << "Target: " << target.x << ", " << target.y << std::endl;
 		uNode *current = nullptr;
 
 		std::vector<uNode *> openList = {};
-		openList.push_back(first);
+		openList.push_back(&first);
 		std::vector<uNode *> closedList = {};
 
 		while (!openList.empty()) {
@@ -56,7 +57,7 @@ namespace DungeonIntern::AI
 			}
 
 			if (*current == target) {
-				std::cout << "Path found" << std::endl;
+				logger.debug("New path found" + std::to_string(target.x) + ", " + std::to_string(target.y));
 				break;
 			}
 			closedList.push_back(current);
@@ -68,12 +69,12 @@ namespace DungeonIntern::AI
 					continue;
 				if (std::find_if(closedList.begin(), closedList.end(), [neighbor](uNode *n){return *n == neighbor;}) != closedList.end())
 					continue;
-				auto it = std::find(openList.begin(), openList.end(), current);
+				auto it = std::find_if(openList.begin(), openList.end(), [neighbor](uNode *n){return *n == neighbor;});
 				uNode *oldNeighbor = it != openList.end() ? *it : nullptr;
 				if (!oldNeighbor) {
 					neighbor.parent = current;
 					neighbor.cost = current->cost + 1;
-					neighbor.distanceToEnd = 0;//std::abs((int) neighbor.x - (int) target.x) + std::abs((int) neighbor.y - (int) target.y);
+					neighbor.distanceToEnd = this->_heuristic(neighbor.x, neighbor.y, target.x, target.y);
 					openList.push_back(new uNode(neighbor));
 				} else if (neighbor.cost < oldNeighbor->cost) {
 					oldNeighbor->cost = current->cost + 1;
@@ -92,9 +93,20 @@ namespace DungeonIntern::AI
 
 	void AIController::update()
 	{
-		if (this->_path.empty())
+		static int count = 0;
+		if (count > 0) {
+			count--;
+			return;
+		}
+		count = 60;
+		if (this->_pathCounter >= this->_path.size()) {
 			this->_path = this->_findPath();
-
+			this->_pathCounter = 0;
+		}
+		this->_pos.x = this->_path[this->_pathCounter].x * 64;
+		this->_pos.y = this->_path[this->_pathCounter].y * 64;
+		//this->move(atan2(this->_path[this->_pathCounter].y - this->_pos.y, this->_path[this->_pathCounter].x - this->_pos.x));
+		this->_pathCounter++;
 		Character::update();
 	}
 
@@ -114,9 +126,15 @@ namespace DungeonIntern::AI
 
 		for (auto &block : blocks) {
 			if (dynamic_cast<Chest *>(&*block) != nullptr) {
-				return DungeonIntern::AI::uNode(block->getPosition().x, block->getPosition().y);
+				return DungeonIntern::AI::uNode(block->getPosition().x / 64 , block->getPosition().y / 64);
 			}
 		}
 		return DungeonIntern::AI::uNode(0, 0);
+	}
+
+	int AIController::_heuristic(int x, int y, int targetX, int targetY)
+	{
+		//int h = blocks[x + y * this->_map.getSize().x].;
+		return std::abs(x - targetX) + std::abs(y - targetY);
 	}
 }

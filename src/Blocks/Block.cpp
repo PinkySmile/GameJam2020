@@ -42,4 +42,9 @@ namespace DungeonIntern
 	{
 		return true;
 	}
+
+	int Block::heuristick()
+	{
+		return 0;
+	}
 }
