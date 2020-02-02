@@ -2,8 +2,6 @@
 // Created by anonymus-raccoon on 2/1/20.
 //
 
-#include <queue>
-#include <iostream>
 #include "AiController.hpp"
 #include "AStarNode.hpp"
 #include "../../../Blocks/Block.hpp"
@@ -12,82 +10,49 @@
 
 namespace DungeonIntern::AI
 {
-	const std::vector<sf::Vector2i> directions = {
-		{-1, 0},
-		{1, 0},
-		{0, 1},
-		{0, -1}
-	};
-
 	AIController::AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation) :
 		Character(cfg, maxSpeed, x, y, sx, sy, maxHealth, orientation)
 	{
 	}
 
-	uNode AIController::_getNodeFromPos(unsigned x, unsigned y)
+	std::vector<sf::Vector2u> &AIController::_findPath()
 	{
-		uNode node(x, y);
-		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
-		Size<size_t> size = this->_map.getSize();
-
-		if (x >= size.x || y >= size.y) {
-			node.isWalkable = false;
-			return node;
-		}
-		node.isWalkable = blocks[x + y * size.x]->isWalkable();
-		return node;
-	}
-
-	std::vector<sf::Vector2u> AIController::_findPath()
-	{
-		uNode *first = new uNode(this->_pos.x / 64, this->_pos.y / 64);
 		uNode target(10, 15);
-		uNode *current = nullptr;
 
-		std::vector<uNode *> openList = {};
-		openList.push_back(first);
-		std::vector<uNode *> closedList = {};
+		uNode current(this->_pos.x, this->_pos.y);
+		std::vector<uNode> openList = {current};
+		std::vector<uNode> closedList = {};
 
-		while (!openList.empty()) {
+		std::vector<uNode> neighbors;
+
+		while (!openList.empty() && std::find_if(openList.begin(), openList.end(), [&target](uNode &n) {return n.x == target.x && n.y == target.y;}) == openList.end()) {
 			current = openList[0];
-			for (auto &n : openList) {
-				if (n->getFCost() <= current->getFCost())
-					current = n;
-			}
-
-			if (*current == target) {
-				std::cout << "Path found" << std::endl;
-				break;
-			}
+			openList.erase(openList.begin());
 			closedList.push_back(current);
-			openList.erase(std::find(openList.begin(), openList.end(), current));
 
-			for (unsigned i = 0; i < 4; i++) {
-				uNode neighbor = this->_getNodeFromPos(current->x + directions[i].x, current->y + directions[i].y);
+			neighbors.clear();
+			neighbors.emplace_back(current.x -1, current.y);
+			neighbors.emplace_back(current.x, current.y -1);
+			neighbors.emplace_back(current.x + 1, current.y);
+			neighbors.emplace_back(current.x, current.y + 1);
+			for (auto &neighbor : neighbors) {
 				if (!neighbor.isWalkable)
 					continue;
-				if (std::find_if(closedList.begin(), closedList.end(), [neighbor](uNode *n){return *n == neighbor;}) != closedList.end())
+				if (std::find_if(closedList.begin(), closedList.end(), [neighbor](uNode &n){return n.x == neighbor.x && n.y == neighbor.y;}) != closedList.end())
 					continue;
-				auto it = std::find(openList.begin(), openList.end(), current);
-				uNode *oldNeighbor = it != openList.end() ? *it : nullptr;
-				if (!oldNeighbor) {
-					neighbor.parent = current;
-					neighbor.cost = current->cost + 1;
-					neighbor.distanceToEnd = 0;//std::abs((int) neighbor.x - (int) target.x) + std::abs((int) neighbor.y - (int) target.y);
-					openList.push_back(new uNode(neighbor));
-				} else if (neighbor.cost < oldNeighbor->cost) {
-					oldNeighbor->cost = current->cost + 1;
-					oldNeighbor->parent = current;
-				}
+				if (std::find_if(openList.begin(), openList.end(), [neighbor](uNode &n){return n.x == neighbor.x && n.y == neighbor.y;}) != openList.end())
+					continue;
+				neighbor.parent.reset(&current);
+				neighbor.cost = current.cost + 1;
+				neighbor.distanceToEnd = std::abs((int)neighbor.x - (int)target.x) + std::abs((int)neighbor.y - (int)target.y);
+				openList.push_back(neighbor);
+				std::sort(openList.begin(), openList.end(), [](uNode a, uNode b){return a.getFCost() < b.getFCost();});
 			}
 		}
 
-		std::vector<sf::Vector2u> ret;
-		while (current != nullptr) {
-			ret.emplace(ret.begin(), current->x, current->y);
-			current = current->parent;
-		}
-		return ret;
+//		if (std::find(openList.begin(), openList.end(), [target](uNode &n) {return n.x == target.x && n.y == target.y;}) == openList.end())
+//			return {};
+		//return closedList;
 	}
 
 	void AIController::update()
@@ -111,12 +76,25 @@ namespace DungeonIntern::AI
 	uNode AIController::findTarget()
 	{
 		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
+		float xPlayer = this->getPos().x;
+		float yPlayer = this->getPos().y;
+		float distanceCache = 999999;
+		float tmpx = 0;
+		float tmpy = 0;
+		float tmp;
 
 		for (auto &block : blocks) {
 			if (dynamic_cast<Chest *>(&*block) != nullptr) {
-				return DungeonIntern::AI::uNode(block->getPosition().x, block->getPosition().y);
+				if (block->needsRepair() == false) {
+					tmp = sqrt(std::pow(xPlayer - block->getPosition().x, 2) + std::pow(yPlayer - block->getPosition().y, 2));
+					if (tmp < distanceCache) {
+						tmpx = block->getPosition().x;
+						tmpy = block->getPosition().y;
+						distanceCache = tmp;
+					}
+				}
 			}
 		}
-		return DungeonIntern::AI::uNode(0, 0);
+		return DungeonIntern::AI::uNode(tmpx, tmpy);
 	}
 }
