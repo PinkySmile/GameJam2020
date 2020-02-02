@@ -8,14 +8,17 @@
 
 #include "Enemy.hpp"
 #include "../../../Map.hpp"
+#include "../AI/AStarNode.hpp"
+#include "../AI/AiController.hpp"
 
 namespace DungeonIntern
 {
-	class Lonk : public Enemy {
+	class Lonk : public AI::AIController {
 	public:
 		Lonk(Rendering::Screen &screen, Map &map, Game &game, float x, float y);
 		virtual ~Lonk() override = default;
 		void onDeath() override;
+		AI::uNode findTarget() override ;
 	};
 }
 

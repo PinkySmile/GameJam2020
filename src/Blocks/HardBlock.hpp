@@ -14,6 +14,7 @@ namespace DungeonIntern {
 	public:
 		HardBlock(Orientation orientation, unsigned sx, unsigned sy);
 		void onWalk(class Entity &character) override;
+		bool isWalkable() override;
 	};
 }
 

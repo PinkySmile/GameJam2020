@@ -88,4 +88,9 @@ namespace DungeonIntern
 		character.setSpeed(0);
 		character.setPos(pl_pos);
 	}
+
+	bool HardBlock::isWalkable()
+	{
+		return false;
+	}
 }

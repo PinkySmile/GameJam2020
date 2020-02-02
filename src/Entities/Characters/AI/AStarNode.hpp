@@ -12,24 +12,43 @@ namespace DungeonIntern::AI
 	template<typename T>
 	struct AStarNode
 	{
-		T x;
-		T y;
-		std::shared_ptr<struct AStarNode> parent;
-		bool isWalkable;
+		T x = 0;
+		T y = 0;
+		struct AStarNode *parent = nullptr;
+		bool isWalkable = true;
 		int cost = 0;
-		int distanceToEnd;
+		int hCost = 0;
 
-		int getFCost()
+		int getFCost() const
 		{
-			return this->cost + this->distanceToEnd;
+			return this->cost + this->hCost;
 		}
 
+		AStarNode() = default;
+
 		AStarNode(T x, T y)
-			: x(x), y(y), isWalkable(true)
+			: x(x), y(y)
 		{}
-		AStarNode(T x, T y, bool isWalkable)
-			: x(x), y(y), isWalkable(isWalkable)
-		{}
+
+		bool operator< (const AStarNode<T> &n2) const
+		{
+			return this->getFCost() < n2.getFCost();
+		}
+
+		bool operator> (const AStarNode<T> &n2) const
+		{
+			return this->getFCost() > n2.getFCost();
+		}
+
+		bool operator== (const AStarNode<T> &n2) const
+		{
+			return this->x == n2.x && this->y == n2.y;
+		}
+
+		bool operator!= (const AStarNode<T> &n2) const
+		{
+			return this->x != n2.x || this->y != n2.y;
+		}
 	};
 
 	typedef AStarNode<unsigned> uNode;

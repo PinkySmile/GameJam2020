@@ -36,6 +36,8 @@ namespace DungeonIntern
 		//! @brief For example, filling the chest or repairing it if it is broke.
 		virtual void repair(Player &) = 0;
 		virtual void render() = 0;
+		virtual bool isWalkable();
+		virtual int heuristic();
 		void setPosition(Position<int> newPos);
 		const Position<int> &getPosition() const;
 		const Size<unsigned> &getSize() const;

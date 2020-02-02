@@ -48,4 +48,9 @@ namespace DungeonIntern
 			{64 * this->_needRepair, 0, 64, 64}
 		);
 	}
+
+	int Trap1::heuristic()
+	{
+		return !this->_needRepair * 5;
+	}
 }
