@@ -15,11 +15,11 @@ namespace DungeonIntern
 		_maxHealth(maxHealth),
 		_health(maxHealth),
 		_pos(x, y, r),
-		_size(sx, sy),
+		_size(sx, sy / 2),
 		_map(cfg.map),
 		_screen(cfg.screen)
 	{
-		this->_entity.setSize({sx, sy});
+		this->_entity.setSize({sx + 8, sy + 8});
 	}
 
 	const Position<float> &Entity::getOldPosition() const
@@ -48,7 +48,7 @@ namespace DungeonIntern
 			this->_entity.setAnimation(Rendering::DEAD);
 		else
 			this->_entity.setAnimation(this->_speed != 0 ? Rendering::WALK : Rendering::IDLE);
-		this->_entity.setPosition({this->_pos.x, this->_pos.y});
+		this->_entity.setPosition({this->_pos.x - 4, this->_pos.y - 4});
 		this->_entity.update();
 	}
 
@@ -122,8 +122,13 @@ namespace DungeonIntern
 
 	bool Entity::collideWith(const Position<int> &pos, const Size<unsigned> &size) const
 	{
-		return ((pos.x <= this->_pos.x && this->_pos.x < pos.x + size.x) || (pos.x <= this->_pos.x + this->_size.x && this->_pos.x + this->_size.x < pos.x + size.x)) &&
-		(((pos.y <= this->_pos.y && this->_pos.y < pos.y + size.y) || (pos.y <= this->_pos.y + this->_size.y && this->_pos.y + this->_size.y < pos.y + size.y)));
+		return (
+			(pos.x <= this->_pos.x + this->_size.x * 0.3 && this->_pos.x + this->_size.x * 0.3 < pos.x + size.x) ||
+			(pos.x <= this->_pos.x + this->_size.x - this->_size.x * 0.3 && this->_pos.x + this->_size.x - this->_size.x * 0.3 < pos.x + size.x)
+		) && (
+			(pos.y <= this->_pos.y + this->_size.y && this->_pos.y + this->_size.y < pos.y + size.y) ||
+			(pos.y <= this->_pos.y + this->_size.y * 2 && this->_pos.y + this->_size.y * 2 < pos.y + size.y)
+		);
 	}
 
 	const Size<unsigned> & Entity::getSize() const
