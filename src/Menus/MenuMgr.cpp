@@ -14,6 +14,11 @@ namespace DungeonIntern
 			this->_menus.at(this->_currentMenu)->handleEvent(event);
 	}
 
+	MenuMgr::~MenuMgr()
+	{
+		this->_currentMenu = "";
+	}
+
 	void MenuMgr::renderMenu()
 	{
 		if (!this->_currentMenu.empty())
@@ -31,5 +36,10 @@ namespace DungeonIntern
 		if (!this->_currentMenu.empty())
 			this->_menus.at(this->_currentMenu)->switched(false);
 		this->_currentMenu = newMenu;
+	}
+
+	std::string MenuMgr::getCurrentMenu() const
+	{
+		return this->_currentMenu;
 	}
 }

@@ -24,6 +24,7 @@ namespace DungeonIntern
 
 	public:
 		MainMenu(MenuMgr &menu, Map &map, Resources &resources);
+		~MainMenu() override = default;
 		void render() override;
 		void switched(bool isActive) override;
 		void handleEvent(const Input::Event &event) override;

@@ -50,13 +50,17 @@ namespace DungeonIntern::AI
 
 		while (!openList.empty()) {
 			current = openList[0];
+			for (auto &n : openList) {
+				if (n->getFCost() <= current->getFCost())
+					current = n;
+			}
 
 			if (*current == target) {
 				std::cout << "Path found" << std::endl;
 				break;
 			}
 			closedList.push_back(current);
-			openList.erase(openList.begin());
+			openList.erase(std::find(openList.begin(), openList.end(), current));
 
 			for (unsigned i = 0; i < 4; i++) {
 				uNode neighbor = this->_getNodeFromPos(current->x + directions[i].x, current->y + directions[i].y);
@@ -71,7 +75,6 @@ namespace DungeonIntern::AI
 					neighbor.cost = current->cost + 1;
 					neighbor.distanceToEnd = 0;//std::abs((int) neighbor.x - (int) target.x) + std::abs((int) neighbor.y - (int) target.y);
 					openList.push_back(new uNode(neighbor));
-					std::sort(openList.begin(), openList.end(), [](uNode *l, uNode *r){return *l < *r;});
 				} else if (neighbor.cost < oldNeighbor->cost) {
 					oldNeighbor->cost = current->cost + 1;
 					oldNeighbor->parent = current;
