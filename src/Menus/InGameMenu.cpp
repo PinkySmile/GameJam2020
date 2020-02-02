@@ -26,7 +26,14 @@ namespace DungeonIntern
 		if (!isActive)
 			return;
 
-		this->_game.resources.playMusic("prepare");
+		if (this->_soundThread.joinable())
+			this->_soundThread.join();
+		this->_game.resources.stopMusic();
+		this->_game.resources.playSound("prepare");
+		this->_soundThread = std::thread([this]{
+			std::this_thread::sleep_for(std::chrono::seconds(45));
+			this->_game.resources.playMusic("music");
+		});
 		this->_screen.setCameraCenter({0, 0});
 	}
 
