@@ -68,11 +68,13 @@ namespace DungeonIntern
 		logger.debug("Entity destroyed");
 	}
 
-	void Entity::move(double angle)
+	void Entity::move(double angle, bool dontmoveangle)
 	{
 		this->_old_position = this->_pos;
 		this->_pos.x += std::cos(angle) * this->_speed;
 		this->_pos.y += std::sin(angle) * this->_speed;
+		if (dontmoveangle)
+			return;
 		while (angle < 0)
 			angle += 2 * M_PI;
 		angle = std::fmod(angle, 2 * M_PI);
@@ -118,6 +120,10 @@ namespace DungeonIntern
 				block->onWalk(*this);
 			}
 		}
+		for (auto &entity_ptr : this->_map.getEntities()) {
+			if (&*entity_ptr != this && this->collideWith(entity_ptr->_pos, entity_ptr->_size))
+				this->onCollide(*entity_ptr);
+		}
 	}
 
 	bool Entity::collideWith(const Position<int> &pos, const Size<unsigned> &size) const
@@ -129,6 +135,17 @@ namespace DungeonIntern
 			(pos.y <= this->_pos.y + this->_size.y && this->_pos.y + this->_size.y < pos.y + size.y) ||
 			(pos.y <= this->_pos.y + this->_size.y * 2 && this->_pos.y + this->_size.y * 2 < pos.y + size.y)
 		);
+	}
+
+	bool Entity::collideWith(const Position<float> &pos, const Size<unsigned> &size) const
+	{
+		return (
+					   (pos.x <= this->_pos.x + this->_size.x * 0.3 && this->_pos.x + this->_size.x * 0.3 < pos.x + size.x) ||
+					   (pos.x <= this->_pos.x + this->_size.x - this->_size.x * 0.3 && this->_pos.x + this->_size.x - this->_size.x * 0.3 < pos.x + size.x)
+			   ) && (
+					   (pos.y <= this->_pos.y + this->_size.y && this->_pos.y + this->_size.y < pos.y + size.y) ||
+					   (pos.y <= this->_pos.y + this->_size.y * 2 && this->_pos.y + this->_size.y * 2 < pos.y + size.y)
+			   );
 	}
 
 	const Size<unsigned> & Entity::getSize() const

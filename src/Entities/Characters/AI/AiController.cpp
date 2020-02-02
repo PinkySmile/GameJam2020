@@ -7,6 +7,7 @@
 #include "../../../Blocks/Block.hpp"
 #include "../../../Map.hpp"
 #include "../../../Blocks/Objects/Chest.hpp"
+#include "../../../Blocks/Objects/Pot.hpp"
 
 namespace DungeonIntern::AI
 {
@@ -84,10 +85,10 @@ namespace DungeonIntern::AI
 		float tmp;
 
 		for (auto &block : blocks) {
-			if (dynamic_cast<Chest *>(&*block) != nullptr) {
+			if (dynamic_cast<Chest *>(&*block) != nullptr || dynamic_cast<Pot *>(&*block) != nullptr) {
 				if (block->needsRepair() == false) {
 					tmp = sqrt(std::pow(xPlayer - block->getPosition().x, 2) + std::pow(yPlayer - block->getPosition().y, 2));
-					if (tmp < distanceCache) {
+					if (tmp < distanceCache || (rand() % 100 + 1) > 80) {
 						tmpx = block->getPosition().x;
 						tmpy = block->getPosition().y;
 						distanceCache = tmp;

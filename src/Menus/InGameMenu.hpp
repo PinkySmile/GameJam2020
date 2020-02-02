@@ -21,10 +21,12 @@ namespace DungeonIntern
 		MenuMgr &_menu;
 		std::thread _soundThread;
 		Rendering::Screen &_screen;
+		unsigned _lastTime = 0;
 
 	public:
 		InGameMenu(MenuMgr &menu, Game &game, Map &map, Rendering::Screen &screen);
 		~InGameMenu() override;
+		void appear();
 		void render() override;
 		void switched(bool isActive) override;
 		void handleEvent(const Input::Event &event) override;
