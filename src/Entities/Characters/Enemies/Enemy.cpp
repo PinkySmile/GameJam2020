@@ -19,11 +19,16 @@ namespace DungeonIntern
 
 		if (++t >= 60)
 			this->takeDamage(-1);
+
+		if (this->_counter >= 40) {
+
+			this->destroy();
+		}
+		this->_counter += this->_dead;
 	}
 
 	void Enemy::onDeath()
 	{
 		this->_game.state.menuMgr.getMenu<InGameMenu>("in_game").appear();
-		this->destroy();
 	}
 }
