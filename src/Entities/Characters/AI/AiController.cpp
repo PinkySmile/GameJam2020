@@ -131,7 +131,7 @@ namespace DungeonIntern::AI
 
 		for (auto &block : blocks) {
 			sf::Vector2f blockPos(block->getPosition().x / 64, block->getPosition().y / 64);
-			if (dynamic_cast<Chest *>(&*block) != nullptr || ) {
+			if (dynamic_cast<Chest *>(&*block) != nullptr) {
 				if (!block->needsRepair()) {
 					tmp = sqrt(std::pow(xPlayer - blockPos.x, 2) + std::pow(yPlayer - blockPos.y, 2));
 					if (tmp < distanceCache) {

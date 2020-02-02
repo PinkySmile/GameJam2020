@@ -4,7 +4,7 @@
                                     W  R    W  W  W      WTW  W
                                     W       W  W  W      WC   W
                                     W      WWWWW  WWWWW   WWWWW
-                                    W  W          WC   T  WF
+                                    W  W          WC   T  W
                                     W  WW         WWWWW   W
                                     W   W  TWWWW  WWWWW   WWWWWWWWWWWWWWWWWWWWWW
                                     WW 0W0 WW  W  T   T    W     TC            W
