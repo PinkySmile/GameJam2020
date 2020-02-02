@@ -72,7 +72,6 @@ namespace DungeonIntern
 		if (this->_dash_cooldown)
 			this->_dash_cooldown--;
 		if (this->_boss_ko_timer != 0) {
-			printf("boss timer: %d", _boss_ko_timer);
 			if (this->_boss_ko_timer == 180) {
 				char *randsounds[] = {DEATH_SOUND_BOSS};
 				this->_resources.playSound(std::string(randsounds[this->_resources.random() % 3]));
