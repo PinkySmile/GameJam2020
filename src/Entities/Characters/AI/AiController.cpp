@@ -124,15 +124,15 @@ namespace DungeonIntern::AI
 		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
 		float xPlayer = this->getPos().x / 64;
 		float yPlayer = this->getPos().y / 64;
-		float distanceCache = 999999;
+		float distanceCache = INFINITY;
 		float tmpx = 0;
 		float tmpy = 0;
 		float tmp;
 
 		for (auto &block : blocks) {
 			sf::Vector2f blockPos(block->getPosition().x / 64, block->getPosition().y / 64);
-			if (dynamic_cast<Chest *>(&*block) != nullptr) {
-				if (block->needsRepair() == false) {
+			if (dynamic_cast<Chest *>(&*block) != nullptr || ) {
+				if (!block->needsRepair()) {
 					tmp = sqrt(std::pow(xPlayer - blockPos.x, 2) + std::pow(yPlayer - blockPos.y, 2));
 					if (tmp < distanceCache) {
 						tmpx = blockPos.x;
@@ -142,6 +142,8 @@ namespace DungeonIntern::AI
 				}
 			}
 		}
+		std::cout << (std::string("final tmp ") + std::to_string(tmp)) << std::endl;
+		std::cout << (std::string("final tmp coords ") + std::to_string(tmpx)) + std::string(" ") + std::to_string(tmpy) << std::endl;
 		return DungeonIntern::AI::uNode(tmpx, tmpy);
 	}
 
