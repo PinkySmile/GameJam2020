@@ -12,8 +12,12 @@
 namespace DungeonIntern
 {
 	class Enemy : public Character {
+	protected:
+		Game &_game;
+		unsigned t = 0;
+
 	public:
-		Enemy(EntityConfig cfd, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
+		Enemy(EntityConfig cfg, Game &game, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
 		virtual ~Enemy() override = default;
 		virtual void update() override;
 		virtual void onDeath() override;

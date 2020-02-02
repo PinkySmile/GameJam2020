@@ -35,15 +35,14 @@ namespace DungeonIntern
 
 	void MainMenu::switched(bool isActive)
 	{
-		if (isActive) {
-			this->_resources.stopMusic();
-			this->_resources.playMusic("menu");
-			this->_resources.screen->attach(this->_gui);
-		} else {
-			this->_map.reset();
-			this->_map.loadMap();
+		if (!isActive) {
 			this->_resources.screen->detach(this->_gui);
+			return;
 		}
+
+		this->_resources.stopMusic();
+		this->_resources.playMusic("menu");
+		this->_resources.screen->attach(this->_gui);
 	}
 
 	void MainMenu::handleEvent(const Input::Event &)

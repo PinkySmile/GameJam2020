@@ -9,7 +9,9 @@ namespace DungeonIntern
 {
 	Character::Character(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation) :
 		Entity(maxHealth, cfg, maxSpeed, x, y, sx, sy, orientation)
-	{}
+	{
+		this->_entity.setDirection(Rendering::WEST);
+	}
 
 	void Character::update()
 	{
