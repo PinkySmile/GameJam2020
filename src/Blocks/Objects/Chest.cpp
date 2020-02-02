@@ -47,6 +47,6 @@ namespace DungeonIntern
 
 	bool Chest::isWalkable()
 	{
-		return true;
+		return !this->_needRepair;
 	}
 }
