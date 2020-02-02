@@ -20,6 +20,7 @@ namespace DungeonIntern
 	private:
 		std::vector<std::unique_ptr<Entity>> _entities;
 		std::vector<std::unique_ptr<Block>> _objects;
+		std::vector<sf::Vector2u> _startPoints;
 		Size<size_t> _size;
 		Game &_game;
 		class Player *_player1;
