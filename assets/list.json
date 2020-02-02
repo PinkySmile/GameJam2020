@@ -42,7 +42,8 @@
 		"prepare": "Sounds/Dungeon_Intern_-_Preparation.ogg",
 		"radio1": "Sounds/Radio/Radio_Interview_Remastered.ogg",
 		"radio2": "Sounds/Radio/Radio_Interview2_Remastered.ogg",
-		"radio3": "Sounds/Radio/Radio_JT_Midi_Remastered.ogg"
+		"radio3": "Sounds/Radio/Radio_JT_Midi_Remastered.ogg",
+		"traped": "Sounds/General/PiegesAlames.ogg"
 	},
 	"sprites": {
 		"dragonPlayer": "entities/dragon.png",
