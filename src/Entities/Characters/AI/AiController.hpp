@@ -14,7 +14,7 @@ namespace DungeonIntern::AI
 	private:
 		std::vector<sf::Vector2u> _path;
 		std::vector<sf::Vector2u> _findPath();
-		uNode _getBlockNodeFromPos(unsigned x, unsigned y);
+		uNode _getNodeFromPos(unsigned x, unsigned y);
 	public:
 		AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation = SOUTH);
 		virtual ~AIController() override = default;

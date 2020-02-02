@@ -14,12 +14,12 @@ namespace DungeonIntern::AI
 	{
 		T x;
 		T y;
-		std::shared_ptr<struct AStarNode> parent;
+		struct AStarNode *parent;
 		bool isWalkable;
 		int cost = 0;
 		int distanceToEnd = 0;
 
-		int getFCost()
+		int getFCost() const
 		{
 			return this->cost + this->distanceToEnd;
 		}
@@ -33,6 +33,26 @@ namespace DungeonIntern::AI
 		AStarNode(T x, T y, bool isWalkable)
 			: x(x), y(y), isWalkable(isWalkable)
 		{}
+
+		bool operator< (const AStarNode<T> &n2) const
+		{
+			return this->getFCost() < n2.getFCost();
+		}
+
+		bool operator> (const AStarNode<T> &n2) const
+		{
+			return this->getFCost() > n2.getFCost();
+		}
+
+		bool operator== (const AStarNode<T> &n2) const
+		{
+			return this->x == n2.x && this->y == n2.y;
+		}
+
+		bool operator!= (const AStarNode<T> &n2) const
+		{
+			return this->x != n2.x || this->y != n2.y;
+		}
 	};
 
 	typedef AStarNode<unsigned> uNode;

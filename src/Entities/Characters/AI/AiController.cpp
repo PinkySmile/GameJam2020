@@ -2,6 +2,8 @@
 // Created by anonymus-raccoon on 2/1/20.
 //
 
+#include <queue>
+#include <iostream>
 #include "AiController.hpp"
 #include "AStarNode.hpp"
 #include "../../../Blocks/Block.hpp"
@@ -9,12 +11,19 @@
 
 namespace DungeonIntern::AI
 {
+	const std::vector<sf::Vector2i> directions = {
+		{-1, 0},
+		{1, 0},
+		{0, 1},
+		{0, -1}
+	};
+
 	AIController::AIController(EntityConfig cfg, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth, Orientation orientation) :
 		Character(cfg, maxSpeed, x, y, sx, sy, maxHealth, orientation)
 	{
 	}
 
-	uNode AIController::_getBlockNodeFromPos(unsigned x, unsigned y)
+	uNode AIController::_getNodeFromPos(unsigned x, unsigned y)
 	{
 		uNode node(x, y);
 		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
@@ -30,46 +39,49 @@ namespace DungeonIntern::AI
 
 	std::vector<sf::Vector2u> AIController::_findPath()
 	{
+		uNode *first = new uNode(this->_pos.x / 64, this->_pos.y / 64);
 		uNode target(10, 15);
+		uNode *current = nullptr;
 
-		uNode first(this->_pos.x / 64, this->_pos.y / 64);
-		std::vector<uNode> openList = {first};
-		std::vector<uNode> closedList = {};
+		std::vector<uNode *> openList = {};
+		openList.push_back(first);
+		std::vector<uNode *> closedList = {};
 
-		uNode current;
-		std::vector<uNode> neighbors;
-
-		while (!openList.empty() && std::find_if(openList.begin(), openList.end(), [&target](uNode &n) {return n.x == target.x && n.y == target.y;}) == openList.end()) {
+		while (!openList.empty()) {
 			current = openList[0];
-			openList.erase(openList.begin());
-			closedList.push_back(current);
 
-			neighbors.clear();
-			neighbors.emplace_back(this->_getBlockNodeFromPos(current.x -1, current.y));
-			neighbors.emplace_back(this->_getBlockNodeFromPos(current.x, current.y -1));
-			neighbors.emplace_back(this->_getBlockNodeFromPos(current.x + 1, current.y));
-			neighbors.emplace_back(this->_getBlockNodeFromPos(current.x, current.y + 1));
-			for (auto &neighbor : neighbors) {
+			if (*current == target) {
+				std::cout << "Path found" << std::endl;
+				break;
+			}
+			closedList.push_back(current);
+			openList.erase(openList.begin());
+
+			for (unsigned i = 0; i < 4; i++) {
+				uNode neighbor = this->_getNodeFromPos(current->x + directions[i].x, current->y + directions[i].y);
 				if (!neighbor.isWalkable)
 					continue;
-				if (std::find_if(closedList.begin(), closedList.end(), [neighbor](uNode &n){return n.x == neighbor.x && n.y == neighbor.y;}) != closedList.end())
+				if (std::find_if(closedList.begin(), closedList.end(), [neighbor](uNode *n){return *n == neighbor;}) != closedList.end())
 					continue;
-				if (std::find_if(openList.begin(), openList.end(), [neighbor](uNode &n){return n.x == neighbor.x && n.y == neighbor.y;}) != openList.end())
-					continue;
-				neighbor.parent.reset(&current);
-				neighbor.cost = current.cost + 1;
-				neighbor.distanceToEnd = std::abs((int)neighbor.x - (int)target.x) + std::abs((int)neighbor.y - (int)target.y);
-				openList.push_back(neighbor);
-				std::sort(openList.begin(), openList.end(), [](uNode a, uNode b){return a.getFCost() < b.getFCost();});
+				auto it = std::find(openList.begin(), openList.end(), current);
+				uNode *oldNeighbor = it != openList.end() ? *it : nullptr;
+				if (!oldNeighbor) {
+					neighbor.parent = current;
+					neighbor.cost = current->cost + 1;
+					neighbor.distanceToEnd = std::abs((int) neighbor.x - (int) target.x) + std::abs((int) neighbor.y - (int) target.y);
+					openList.push_back(new uNode(neighbor));
+					std::sort(openList.begin(), openList.end(), [](uNode *l, uNode *r){return *l < *r;});
+				} else if (neighbor.cost < oldNeighbor->cost) {
+					oldNeighbor->cost = neighbor.cost;
+					oldNeighbor->parent = current;
+				}
 			}
 		}
 
-//		if (std::find(openList.begin(), openList.end(), [target](uNode &n) {return n.x == target.x && n.y == target.y;}) == openList.end())
-//			return {};
 		std::vector<sf::Vector2u> ret;
-		while (current.x != first.x && current.y != first.y) {
-			ret.emplace_back(current.x, current.y);
-			current = *current.parent;
+		while (current != nullptr) {
+			ret.emplace(ret.begin(), current->x, current->y);
+			current = current->parent;
 		}
 		return ret;
 	}
