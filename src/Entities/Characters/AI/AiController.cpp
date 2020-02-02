@@ -79,7 +79,8 @@ namespace DungeonIntern::AI
 
 		for (auto &block : blocks) {
 			if (dynamic_cast<Chest *>(&*block) != nullptr) {
-				return DungeonIntern::AI::uNode(block->getPosition().x, block->getPosition().y);
+				if (block->needsRepair() == false)
+					return DungeonIntern::AI::uNode(block->getPosition().x, block->getPosition().y);
 			}
 		}
 		return DungeonIntern::AI::uNode(0, 0);
