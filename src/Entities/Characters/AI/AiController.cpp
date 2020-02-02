@@ -92,6 +92,10 @@ namespace DungeonIntern::AI
 	void AIController::update()
 	{
 		Enemy::update();
+
+		if (this->isDead())
+			return;
+
 		static int count = 0;
 		if (count > 0) {
 			count--;
