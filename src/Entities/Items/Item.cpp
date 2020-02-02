@@ -18,7 +18,6 @@ namespace DungeonIntern {
 
 	void Item::onCollide(Entity &other)
 	{
-		printf("Collided with Entity !\n");
 		Player *player = nullptr;
 
 		if (this->_timer_cantBePicked)

@@ -25,7 +25,7 @@ namespace DungeonIntern::AI
 		virtual ~AIController() override = default;
 
 		virtual void update() override;
-		uNode findTarget();
+		virtual uNode findTarget();
 	};
 }
 

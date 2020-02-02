@@ -7,6 +7,7 @@
 #include "AStarNode.hpp"
 #include "../../../Blocks/Block.hpp"
 #include "../../../Blocks/Objects/Chest.hpp"
+#include "../../../Blocks/Objects/Pot.hpp"
 
 namespace DungeonIntern::AI
 {
@@ -114,7 +115,7 @@ namespace DungeonIntern::AI
 			this->_pathCounter = 0;
 		}
 //		this->_pos.x = this->_path[this->_pathCounter].x * 64;
-//		this->_pos.y = this->_path[this->_pathCounter].y * 64;
+//		this->_pos.y = this->_path[this->_pathCounter].y * 64 - 30;
 //		float adj = std::abs(this->_path[this->_pathCounter].x * 64 - this->_pos.x);
 //		float op = std::abs(this->_path[this->_pathCounter].y * 64 - this->_pos.y);
 //		float hyp = std::abs(std::sqrt(std::pow(adj, 2) * std::pow(op, 2)));
@@ -126,21 +127,20 @@ namespace DungeonIntern::AI
 	uNode AIController::findTarget()
 	{
 		const std::vector<std::unique_ptr<Block>> &blocks = this->_map.getObjects();
-		float xPlayer = this->getPos().x / 64;
-		float yPlayer = this->getPos().y / 64;
-		float distanceCache = INFINITY;
+		float xPlayer = this->getPos().x;
+		float yPlayer = this->getPos().y;
+		float distanceCache = 999999;
 		float tmpx = 0;
 		float tmpy = 0;
 		float tmp;
 
 		for (auto &block : blocks) {
-			sf::Vector2f blockPos(block->getPosition().x / 64, block->getPosition().y / 64);
-			if (dynamic_cast<Chest *>(&*block) != nullptr) {
-				if (!block->needsRepair()) {
-					tmp = sqrt(std::pow(xPlayer - blockPos.x, 2) + std::pow(yPlayer - blockPos.y, 2));
-					if (tmp < distanceCache) {
-						tmpx = blockPos.x;
-						tmpy = blockPos.y;
+			if (dynamic_cast<Chest *>(&*block) != nullptr || dynamic_cast<Pot *>(&*block) != nullptr) {
+				if (block->needsRepair() == false) {
+					tmp = sqrt(std::pow(xPlayer - block->getPosition().x, 2) + std::pow(yPlayer - block->getPosition().y, 2));
+					if (tmp < distanceCache || (rand() % 100 + 1) > 80) {
+						tmpx = block->getPosition().x;
+						tmpy = block->getPosition().y;
 						distanceCache = tmp;
 					}
 				}
