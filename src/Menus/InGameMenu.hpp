@@ -24,6 +24,7 @@ namespace DungeonIntern
 
 	public:
 		InGameMenu(MenuMgr &menu, Game &game, Map &map, Rendering::Screen &screen);
+		~InGameMenu() override;
 		void render() override;
 		void switched(bool isActive) override;
 		void handleEvent(const Input::Event &event) override;

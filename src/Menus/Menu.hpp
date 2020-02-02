@@ -12,6 +12,7 @@ namespace DungeonIntern
 {
 	class Menu {
 	public:
+		virtual ~Menu() = default;
 		virtual void switched(bool isActive) = 0;
 		virtual void render() = 0;
 		virtual void handleEvent(const Input::Event &event) = 0;
