@@ -61,11 +61,11 @@ namespace DungeonIntern
 			break;
 		case 4:
 		case 8: // LEFT
-			pl_pos.x = block_pos.x - TILESIZE - 0.1;
+			pl_pos.x = block_pos.x - TILESIZE - 0.1 + 17;
 			break;
 		case 7:
 		case 11: // RIGHT
-			pl_pos.x = block_pos.x + TILESIZE + 0.1;
+			pl_pos.x = block_pos.x + TILESIZE + 0.1 - 17;
 			break;
 		case 12: // DOWN LEFT
 			pl_pos.y += std::min(TILESIZE - relative_x, TILESIZE - relative_y) + 0.1; // rdown
