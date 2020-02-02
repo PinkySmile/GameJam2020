@@ -13,9 +13,9 @@ namespace DungeonIntern
 {
 	class Lonk : public Enemy {
 	public:
-		Lonk(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth);
+		Lonk(Rendering::Screen &screen, Map &map, Game &game, float x, float y);
 		virtual ~Lonk() override = default;
-		virtual void update() override;
+		void onDeath() override;
 	};
 }
 

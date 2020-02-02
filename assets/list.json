@@ -50,12 +50,12 @@
 		"bigSlimePlayer": "entities/dragon.png",
 		"goblinPlayer": "entities/goblin_spritesheet.png",
 		"ghostPlayer": "entities/dragon.png",
-		"warriorEnemy": "entities/dragon.png",
-		"thiefEnemy": "entities/thief.png",
+		"warriorEnemy": "entities/warriorEnemy.png",
+		"thiefEnemy": "entities/thiefEnemy.png",
 		"archerEnemy": "entities/dragon.png",
-		"ninjaEnemy": "entities/ninja.png",
+		"ninjaEnemy": "entities/ninjaEnemy.png",
 		"bombermanEnemy": "entities/dragon.png",
-		"lonkEnemy": "entities/dragon.png",
+		"lonkEnemy": "entities/lonkEnemy.png",
 		"vlogerEnemy": "entities/dragon.png",
 		"trap1": "objects/trap_sheet.png",
 		"chest": "objects/chest.png",
@@ -71,7 +71,10 @@
 		"keyUp": "buttons/arrow up.png",
 		"keyDown": "buttons/arrow down.png",
 		"keyLeft": "buttons/arrow left.png",
-		"keyRight": "buttons/arrow right.png"
+		"keyRight": "buttons/arrow right.png",
+		"pot0": "objects/pot0.png",
+		"pot1": "objects/pot1.png",
+		"pot2": "objects/pot2.png"
 	},
 	"icon": "icon.png"
 }

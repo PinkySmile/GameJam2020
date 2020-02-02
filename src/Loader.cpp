@@ -21,7 +21,7 @@ namespace DungeonIntern
 			sf::Keyboard::Right,
 			sf::Keyboard::Down,
 			sf::Keyboard::Left,
-			sf::Keyboard::LControl,
+			sf::Keyboard::RControl,
 			sf::Keyboard::Enter },
 		{	sf::Keyboard::Up,
 			sf::Keyboard::Right,

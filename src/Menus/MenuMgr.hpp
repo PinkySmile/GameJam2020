@@ -33,6 +33,12 @@ namespace DungeonIntern
 			return reinterpret_cast<result &>(*this->_menus.emplace(id, new result(*this, args...)).first->second);
 		};
 
+		//! @brief Gets a menu.
+		template <typename type>
+		type &getMenu(const std::string &id) const {
+			return dynamic_cast<type &>(*this->_menus.at(id));
+		}
+
 		//! @brief Renders the current Menu on the screen
 		void renderMenu();
 

@@ -7,7 +7,8 @@
 namespace DungeonIntern
 {
 	Ninja::Ninja(Rendering::Screen &screen, Map &map, float maxSpeed, float x, float y, unsigned sx, unsigned sy, unsigned maxHealth) :
-		Enemy({screen, "assets/entities/ninja.json", map}, maxSpeed, x, y, sx, sy, maxHealth)
+		Enemy({screen, "assets/entities/ninja.json", map},
+		      <#initializer#>, maxSpeed, x, y, sx, sy, maxHealth)
 	{}
 
 	void Ninja::update()

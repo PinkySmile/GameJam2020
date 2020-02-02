@@ -25,7 +25,7 @@
 #include "Blocks/Objects/Trap2.hpp"
 #include "Entities/Items/Pickaxe.hpp"
 #include "Blocks/Objects/Radio.hpp"
-#include "Entities/Characters/AI/AiController.hpp"
+#include "Blocks/Objects/Pot.hpp"
 #include <functional>
 
 namespace DungeonIntern
@@ -45,7 +45,8 @@ namespace DungeonIntern
 		{'T', [](Game &game){ return new Trap1(game); }},
 		{'C', [](Game &game){ return new Chest(game); }},
 		{'2', [](Game &    ){ return new Trap2(); }},
-		{'R', [](Game &game){ return new Radio(game); }}
+		{'R', [](Game &game){ return new Radio(game); }},
+		{'P', [](Game &game){ return new Pot(game); }}
 	};
 
 	Map::Map(DungeonIntern::Game &game)
@@ -72,6 +73,7 @@ namespace DungeonIntern
 		for (auto &ent : this->_entities)
 			ent->render();
 		this->_game.resources.screen->renderEntities();
+
 	}
 
 	void Map::reset()
@@ -160,13 +162,6 @@ namespace DungeonIntern
 				this->_size.y * 64 - 256
 			)
 		);
-		this->_entities.emplace_back(new AI::AIController({*this->_game.resources.screen, "assets/entities/dragon.json", *this},
-			5,
-			  this->_startPoints[0].x * 64,
-			  this->_startPoints[0].y * 64,
-		  64,
-		  64,
-		  100));
 	}
 
 	Size<size_t> Map::getSize() const

@@ -72,20 +72,20 @@ add_executable(
 	src/Entities/Characters/Character.hpp
 	src/Entities/Characters/Enemies/Enemy.cpp
 	src/Entities/Characters/Enemies/Enemy.hpp
-	src/Entities/Characters/Enemies/Warrior.cpp
-	src/Entities/Characters/Enemies/Warrior.hpp
-	src/Entities/Characters/Enemies/Archer.cpp
-	src/Entities/Characters/Enemies/Archer.hpp
-	src/Entities/Characters/Enemies/Thief.cpp
-	src/Entities/Characters/Enemies/Thief.hpp
-	src/Entities/Characters/Enemies/Bomberman.cpp
-	src/Entities/Characters/Enemies/Bomberman.hpp
-	src/Entities/Characters/Enemies/Ninja.cpp
-	src/Entities/Characters/Enemies/Ninja.hpp
+	#src/Entities/Characters/Enemies/Warrior.cpp
+	#src/Entities/Characters/Enemies/Warrior.hpp
+	#src/Entities/Characters/Enemies/Archer.cpp
+	#src/Entities/Characters/Enemies/Archer.hpp
+	#src/Entities/Characters/Enemies/Thief.cpp
+	#src/Entities/Characters/Enemies/Thief.hpp
+	#src/Entities/Characters/Enemies/Bomberman.cpp
+	#src/Entities/Characters/Enemies/Bomberman.hpp
+	#src/Entities/Characters/Enemies/Ninja.cpp
+	#src/Entities/Characters/Enemies/Ninja.hpp
 	src/Entities/Characters/Enemies/Lonk.cpp
 	src/Entities/Characters/Enemies/Lonk.hpp
-	src/Entities/Characters/Enemies/Vloger.cpp
-	src/Entities/Characters/Enemies/Vloger.hpp
+	#src/Entities/Characters/Enemies/Vloger.cpp
+	#src/Entities/Characters/Enemies/Vloger.hpp
 	src/Blocks/Objects/Air.cpp
 	src/Blocks/Objects/Air.hpp
 	src/Blocks/Objects/Wall.cpp
@@ -104,7 +104,7 @@ add_executable(
 	src/Entities/Items/Pickaxe.hpp
 	src/Entities/Characters/AI/AiController.cpp
 	src/Entities/Characters/AI/AiController.hpp
-	src/Entities/Characters/AI/AStarNode.hpp src/Blocks/Objects/Radio.cpp src/Blocks/Objects/Radio.hpp)
+	src/Entities/Characters/AI/AStarNode.hpp src/Blocks/Objects/Radio.cpp src/Blocks/Objects/Radio.hpp src/Blocks/Objects/Pot.cpp src/Blocks/Objects/Pot.hpp)
 
 target_link_libraries(
 	DungeonIntern
