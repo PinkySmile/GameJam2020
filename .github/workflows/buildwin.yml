@@ -37,9 +37,6 @@ jobs:
       - name: Copy assets
         run: |
          Copy-Item -Recurse -Path assets -Destination build/
-      - name: Copy libraries
-        run: |
-         Move-Item -Recurse -Path build/lib/* -Destination build/
       - name: Archive production artifact
         uses: actions/upload-artifact@v1
         with:
