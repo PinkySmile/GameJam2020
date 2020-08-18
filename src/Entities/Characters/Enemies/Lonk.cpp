@@ -22,6 +22,6 @@ namespace DungeonIntern
 
 	AI::uNode Lonk::findTarget()
 	{
-		AIController::findTarget();
+		return AIController::findTarget();
 	}
 }

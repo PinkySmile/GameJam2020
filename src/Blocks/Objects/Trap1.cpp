@@ -51,6 +51,6 @@ namespace DungeonIntern
 
 	int Trap1::heuristic()
 	{
-		return !this->_needRepair * 5;
+		return !this->_needRepair * 999;
 	}
 }

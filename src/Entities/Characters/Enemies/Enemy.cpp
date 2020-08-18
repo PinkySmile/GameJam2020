@@ -24,7 +24,7 @@ namespace DungeonIntern
 
 	void Enemy::onDeath()
 	{
+		Character::onDeath();
 		this->_game.state.menuMgr.getMenu<InGameMenu>("in_game").appear();
-		this->destroy();
 	}
 }

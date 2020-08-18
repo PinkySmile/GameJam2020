@@ -19,6 +19,7 @@ void DungeonIntern::Pot::use(Player &)
 
 void DungeonIntern::Pot::loot(Enemy &)
 {
+	this->_game.resources.playSound("breakPot");
 	this->_needRepair = true;
 }
 
