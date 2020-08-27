@@ -41,7 +41,9 @@ namespace DungeonIntern::AI
 	{
 		uNode first((this->_pos.x + 32) / 64, (this->_pos.y + 32) / 64);
 		uNode target = this->findTarget();
+
 		logger.debug(std::to_string(first.x) + ", " + std::to_string(first.y) + " -> " + std::to_string(target.x) + ", " + std::to_string(target.y));
+
 		uNode *current = nullptr;
 
 		std::vector<uNode *> openList = {};
@@ -122,6 +124,7 @@ namespace DungeonIntern::AI
 		this->_speed = 1;
 		this->_counter = 64 / this->_speed;
 		this->_pathCounter++;
+		logger.debug("Let's go to " + std::to_string(this->_path[this->_pathCounter].x) + ", " + std::to_string(this->_path[this->_pathCounter].y));
 	}
 
 	uNode AIController::findTarget()
@@ -136,7 +139,7 @@ namespace DungeonIntern::AI
 
 		for (auto &block : blocks) {
 			if (dynamic_cast<Pot *>(&*block) != nullptr) {
-				if (block->needsRepair() == false) {
+				if (!block->needsRepair()) {
 					tmp = sqrt(std::pow(xPlayer - block->getPosition().x, 2) + std::pow(yPlayer - block->getPosition().y, 2));
 					if (tmp < distanceCache) {
 						tmpx = block->getPosition().x;
